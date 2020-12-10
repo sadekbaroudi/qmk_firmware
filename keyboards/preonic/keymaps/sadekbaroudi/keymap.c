@@ -24,7 +24,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   LALT_T(KC_TAB),        KC_Q,                  KC_W,                  KC_E,                  KC_R,                  KC_T,                  KC_Y,                  KC_U,                  KC_I,                  KC_O,                  KC_P,                  KC_BSLS,
   LGUI_T(KC_ESC),        KC_A,                  KC_S,                  KC_D,                  KC_F,                  KC_G,                  KC_H,                  KC_J,                  KC_K,                  KC_L,                  KC_SCLN,               RCTL_T(KC_QUOT),
   LCTL_T(KC_DEL),        KC_Z,                  KC_X,                  KC_C,                  KC_V,                  KC_B,                  KC_N,                  KC_M,                  KC_COMM,               KC_DOT,                KC_SLSH,               KC_BSPC,
-  KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 LT(1,KC_TAB),          KC_NO,        LSFT_T(KC_SPC),        LT(2,KC_ENT),          KC_NO,                 KC_NO,                 KC_NO,                 KC_N
+  KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 LT(1,KC_TAB),          LSFT_T(KC_SPC),        LSFT_T(KC_SPC),        LT(2,KC_ENT),          KC_NO,                 KC_NO,                 KC_NO,                 KC_N
 ),
 
 [1] = LAYOUT_ortho_5x12(
@@ -48,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   RESET,                 KC_NO,                 LSFT(KC_PGDN),         LSFT(KC_UP),           LSFT(KC_PGUP),         KC_NO,                 KC_MPLY,               KC_F7,                 KC_F8,                 KC_F9,                 KC_F10,                KC_NO,
   KC_NO,                 LSFT(KC_HOME),         LSFT(KC_LEFT),         LSFT(KC_DOWN),         LSFT(KC_RGHT),         LSFT(KC_END),          KC_VOLU,               KC_F4,                 KC_F5,                 KC_F6,                 KC_F11,                KC_MFFD,
   KC_NO,                 LCTL(KC_Z),            LCTL(KC_X),            LCTL(KC_C),            LCTL(KC_V),            DM_PLY1,               KC_VOLD,               KC_F1,                 KC_F2,                 KC_F3,                 KC_F12,                KC_MRWD,
-  KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_TRNS,               KC_NO,               DM_REC1,               KC_TRNS,               KC_NO,                 KC_NO,                 KC_NO,                 KC_NO
+  KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_TRNS,               DM_REC1,               DM_REC1,               KC_TRNS,               KC_NO,                 KC_NO,                 KC_NO,                 KC_NO
 )
 
 };
