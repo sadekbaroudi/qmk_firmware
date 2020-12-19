@@ -18,8 +18,8 @@
 #define LAYER_IS_ON(layer_state, layer_num) ((layer_state & (1 << layer_num)) > 0)
 
 // Begin layer lighting
-const rgblight_segment_t PROGMEM layer_capslock_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 11, HSV_RED}
+const rgblight_segment_t PROGMEM layer_0_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 11, HSV_WHITE}
 );
 
 const rgblight_segment_t PROGMEM layer_1_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
@@ -44,24 +44,31 @@ const rgblight_segment_t PROGMEM layer_5_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
 );
 */
 
+const rgblight_segment_t PROGMEM layer_capslock_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 11, HSV_RED}
+);
+
+
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    layer_capslock_rgb,
+    layer_0_rgb,
     layer_1_rgb,
     layer_2_rgb,
     layer_3_rgb,
-    layer_4_rgb  //, ANIMATIONS
-    //layer_5_rgb // ANIMATIONS
+    layer_4_rgb,
+    //layer_5_rgb, // ANIMATIONS
+    layer_capslock_rgb
 );
 
 void keyboard_post_init_user(void) {
     // set default color
-    rgblight_sethsv_noeeprom(HSV_WHITE);
+    // rgblight_sethsv_noeeprom(HSV_WHITE);
     // Enable the LED layers
     rgblight_layers = my_rgb_layers;
 }
 
 uint32_t layer_state_set_user(uint32_t state) {
 	// Both layers will light up if both kb layers are active
+	rgblight_set_layer_state(0, true);
 	rgblight_set_layer_state(1, LAYER_IS_ON(state, 1));
 	rgblight_set_layer_state(2, LAYER_IS_ON(state, 2));
 	rgblight_set_layer_state(3, LAYER_IS_ON(state, 3));
@@ -71,7 +78,7 @@ uint32_t layer_state_set_user(uint32_t state) {
 }
 
 bool led_update_user(led_t led_state) {
-	rgblight_set_layer_state(0, led_state.caps_lock);
+	rgblight_set_layer_state(5, led_state.caps_lock); // ANIMATIONS change to 6
 	return true;
 }
 
