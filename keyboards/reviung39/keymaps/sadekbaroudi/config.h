@@ -27,7 +27,7 @@
   #define RGBLIGHT_LIMIT_VAL 255 /* The maximum brightness level */
   #define RGBLIGHT_SLEEP  /* If defined, the RGB lighting will be switched off when the host goes to sleep */
 // /*== all animations enable ==*/
-  #define RGBLIGHT_ANIMATIONS
+  // #define RGBLIGHT_ANIMATIONS // Uncomment to enable ANIMATIONS
 // /*== or choose animations ==*/
 //   #define RGBLIGHT_EFFECT_BREATHING
 //   #define RGBLIGHT_EFFECT_RAINBOW_MOOD
@@ -44,6 +44,7 @@
 //   /*==== use exp() and sin() ====*/
 //   #define RGBLIGHT_EFFECT_BREATHE_CENTER 1.85  // 1 to 2.7
 //   #define RGBLIGHT_EFFECT_BREATHE_MAX    255   // 0 to 255
+  #define RGBLIGHT_LAYERS
 #endif
 
 #define TAPPING_FORCE_HOLD

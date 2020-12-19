@@ -15,6 +15,66 @@
  */
 #include QMK_KEYBOARD_H
 
+#define LAYER_IS_ON(layer_state, layer_num) ((layer_state & (1 << layer_num)) > 0)
+
+// Begin layer lighting
+const rgblight_segment_t PROGMEM layer_capslock_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 11, HSV_RED}
+);
+
+const rgblight_segment_t PROGMEM layer_1_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 11, HSV_GREEN}
+);
+
+const rgblight_segment_t PROGMEM layer_2_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 11, HSV_BLUE}
+);
+
+const rgblight_segment_t PROGMEM layer_3_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 11, HSV_YELLOW}
+);
+
+const rgblight_segment_t PROGMEM layer_4_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 11, HSV_MAGENTA}
+);
+
+/* ANIMATIONS
+const rgblight_segment_t PROGMEM layer_5_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 11, HSV_GOLDENROD}
+);
+*/
+
+const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+    layer_capslock_rgb,
+    layer_1_rgb,
+    layer_2_rgb,
+    layer_3_rgb,
+    layer_4_rgb  //, ANIMATIONS
+    //layer_5_rgb // ANIMATIONS
+);
+
+void keyboard_post_init_user(void) {
+    // set default color
+    rgblight_sethsv_noeeprom(HSV_WHITE);
+    // Enable the LED layers
+    rgblight_layers = my_rgb_layers;
+}
+
+uint32_t layer_state_set_user(uint32_t state) {
+	// Both layers will light up if both kb layers are active
+	rgblight_set_layer_state(1, LAYER_IS_ON(state, 1));
+	rgblight_set_layer_state(2, LAYER_IS_ON(state, 2));
+	rgblight_set_layer_state(3, LAYER_IS_ON(state, 3));
+	rgblight_set_layer_state(4, LAYER_IS_ON(state, 4));
+	//rgblight_set_layer_state(5, LAYER_IS_ON(state, 5)); // ANIMATIONS
+	return state;
+}
+
+bool led_update_user(led_t led_state) {
+	rgblight_set_layer_state(0, led_state.caps_lock);
+	return true;
+}
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [0] = LAYOUT_reviung39(
   LT(5,KC_ESC),          KC_Q,                  KC_W,                  KC_E,                  KC_R,                  KC_T,                  KC_Y,                  KC_U,                  KC_I,                  KC_O,                  KC_P,                  KC_BSLS,
@@ -51,12 +111,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                               KC_NO,                             KC_NO,                            KC_NO
 ),
 
+/* ANIMATIONS
 [5] = LAYOUT_reviung39(
   KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 RGB_TOG,               RGB_HUD,               RGB_HUI,               RGB_SAD,               RGB_SAI,               KC_NO,
   KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 RGB_VAD,               RGB_VAI,               RGB_RMOD,              RGB_MOD,               KC_NO,
   KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,
                                                                                               KC_NO,                             KC_NO,                            KC_NO
 )
+*/
 
 };
 
