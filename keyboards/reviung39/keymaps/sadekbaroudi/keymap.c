@@ -67,20 +67,87 @@ void keyboard_post_init_user(void) {
 }
 
 uint32_t layer_state_set_user(uint32_t state) {
-	// Both layers will light up if both kb layers are active
-	rgblight_set_layer_state(0, true);
-	rgblight_set_layer_state(1, LAYER_IS_ON(state, 1));
-	rgblight_set_layer_state(2, LAYER_IS_ON(state, 2));
-	rgblight_set_layer_state(3, LAYER_IS_ON(state, 3));
-	rgblight_set_layer_state(4, LAYER_IS_ON(state, 4));
-	//rgblight_set_layer_state(5, LAYER_IS_ON(state, 5)); // ANIMATIONS
-	return state;
+    // Both layers will light up if both kb layers are active
+    rgblight_set_layer_state(0, true);
+    rgblight_set_layer_state(1, LAYER_IS_ON(state, 1));
+    rgblight_set_layer_state(2, LAYER_IS_ON(state, 2));
+    rgblight_set_layer_state(3, LAYER_IS_ON(state, 3));
+    rgblight_set_layer_state(4, LAYER_IS_ON(state, 4));
+    //rgblight_set_layer_state(5, LAYER_IS_ON(state, 5)); // ANIMATIONS
+    return state;
 }
 
 bool led_update_user(led_t led_state) {
-	rgblight_set_layer_state(5, led_state.caps_lock); // ANIMATIONS change to 6
-	return true;
+    rgblight_set_layer_state(5, led_state.caps_lock); // ANIMATIONS change to 6
+    return true;
 }
+
+// Macro aliases
+enum custom_keycodes {
+    VIM_W = SAFE_RANGE,
+    VIM_Q,
+    VIM_SELECT,
+    L_CDHOME,
+    L_GREP,
+    L_FIND,
+    L_GITCOMMIT
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    // do stuff when macro keys are pressed
+    switch (keycode) {
+    case VIM_W:
+        if (record->event.pressed) {
+            SEND_STRING(SS_TAP(X_ESC)":w\n");
+        } else {
+            // when keycode is released
+        }
+        break;
+    case VIM_Q:
+        if (record->event.pressed) {
+            SEND_STRING(SS_TAP(X_ESC)":q\n");
+        } else {
+            // when keycode is released
+        }
+        break;
+    case VIM_SELECT:
+        if (record->event.pressed) {
+            SEND_STRING(SS_TAP(X_ESC)"V"SS_TAP(X_DOWN));
+        } else {
+            // when keycode is released
+        }
+        break;
+    case L_CDHOME:
+        if (record->event.pressed) {
+            SEND_STRING("cd ~/\n");
+        } else {
+            // when keycode is released
+        }
+        break;
+    case L_GREP:
+        if (record->event.pressed) {
+            SEND_STRING("grep -rn \"");
+        } else {
+            // when keycode is released
+        }
+        break;
+    case L_FIND:
+        if (record->event.pressed) {
+            SEND_STRING("find . -name \"");
+        } else {
+            // when keycode is released
+        }
+        break;
+    case L_GITCOMMIT:
+        if (record->event.pressed) {
+            SEND_STRING("git commit -a -m \"");
+        } else {
+            // when keycode is released
+        }
+        break;
+    }
+    return true;
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ANIMATIONS - if adding animation layer back, remember to add a key to go to that layer, I was using LT(5,KC_ESC), on the escape key before
@@ -113,9 +180,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [4] = LAYOUT_reviung39(
-  RESET,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,
-  KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,
-  KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,
+  KC_NO,                 VIM_Q,                 VIM_W,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,
+  KC_NO,                 KC_NO,                 VIM_SELECT,            KC_NO,                 L_FIND,                L_GREP,                L_CDHOME,              KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,
+  KC_NO,                 KC_NO,                 KC_NO,                 L_GITCOMMIT,           KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,
                                                                                               KC_NO,                             KC_NO,                            KC_NO
 ),
 
