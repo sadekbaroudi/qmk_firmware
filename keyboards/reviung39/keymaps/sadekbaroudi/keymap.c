@@ -140,7 +140,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
     case L_GITCOMMIT:
         if (record->event.pressed) {
-            SEND_STRING("git commit -a -m \"");
+            SEND_STRING("git commit -a -m \"\""SS_TAP(X_LEFT));
         } else {
             // when keycode is released
         }
