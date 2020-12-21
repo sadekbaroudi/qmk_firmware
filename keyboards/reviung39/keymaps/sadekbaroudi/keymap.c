@@ -19,7 +19,7 @@
 
 // Begin layer lighting
 const rgblight_segment_t PROGMEM layer_0_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 11, HSV_WHITE}
+    {0, 11, 10, 10, 255}
 );
 
 const rgblight_segment_t PROGMEM layer_1_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
