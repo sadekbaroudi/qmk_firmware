@@ -161,37 +161,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [1] = LAYOUT_reviung39(
   LALT(KC_F4),           LCTL(KC_W),            KC_PGUP,               KC_UP,                 KC_PGDN,               LCTL(LSFT(KC_TAB)),    KC_ASTR,               KC_7,                  KC_8,                  KC_9,                  KC_PLUS,               KC_DEL,
   KC_CAPS,               KC_HOME,               KC_LEFT,               KC_DOWN,               KC_RGHT,               KC_END,                KC_SLSH,               KC_4,                  KC_5,                  KC_6,                  KC_MINS,               KC_DOT,
-  LCTL(LALT(KC_DELETE)), LCTL(KC_Z),            LCTL(KC_X),            LCTL(KC_C),            LCTL(KC_V),            LCTL(KC_TAB),          KC_EQL,                KC_1,                  KC_2,                  KC_3,                  KC_0,                  KC_NO,
-                                                                                              KC_NO,                             KC_NO,                            MO(4)
+  LCTL(LALT(KC_DELETE)), LCTL(KC_Z),            LCTL(KC_X),            LCTL(KC_C),            LCTL(KC_V),            LCTL(KC_TAB),          KC_EQL,                KC_1,                  KC_2,                  KC_3,                  KC_0,                  _______,
+                                                                                              _______,                           _______,                          MO(4)
 ),
 
 [2] = LAYOUT_reviung39(
-  KC_GRV,                KC_EXLM,               KC_AT,                 KC_HASH,               KC_DLR,                KC_PERC,               KC_CIRC,               KC_AMPR,               KC_ASTR,               KC_LPRN,               KC_RPRN,               KC_NO,
-  KC_NO,                 KC_MINS,               KC_LBRC,               KC_LCBR,               KC_LPRN,               KC_LT,                 KC_GT,                 KC_RPRN,               KC_RCBR,               KC_RBRC,               KC_PLUS,               KC_NO,
-  KC_NO,                 KC_UNDS,               KC_EQL,                KC_NO,                 LCTL(LGUI(KC_LEFT)),   KC_NO,                 KC_NO,                 LCTL(LGUI(KC_RIGHT)),  KC_NO,                 KC_NO,                 KC_SLSH,               KC_NO,
-                                                                                              MO(4),                             KC_NO,                            KC_NO
+  KC_GRV,                KC_EXLM,               KC_AT,                 KC_HASH,               KC_DLR,                KC_PERC,               KC_CIRC,               KC_AMPR,               KC_ASTR,               KC_LPRN,               KC_RPRN,               _______,
+  _______,               KC_MINS,               KC_LBRC,               KC_LCBR,               KC_LPRN,               KC_LT,                 KC_GT,                 KC_RPRN,               KC_RCBR,               KC_RBRC,               KC_PLUS,               _______,
+  _______,               KC_UNDS,               KC_EQL,                _______,               LCTL(LGUI(KC_LEFT)),   _______,               _______,               LCTL(LGUI(KC_RIGHT)),  _______,               _______,               KC_SLSH,               _______,
+                                                                                              MO(4),                             _______,                          _______
 ),
 
 [3] = LAYOUT_reviung39(
-  KC_NO,                 KC_NO,                 LSFT(KC_PGDN),         LSFT(KC_UP),           LSFT(KC_PGUP),         KC_NO,                 KC_MPLY,               KC_F7,                 KC_F8,                 KC_F9,                 KC_F10,                KC_NO,
-  KC_NO,                 LSFT(KC_HOME),         LSFT(KC_LEFT),         LSFT(KC_DOWN),         LSFT(KC_RGHT),         LSFT(KC_END),          KC_VOLU,               KC_F4,                 KC_F5,                 KC_F6,                 KC_F11,                KC_MFFD,
-  KC_NO,                 LCTL(KC_Z),            LCTL(KC_X),            LCTL(KC_C),            LCTL(KC_V),            KC_NO,                 KC_VOLD,               KC_F1,                 KC_F2,                 KC_F3,                 KC_F12,                KC_MRWD,
-                                                                                              KC_TRNS,                           KC_NO,                            KC_NO
+  _______,               _______,               LSFT(KC_PGDN),         LSFT(KC_UP),           LSFT(KC_PGUP),         _______,               KC_MPLY,               KC_F7,                 KC_F8,                 KC_F9,                 KC_F10,                _______,
+  _______,               LSFT(KC_HOME),         LSFT(KC_LEFT),         LSFT(KC_DOWN),         LSFT(KC_RGHT),         LSFT(KC_END),          KC_VOLU,               KC_F4,                 KC_F5,                 KC_F6,                 KC_F11,                KC_MFFD,
+  _______,               LCTL(KC_Z),            LCTL(KC_X),            LCTL(KC_C),            LCTL(KC_V),            _______,               KC_VOLD,               KC_F1,                 KC_F2,                 KC_F3,                 KC_F12,                KC_MRWD,
+                                                                                              KC_TRNS,                           _______,                          _______
 ),
 
 [4] = LAYOUT_reviung39(
-  KC_NO,                 VIM_Q,                 VIM_W,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,
-  KC_NO,                 KC_NO,                 VIM_SELECT,            KC_NO,                 L_FIND,                L_GREP,                L_CDHOME,              KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,
-  KC_NO,                 KC_NO,                 KC_NO,                 L_GITCOMMIT,           KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,
-                                                                                              KC_NO,                             KC_NO,                            KC_NO
+  _______,               VIM_Q,                 VIM_W,                 _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,
+  _______,               _______,               VIM_SELECT,            _______,               L_FIND,                L_GREP,                L_CDHOME,              _______,               _______,               _______,               _______,               _______,
+  _______,               _______,               _______,               L_GITCOMMIT,           _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,
+                                                                                              _______,                           _______,                          _______
 ),
 
 /* ANIMATIONS
 [5] = LAYOUT_reviung39(
-  KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 RGB_TOG,               RGB_HUD,               RGB_HUI,               RGB_SAD,               RGB_SAI,               KC_NO,
-  KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 RGB_VAD,               RGB_VAI,               RGB_RMOD,              RGB_MOD,               KC_NO,
-  KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,                 KC_NO,
-                                                                                              KC_NO,                             KC_NO,                            KC_NO
+  _______,               _______,               _______,               _______,               _______,               _______,               RGB_TOG,               RGB_HUD,               RGB_HUI,               RGB_SAD,               RGB_SAI,               _______,
+  _______,               _______,               _______,               _______,               _______,               _______,               _______,               RGB_VAD,               RGB_VAI,               RGB_RMOD,              RGB_MOD,               _______,
+  _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,
+                                                                                              _______,                           _______,                          _______
 )
 */
 
