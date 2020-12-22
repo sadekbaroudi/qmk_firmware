@@ -146,6 +146,38 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         break;
     }
+    case P_ANGBRKT:
+        if (record->event.pressed) {
+            SEND_STRING("<>"SS_TAP(X_LEFT));
+        } else {
+            // when keycode is released
+        }
+        break;
+    }
+    case P_PAREN:
+        if (record->event.pressed) {
+            SEND_STRING("()"SS_TAP(X_LEFT));
+        } else {
+            // when keycode is released
+        }
+        break;
+    }
+    case P_CURLY:
+        if (record->event.pressed) {
+            SEND_STRING("{}"SS_TAP(X_LEFT));
+        } else {
+            // when keycode is released
+        }
+        break;
+    }
+    case P_BRKT:
+        if (record->event.pressed) {
+            SEND_STRING("[]"SS_TAP(X_LEFT));
+        } else {
+            // when keycode is released
+        }
+        break;
+    }
     return true;
 };
 
@@ -159,7 +191,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [1] = LAYOUT_reviung39(
-  LALT(KC_F4),           LCTL(KC_W),            KC_PGUP,               KC_UP,                 KC_PGDN,               LCTL(LSFT(KC_TAB)),    KC_ASTR,               KC_7,                  KC_8,                  KC_9,                  KC_PLUS,               KC_DEL,
+  LALT(KC_F4),           LCTL(KC_W),            KC_PGUP,               KC_UP,                 KC_PGDN,               LCTL(LSFT(KC_TAB)),    KC_ASTR,               KC_7,                  KC_8,                  KC_9,                  KC_PLUS,               _______,
   KC_CAPS,               KC_HOME,               KC_LEFT,               KC_DOWN,               KC_RGHT,               KC_END,                KC_SLSH,               KC_4,                  KC_5,                  KC_6,                  KC_MINS,               KC_DOT,
   LCTL(LALT(KC_DELETE)), LCTL(KC_Z),            LCTL(KC_X),            LCTL(KC_C),            LCTL(KC_V),            LCTL(KC_TAB),          KC_EQL,                KC_1,                  KC_2,                  KC_3,                  KC_0,                  _______,
                                                                                               _______,                           _______,                          MO(4)
@@ -180,8 +212,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [4] = LAYOUT_reviung39(
-  _______,               VIM_Q,                 VIM_W,                 _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,
-  _______,               _______,               VIM_SELECT,            _______,               L_FIND,                L_GREP,                L_CDHOME,              _______,               _______,               _______,               _______,               _______,
+  _______,               VIM_Q,                 VIM_W,                 _______,               _______,               _______,               L_CDHOME,              _______,               _______,               _______,               _______,               _______,
+  _______,               _______,               VIM_SELECT,            _______,               L_FIND,                L_GREP,                P_ANGBRKT,             P_PAREN,               P_CURLY,               P_BRKT,                _______,               _______,
   _______,               _______,               _______,               L_GITCOMMIT,           _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,
                                                                                               _______,                           _______,                          _______
 ),
