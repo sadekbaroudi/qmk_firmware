@@ -38,11 +38,9 @@ const rgblight_segment_t PROGMEM layer_4_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 11, HSV_MAGENTA}
 );
 
-/* ANIMATIONS
 const rgblight_segment_t PROGMEM layer_5_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 11, HSV_GOLDENROD}
+    {0, 11, HSV_CYAN}
 );
-*/
 
 const rgblight_segment_t PROGMEM layer_capslock_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 11, HSV_RED}
@@ -55,7 +53,7 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     layer_2_rgb,
     layer_3_rgb,
     layer_4_rgb,
-    //layer_5_rgb, // ANIMATIONS
+    layer_5_rgb,
     layer_capslock_rgb
 );
 
@@ -73,12 +71,12 @@ uint32_t layer_state_set_user(uint32_t state) {
     rgblight_set_layer_state(2, LAYER_IS_ON(state, 2));
     rgblight_set_layer_state(3, LAYER_IS_ON(state, 3));
     rgblight_set_layer_state(4, LAYER_IS_ON(state, 4));
-    //rgblight_set_layer_state(5, LAYER_IS_ON(state, 5)); // ANIMATIONS
+    rgblight_set_layer_state(5, LAYER_IS_ON(state, 5));
     return state;
 }
 
 bool led_update_user(led_t led_state) {
-    rgblight_set_layer_state(5, led_state.caps_lock); // ANIMATIONS change to 6
+    rgblight_set_layer_state(6, led_state.caps_lock);
     return true;
 }
 
@@ -90,7 +88,13 @@ enum custom_keycodes {
     L_CDHOME,
     L_GREP,
     L_FIND,
-    L_GITCOMMIT
+    L_GITCOMMIT,
+    P_ANGBRKT,
+    P_PAREN,
+    P_CURLY,
+    P_BRKT,
+    E_ROBOT,
+    E_CAT
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -145,7 +149,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             // when keycode is released
         }
         break;
-    }
     case P_ANGBRKT:
         if (record->event.pressed) {
             SEND_STRING("<>"SS_TAP(X_LEFT));
@@ -153,7 +156,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             // when keycode is released
         }
         break;
-    }
     case P_PAREN:
         if (record->event.pressed) {
             SEND_STRING("()"SS_TAP(X_LEFT));
@@ -161,7 +163,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             // when keycode is released
         }
         break;
-    }
     case P_CURLY:
         if (record->event.pressed) {
             SEND_STRING("{}"SS_TAP(X_LEFT));
@@ -169,10 +170,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             // when keycode is released
         }
         break;
-    }
     case P_BRKT:
         if (record->event.pressed) {
             SEND_STRING("[]"SS_TAP(X_LEFT));
+        } else {
+            // when keycode is released
+        }
+        break;
+    case E_ROBOT:
+        if (record->event.pressed) {
+            SEND_STRING("d[o_0]b");
+        } else {
+            // when keycode is released
+        }
+        break;
+    case E_CAT:
+        if (record->event.pressed) {
+            SEND_STRING("=^..^=");
         } else {
             // when keycode is released
         }
@@ -182,10 +196,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-// ANIMATIONS - if adding animation layer back, remember to add a key to go to that layer, I was using LT(5,KC_ESC), on the escape key before
+
 [0] = LAYOUT_reviung39(
   KC_ESC,                KC_Q,                  KC_W,                  KC_E,                  KC_R,                  KC_T,                  KC_Y,                  KC_U,                  KC_I,                  KC_O,                  KC_P,                  KC_BSLS,
-  KC_TAB,                LCTL_T(KC_A),          LGUI_T(KC_S),          LALT_T(KC_D),          LSFT_T(KC_F),          KC_G,                  KC_H,                  RSFT_T(KC_J),          RALT_T(KC_K),          RGUI_T(KC_L),          RCTL_T(KC_SCLN),       KC_QUOT,
+  KC_TAB,                LCTL_T(KC_A),          LGUI_T(KC_S),          LALT_T(KC_D),          LSFT_T(KC_F),          KC_G,                  KC_H,                  RSFT_T(KC_J),          RALT_T(KC_K),          RGUI_T(KC_L),          RCTL_T(KC_SCLN),       LT(5,KC_QUOT),
   KC_DEL,                KC_Z,                  KC_X,                  KC_C,                  KC_V,                  KC_B,                  KC_N,                  KC_M,                  KC_COMM,               KC_DOT,                KC_SLSH,               KC_BSPC,
                                                                                               LT(1,KC_ENT),                   LT(3,KC_CAPS),                       LT(2,KC_SPC)
 ),
@@ -218,14 +232,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                               _______,                           _______,                          _______
 ),
 
-/* ANIMATIONS
 [5] = LAYOUT_reviung39(
-  _______,               _______,               _______,               _______,               _______,               _______,               RGB_TOG,               RGB_HUD,               RGB_HUI,               RGB_SAD,               RGB_SAI,               _______,
-  _______,               _______,               _______,               _______,               _______,               _______,               _______,               RGB_VAD,               RGB_VAI,               RGB_RMOD,              RGB_MOD,               _______,
+  _______,               _______,               _______,               _______,               E_ROBOT,               _______,               _______,               _______,               _______,               _______,               _______,               _______,
   _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,
+  _______,               _______,               _______,               E_CAT,                 _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,
                                                                                               _______,                           _______,                          _______
 )
-*/
 
 };
 
