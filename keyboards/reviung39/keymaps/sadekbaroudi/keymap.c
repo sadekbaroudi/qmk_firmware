@@ -94,7 +94,10 @@ enum custom_keycodes {
     P_CURLY,
     P_BRKT,
     E_ROBOT,
-    E_CAT
+    E_CAT,
+    E_HUH,
+    E_ANGRY_UNAMUSED,
+    E_TABLE_FLIP
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -191,6 +194,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             // when keycode is released
         }
         break;
+    case E_HUH:
+        if (record->event.pressed) {
+            send_unicode_string("༼☉ɷ⊙༽");
+        } else {
+            // when keycode is released
+        }
+        break;
+    case E_ANGRY_UNAMUSED:
+        if (record->event.pressed) {
+            send_unicode_string("(ಠ_ಠ)");
+        } else {
+            // when keycode is released
+        }
+        break;
+    case E_TABLE_FLIP:
+        if (record->event.pressed) {
+            send_unicode_string("(╯°□°）╯ ︵ ┻━┻");
+        } else {
+            // when keycode is released
+        }
+        break;
     }
     return true;
 };
@@ -233,8 +257,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [5] = LAYOUT_reviung39(
-  _______,               _______,               _______,               _______,               E_ROBOT,               _______,               _______,               _______,               _______,               _______,               _______,               _______,
-  _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,
+  _______,               _______,               _______,               _______,               E_ROBOT,               E_TABLE_FLIP,          _______,               _______,               _______,               _______,               _______,               _______,
+  _______,               E_ANGRY_UNAMUSED,      _______,               _______,               _______,               _______,               E_HUH,                 _______,               _______,               _______,               _______,               _______,
   _______,               _______,               _______,               E_CAT,                 _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,
                                                                                               _______,                           _______,                          _______
 )
