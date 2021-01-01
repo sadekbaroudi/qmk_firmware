@@ -23,22 +23,26 @@ const rgblight_segment_t PROGMEM layer_0_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
 );
 
 const rgblight_segment_t PROGMEM layer_1_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 11, HSV_GREEN}
+    {0, 11, HSV_CORAL}
 );
 
 const rgblight_segment_t PROGMEM layer_2_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 11, HSV_BLUE}
+    {0, 11, HSV_GREEN}
 );
 
 const rgblight_segment_t PROGMEM layer_3_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 11, HSV_YELLOW}
+    {0, 11, HSV_BLUE}
 );
 
 const rgblight_segment_t PROGMEM layer_4_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 11, HSV_MAGENTA}
+    {0, 11, HSV_YELLOW}
 );
 
 const rgblight_segment_t PROGMEM layer_5_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 11, HSV_MAGENTA}
+);
+
+const rgblight_segment_t PROGMEM layer_6_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 11, HSV_CYAN}
 );
 
@@ -54,6 +58,7 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     layer_3_rgb,
     layer_4_rgb,
     layer_5_rgb,
+    layer_6_rgb,
     layer_capslock_rgb
 );
 
@@ -72,6 +77,7 @@ uint32_t layer_state_set_user(uint32_t state) {
     rgblight_set_layer_state(3, LAYER_IS_ON(state, 3));
     rgblight_set_layer_state(4, LAYER_IS_ON(state, 4));
     rgblight_set_layer_state(5, LAYER_IS_ON(state, 5));
+    rgblight_set_layer_state(6, LAYER_IS_ON(state, 6));
     return state;
 }
 
@@ -197,42 +203,56 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
+// QWERTY
 [0] = LAYOUT_reviung39(
   KC_ESC,                KC_Q,                  KC_W,                  KC_E,                  KC_R,                  KC_T,                  KC_Y,                  KC_U,                  KC_I,                  KC_O,                  KC_P,                  KC_BSLS,
-  KC_TAB,                LCTL_T(KC_A),          LGUI_T(KC_S),          LALT_T(KC_D),          LSFT_T(KC_F),          KC_G,                  KC_H,                  RSFT_T(KC_J),          RALT_T(KC_K),          RGUI_T(KC_L),          RCTL_T(KC_SCLN),       LT(5,KC_QUOT),
+  KC_TAB,                LCTL_T(KC_A),          LGUI_T(KC_S),          LALT_T(KC_D),          LSFT_T(KC_F),          KC_G,                  KC_H,                  RSFT_T(KC_J),          RALT_T(KC_K),          RGUI_T(KC_L),          RCTL_T(KC_SCLN),       LT(6,KC_QUOT),
   KC_DEL,                KC_Z,                  KC_X,                  KC_C,                  KC_V,                  KC_B,                  KC_N,                  KC_M,                  KC_COMM,               KC_DOT,                KC_SLSH,               KC_BSPC,
-                                                                                              LT(1,KC_ENT),                   LT(3,KC_CAPS),                       LT(2,KC_SPC)
+                                                                                              LT(2,KC_ENT),                  LT(4,KC_BSPC),                        LT(3,KC_SPC)
 ),
 
+// COLEMAK-DH
 [1] = LAYOUT_reviung39(
+  KC_ESC,                KC_Q,                  KC_W,                  KC_F,                  KC_P,                  KC_B,                  KC_J,                  KC_L,                  KC_U,                  KC_Y,                  KC_SCLN,               KC_BSLS,
+  KC_TAB,                LCTL_T(KC_A),          LGUI_T(KC_R),          LALT_T(KC_S),          LSFT_T(KC_T),          KC_G,                  KC_M,                  RSFT_T(KC_N),          RALT_T(KC_E),          RGUI_T(KC_I),          RCTL_T(KC_O),          LT(6,KC_QUOT),
+  KC_DEL,                KC_Z,                  KC_X,                  KC_C,                  KC_D,                  KC_V,                  KC_K,                  KC_H,                  KC_COMM,               KC_DOT,                KC_SLSH,               KC_BSPC,
+                                                                                              LT(2,KC_ENT),                  LT(4,KC_BSPC),                        LT(3,KC_SPC)
+),
+
+// NAVIGATION AND NUMBERS
+[2] = LAYOUT_reviung39(
   LALT(KC_F4),           LCTL(KC_W),            KC_PGUP,               KC_UP,                 KC_PGDN,               LCTL(LSFT(KC_TAB)),    KC_ASTR,               KC_7,                  KC_8,                  KC_9,                  KC_PLUS,               _______,
   KC_CAPS,               KC_HOME,               KC_LEFT,               KC_DOWN,               KC_RGHT,               KC_END,                KC_SLSH,               KC_4,                  KC_5,                  KC_6,                  KC_MINS,               KC_DOT,
   LCTL(LALT(KC_DELETE)), LCTL(KC_Z),            LCTL(KC_X),            LCTL(KC_C),            LCTL(KC_V),            LCTL(KC_TAB),          KC_EQL,                KC_1,                  KC_2,                  KC_3,                  KC_0,                  _______,
-                                                                                              _______,                           _______,                          MO(4)
+                                                                                              _______,                           _______,                          MO(5)
 ),
 
-[2] = LAYOUT_reviung39(
+// SYMBOLS
+[3] = LAYOUT_reviung39(
   KC_GRV,                KC_EXLM,               KC_AT,                 KC_HASH,               KC_DLR,                KC_PERC,               KC_CIRC,               KC_AMPR,               KC_ASTR,               KC_LPRN,               KC_RPRN,               _______,
   _______,               KC_MINS,               KC_LBRC,               KC_LCBR,               KC_LPRN,               KC_LT,                 KC_GT,                 KC_RPRN,               KC_RCBR,               KC_RBRC,               KC_PLUS,               _______,
   _______,               KC_UNDS,               KC_EQL,                _______,               LCTL(LGUI(KC_LEFT)),   _______,               _______,               LCTL(LGUI(KC_RIGHT)),  _______,               _______,               KC_SLSH,               _______,
-                                                                                              MO(4),                             _______,                          _______
+                                                                                              MO(5),                             _______,                          _______
 ),
 
-[3] = LAYOUT_reviung39(
+// SHIFT NAVIGATION, F KEYS, MEDIA KEYS
+[4] = LAYOUT_reviung39(
   _______,               _______,               LSFT(KC_PGDN),         LSFT(KC_UP),           LSFT(KC_PGUP),         _______,               KC_MPLY,               KC_F7,                 KC_F8,                 KC_F9,                 KC_F10,                _______,
   _______,               LSFT(KC_HOME),         LSFT(KC_LEFT),         LSFT(KC_DOWN),         LSFT(KC_RGHT),         LSFT(KC_END),          KC_VOLU,               KC_F4,                 KC_F5,                 KC_F6,                 KC_F11,                KC_MFFD,
   _______,               LCTL(KC_Z),            LCTL(KC_X),            LCTL(KC_C),            LCTL(KC_V),            _______,               KC_VOLD,               KC_F1,                 KC_F2,                 KC_F3,                 KC_F12,                KC_MRWD,
                                                                                               KC_TRNS,                           _______,                          _______
 ),
 
-[4] = LAYOUT_reviung39(
-  _______,               VIM_Q,                 VIM_W,                 _______,               _______,               _______,               L_CDHOME,              _______,               _______,               _______,               _______,               _______,
+// MACROS
+[5] = LAYOUT_reviung39(
+  _______,               VIM_Q,                 VIM_W,                 _______,               _______,               _______,               L_CDHOME,              _______,               _______,               _______,               _______,               TG(1),
   _______,               _______,               VIM_SELECT,            _______,               L_FIND,                L_GREP,                P_ANGBRKT,             P_PAREN,               P_CURLY,               P_BRKT,                _______,               _______,
   _______,               _______,               _______,               L_GITCOMMIT,           _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,
                                                                                               _______,                           _______,                          _______
 ),
 
-[5] = LAYOUT_reviung39(
+// ASCII ART
+[6] = LAYOUT_reviung39(
   _______,               _______,               _______,               _______,               E_ROBOT,               _______,               _______,               _______,               _______,               _______,               _______,               _______,
   _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,
   _______,               _______,               _______,               E_CAT,                 _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,
