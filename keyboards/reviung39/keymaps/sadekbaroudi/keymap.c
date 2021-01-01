@@ -82,7 +82,7 @@ uint32_t layer_state_set_user(uint32_t state) {
 }
 
 bool led_update_user(led_t led_state) {
-    rgblight_set_layer_state(6, led_state.caps_lock);
+    rgblight_set_layer_state(7, led_state.caps_lock);
     return true;
 }
 
