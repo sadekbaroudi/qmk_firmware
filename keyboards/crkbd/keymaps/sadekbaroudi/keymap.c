@@ -20,14 +20,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define LAYER_IS_ON(layer_state, layer_num) ((layer_state & (1 << layer_num)) > 0)
 
-// TODO: Add support for backlight timeout... Here's a snippet, but get the rest from:
+////// Start RGB backlight timeout
 // https://gist.github.com/MaxWinterstein/c99594a5f4f8da942feb72c8233445aa/
-// Backlight timeout feature
-// #define BACKLIGHT_TIMEOUT 10    // in minutes
-// static uint16_t idle_timer = 0;
-// static uint8_t halfmin_counter = 0;
-// static uint8_t old_backlight_level = -1;
-// static bool led_on = true;
+#define BACKLIGHT_TIMEOUT 1    // in minutes
+static uint16_t idle_timer = 0;
+static uint8_t halfmin_counter = 0;
+static bool led_on = true;
+////// End RGB backlight timeout
 
 // Begin layer lighting
 const rgblight_segment_t PROGMEM layer_0_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
@@ -247,7 +246,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
   _______,               _______,               _______,               L_GITCOMMIT,           _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
-                                                                       XXXXXXX,               _______,               _______,               _______,               _______,               XXXXXXX
+                                                                       XXXXXXX,               _______,               EEPROM_RESET,          EEPROM_RESET,          _______,               XXXXXXX
 //                                                                   +----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+
 ),
 
@@ -363,10 +362,37 @@ void oled_task_user(void) {
     }
 }
 
+void matrix_scan_user(void) {
+    ////// Start RGB backlight timeout
+    // idle_timer needs to be set one time
+    if (idle_timer == 0) idle_timer = timer_read();
+
+    if ( led_on && timer_elapsed(idle_timer) > 30000) {
+        halfmin_counter++;
+        idle_timer = timer_read();
+    }
+
+    if ( led_on && halfmin_counter >= BACKLIGHT_TIMEOUT * 2) {
+        rgblight_disable_noeeprom();
+        led_on = false;
+        halfmin_counter = 0;
+    }
+    ////// End RGB backlight timeout
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
         set_keylog(keycode, record);
     }
+
+    ////// Start RGB backlight timeout
+    if (led_on == false) {
+        rgblight_enable_noeeprom();
+        led_on = true;
+    }
+    idle_timer = timer_read();
+    halfmin_counter = 0;
+    ////// End RGB backlight timeout
 
     // do stuff when macro keys are pressed
     switch (keycode) {
