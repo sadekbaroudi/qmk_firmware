@@ -19,9 +19,12 @@
 
 // Begin layer lighting
 const rgblight_segment_t PROGMEM layer_0_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 5, HSV_BLUE},
-    {5, 5, HSV_YELLOW},
-    {10, 1, HSV_GREEN}
+    {0, 11, HSV_YELLOW}
+    /* example of multicolor layer
+    {0, 5, HSV_BLUE},   // left side of underglow is blue
+    {5, 5, HSV_YELLOW}, // right side of underglow is yellow
+    {10, 1, HSV_GREEN}  // middle top side light is green
+    */
 );
 
 const rgblight_segment_t PROGMEM layer_1_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
@@ -29,8 +32,7 @@ const rgblight_segment_t PROGMEM layer_1_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
 );
 
 const rgblight_segment_t PROGMEM layer_2_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 10, HSV_GREEN},
-    {10, 1, 10, 10, 255}
+    {0, 11, HSV_GREEN}
 );
 
 const rgblight_segment_t PROGMEM layer_3_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
@@ -38,7 +40,7 @@ const rgblight_segment_t PROGMEM layer_3_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
 );
 
 const rgblight_segment_t PROGMEM layer_4_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 11, HSV_YELLOW}
+    {0, 11, HSV_ORANGE}
 );
 
 const rgblight_segment_t PROGMEM layer_5_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
