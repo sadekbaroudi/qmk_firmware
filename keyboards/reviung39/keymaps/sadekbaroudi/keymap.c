@@ -17,6 +17,16 @@
 
 #define LAYER_IS_ON(layer_state, layer_num) ((layer_state & (1 << layer_num)) > 0)
 
+
+////// Start RGB backlight timeout
+// https://gist.github.com/MaxWinterstein/c99594a5f4f8da942feb72c8233445aa/
+#define BACKLIGHT_TIMEOUT 5    // in minutes
+static uint16_t idle_timer = 0;
+static uint8_t halfmin_counter = 0;
+static bool led_on = true;
+////// End RGB backlight timeout
+
+
 // Begin layer lighting
 const rgblight_segment_t PROGMEM layer_0_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 11, HSV_YELLOW}
@@ -40,11 +50,11 @@ const rgblight_segment_t PROGMEM layer_3_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
 );
 
 const rgblight_segment_t PROGMEM layer_4_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 11, HSV_ORANGE}
+    {0, 11, 24, 255, 255}
 );
 
 const rgblight_segment_t PROGMEM layer_5_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 11, HSV_PINK}
+    {0, 11, HSV_MAGENTA}
 );
 
 const rgblight_segment_t PROGMEM layer_6_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
@@ -108,7 +118,34 @@ enum custom_keycodes {
     E_CAT
 };
 
+void matrix_scan_user(void) {
+    ////// Start RGB backlight timeout
+    // idle_timer needs to be set one time
+    if (idle_timer == 0) idle_timer = timer_read();
+
+    if ( led_on && timer_elapsed(idle_timer) > 30000) {
+        halfmin_counter++;
+        idle_timer = timer_read();
+    }
+
+    if ( led_on && halfmin_counter >= BACKLIGHT_TIMEOUT * 2) {
+        rgblight_disable_noeeprom();
+        led_on = false;
+        halfmin_counter = 0;
+    }
+    ////// End RGB backlight timeout
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    ////// Start RGB backlight timeout
+    if (led_on == false) {
+        rgblight_enable_noeeprom();
+        led_on = true;
+    }
+    idle_timer = timer_read();
+    halfmin_counter = 0;
+    ////// End RGB backlight timeout
+
     // do stuff when macro keys are pressed
     switch (keycode) {
     case VIM_W:
@@ -234,7 +271,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                               LT(2,KC_ENT),                        LT(4,KC_BSPC),                          LT(3,KC_SPC)
 //                                                                                          +----------------------+---------------------------------------------+----------------------+
 ),
-*/
 
 // SAWDMAKdh-3
 [0] = LAYOUT_reviung39(
@@ -249,33 +285,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                                                                                          +----------------------+---------------------------------------------+----------------------+
 ),
 
-/*
-// SAWDMAKdh-4
+// COLEMAK-DH-MODBV
 [0] = LAYOUT_reviung39(
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
-  KC_ESC,                KC_Q,                  KC_W,                  KC_F,                  KC_P,                  KC_V,                  KC_J,                  KC_U,                  KC_I,                  KC_Y,                  KC_SCLN,               KC_BSLS,
+  KC_ESC,                KC_Q,                  KC_W,                  KC_F,                  KC_P,                  KC_V,                  KC_J,                  KC_L,                  KC_U,                  KC_Y,                  KC_SCLN,               KC_BSLS,
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
-  KC_TAB,                LCTL_T(KC_A),          LGUI_T(KC_R),          LALT_T(KC_S),          LSFT_T(KC_T),          KC_G,                  KC_H,                  RSFT_T(KC_N),          RALT_T(KC_E),          RGUI_T(KC_L),          RCTL_T(KC_O),          LT(6,KC_QUOT),
+  KC_TAB,                LCTL_T(KC_A),          LGUI_T(KC_R),          LALT_T(KC_S),          LSFT_T(KC_T),          KC_G,                  KC_H,                  RSFT_T(KC_N),          RALT_T(KC_E),          RGUI_T(KC_I),          RCTL_T(KC_O),          LT(6,KC_QUOT),
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
   KC_DEL,                KC_Z,                  KC_X,                  KC_C,                  KC_D,                  KC_B,                  KC_K,                  KC_M,                  KC_COMM,               KC_DOT,                KC_SLSH,               KC_BSPC,
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
                                                                                               LT(2,KC_ENT),                        LT(4,KC_BSPC),                          LT(3,KC_SPC)
 //                                                                                          +----------------------+---------------------------------------------+----------------------+
 ),
+*/
 
-// COLEMAK-DH-modBV
+// COLEMAK-DH
 [0] = LAYOUT_reviung39(
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
-  KC_ESC,                KC_Q,                  KC_W,                  KC_F,                  KC_P,                  KC_V,                  KC_J,                  KC_L,                  KC_U,                  KC_Y,                  KC_SCLN,               KC_BSLS,
+  KC_ESC,                KC_Q,                  KC_W,                  KC_F,                  KC_P,                  KC_B,                  KC_J,                  KC_L,                  KC_U,                  KC_Y,                  KC_SCLN,               KC_BSLS,
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
   KC_TAB,                LCTL_T(KC_A),          LGUI_T(KC_R),          LALT_T(KC_S),          LSFT_T(KC_T),          KC_G,                  KC_M,                  RSFT_T(KC_N),          RALT_T(KC_E),          RGUI_T(KC_I),          RCTL_T(KC_O),          LT(6,KC_QUOT),
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
-  KC_DEL,                KC_Z,                  KC_X,                  KC_C,                  KC_D,                  KC_B,                  KC_K,                  KC_H,                  KC_COMM,               KC_DOT,                KC_SLSH,               KC_BSPC,
+  KC_DEL,                KC_Z,                  KC_X,                  KC_C,                  KC_D,                  KC_V,                  KC_K,                  KC_H,                  KC_COMM,               KC_DOT,                KC_SLSH,               KC_BSPC,
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
                                                                                               LT(2,KC_ENT),                        LT(4,KC_BSPC),                          LT(3,KC_SPC)
 //                                                                                          +----------------------+---------------------------------------------+----------------------+
 ),
-*/
 
 // QWERTY
 [1] = LAYOUT_reviung39(
