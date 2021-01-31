@@ -25,22 +25,13 @@
 
 #define MIDI_BASIC
 
-/*
-Sadek:
+/* ws2812 RGB LED */
+#define RGBLED_NUM 9      // Number of LEDs
+#define RGBLIGHT_HUE_STEP 10
+#define RGBLIGHT_SAT_STEP 17
+#define RGBLIGHT_VAL_STEP 17
+#define RGBLIGHT_LAYERS
 
-#define TAPPING_FORCE_HOLD
-https://beta.docs.qmk.fm/using-qmk/software-features/tap_hold#tapping-force-hold
-
-This causes a problem when I try to quickly type a keystroke, followed by another keystroke that is on another layer, and the key to get to that layer uses the same key that I just typed.
-For instance, my space key is also a LT -> 1... So if I type the string "Hello -- testing" very quickly, where the dash is LT -> 1 (a key), and space is the key I use to get to layer 1. If I type fast enough, then it just prints two spaces, and won't let me go to layer 1. Anyway, it's confusing, but just turn this feature on. It's off by default
-
-
-#define IGNORE_MOD_TAP_INTERRUPT
-This one screws me up when I type too fast. Currently, when I try to type the following string:
-"test text"
-what happens is the space ends up sending shift-t since I use the spacebar as shift as well. I type quickly and press the T key before I let go of the space and it reads it as capital T. Enabling this setting fixes the issue.
-
- */
 #define TAPPING_FORCE_HOLD
 #define IGNORE_MOD_TAP_INTERRUPT
 

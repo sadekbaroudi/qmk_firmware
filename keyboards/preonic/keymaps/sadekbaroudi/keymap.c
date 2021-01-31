@@ -20,6 +20,82 @@
 bool is_alt_tab_active = false;
 uint16_t alt_tab_timer = 0;
 
+#define LAYER_IS_ON(layer_state, layer_num) ((layer_state & (1 << layer_num)) > 0)
+
+// Begin layer lighting
+const rgblight_segment_t PROGMEM layer_0_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 9, HSV_YELLOW}
+    /* example of multicolor layer
+    {0, 4, HSV_BLUE},   // left side of underglow is blue
+    {5, 5, HSV_YELLOW}  // right side of underglow is yellow
+    */
+);
+
+const rgblight_segment_t PROGMEM layer_1_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 9, 10, 10, 255}
+);
+
+const rgblight_segment_t PROGMEM layer_2_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 9, HSV_GREEN}
+);
+
+const rgblight_segment_t PROGMEM layer_3_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 9, HSV_BLUE}
+);
+
+const rgblight_segment_t PROGMEM layer_4_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 9, 24, 255, 255}
+);
+
+const rgblight_segment_t PROGMEM layer_5_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 9, HSV_MAGENTA}
+);
+
+const rgblight_segment_t PROGMEM layer_6_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 9, HSV_CYAN}
+);
+
+const rgblight_segment_t PROGMEM layer_capslock_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 9, HSV_RED}
+);
+
+
+const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+    layer_0_rgb,
+    layer_1_rgb,
+    layer_2_rgb,
+    layer_3_rgb,
+    layer_4_rgb,
+    layer_5_rgb,
+    layer_6_rgb,
+    layer_capslock_rgb
+);
+
+void keyboard_post_init_user(void) {
+    // set default color
+    // rgblight_sethsv_noeeprom(HSV_WHITE);
+    // Enable the LED layers
+    rgblight_layers = my_rgb_layers;
+}
+
+uint32_t layer_state_set_user(uint32_t state) {
+    // Both layers will light up if both kb layers are active
+    rgblight_set_layer_state(0, true);
+    rgblight_set_layer_state(1, LAYER_IS_ON(state, 1));
+    rgblight_set_layer_state(2, LAYER_IS_ON(state, 2));
+    rgblight_set_layer_state(3, LAYER_IS_ON(state, 3));
+    rgblight_set_layer_state(4, LAYER_IS_ON(state, 4));
+    rgblight_set_layer_state(5, LAYER_IS_ON(state, 5));
+    rgblight_set_layer_state(6, LAYER_IS_ON(state, 6));
+    return state;
+}
+
+bool led_update_user(led_t led_state) {
+    rgblight_set_layer_state(7, led_state.caps_lock);
+    return true;
+}
+
+
 // Macro aliases
 enum custom_keycodes {
     ALT_TAB = SAFE_RANGE,
