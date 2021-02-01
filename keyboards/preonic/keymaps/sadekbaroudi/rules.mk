@@ -1,4 +1,4 @@
 MIDI_ENABLE = no            # MIDI controls
-AUDIO_ENABLE = yes          # Audio output on port C6
+AUDIO_ENABLE = no          # Audio output on port C6
 RGBLIGHT_ENABLE = yes
 MOUSEKEY_ENABLE = no

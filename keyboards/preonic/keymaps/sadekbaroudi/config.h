@@ -23,13 +23,18 @@
    - MIDI notes can be sent when in Music mode is on
 */
 
-#define MIDI_BASIC
+// #define MIDI_BASIC
 
 /* ws2812 RGB LED */
-#define RGBLED_NUM 9      // Number of LEDs
+#undef RGB_DI_PIN
+#define RGB_DI_PIN B12 
+#undef RGBLED_NUM
+#define RGBLED_NUM 13      // Number of LEDs
 #define RGBLIGHT_HUE_STEP 10
 #define RGBLIGHT_SAT_STEP 17
 #define RGBLIGHT_VAL_STEP 17
+#define RGBLIGHT_LIMIT_VAL 255
+#define RGBLIGHT_SLEEP
 #define RGBLIGHT_LAYERS
 
 #define TAPPING_FORCE_HOLD
