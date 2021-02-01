@@ -24,7 +24,7 @@ uint16_t alt_tab_timer = 0;
 
 // Begin layer lighting
 const rgblight_segment_t PROGMEM layer_0_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 9, HSV_YELLOW}
+    {0, 13, HSV_YELLOW}
     /* example of multicolor layer
     {0, 4, HSV_BLUE},   // left side of underglow is blue
     {5, 5, HSV_YELLOW}  // right side of underglow is yellow
@@ -32,31 +32,31 @@ const rgblight_segment_t PROGMEM layer_0_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
 );
 
 const rgblight_segment_t PROGMEM layer_1_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 9, 10, 10, 255}
+    {0, 13, 10, 10, 255}
 );
 
 const rgblight_segment_t PROGMEM layer_2_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 9, HSV_GREEN}
+    {0, 13, HSV_GREEN}
 );
 
 const rgblight_segment_t PROGMEM layer_3_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 9, HSV_BLUE}
+    {0, 13, HSV_BLUE}
 );
 
 const rgblight_segment_t PROGMEM layer_4_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 9, 24, 255, 255}
+    {0, 13, 24, 255, 255}
 );
 
 const rgblight_segment_t PROGMEM layer_5_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 9, HSV_MAGENTA}
+    {0, 13, HSV_MAGENTA}
 );
 
 const rgblight_segment_t PROGMEM layer_6_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 9, HSV_CYAN}
+    {0, 13, HSV_CYAN}
 );
 
 const rgblight_segment_t PROGMEM layer_capslock_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 9, HSV_RED}
+    {0, 13, HSV_RED}
 );
 
 
