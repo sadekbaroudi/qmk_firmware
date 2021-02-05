@@ -16,6 +16,7 @@
 
 #include QMK_KEYBOARD_H
 #include "muse.h"
+//#include "print.h"
 
 bool is_alt_tab_active = false;
 uint16_t alt_tab_timer = 0;
@@ -24,7 +25,7 @@ uint16_t alt_tab_timer = 0;
 
 // Begin layer lighting
 const rgblight_segment_t PROGMEM layer_0_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 13, HSV_YELLOW}
+    {0, 16, HSV_BLUE}
     /* example of multicolor layer
     {0, 4, HSV_BLUE},   // left side of underglow is blue
     {5, 5, HSV_YELLOW}  // right side of underglow is yellow
@@ -32,31 +33,31 @@ const rgblight_segment_t PROGMEM layer_0_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
 );
 
 const rgblight_segment_t PROGMEM layer_1_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 13, 10, 10, 255}
+    {0, 16, 10, 10, 255}
 );
 
 const rgblight_segment_t PROGMEM layer_2_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 13, HSV_GREEN}
+    {0, 16, HSV_GREEN}
 );
 
 const rgblight_segment_t PROGMEM layer_3_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 13, HSV_BLUE}
+    {0, 16, HSV_PURPLE}
 );
 
 const rgblight_segment_t PROGMEM layer_4_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 13, 24, 255, 255}
+    {0, 16, HSV_YELLOW}
 );
 
 const rgblight_segment_t PROGMEM layer_5_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 13, HSV_MAGENTA}
+    {0, 16, HSV_MAGENTA}
 );
 
 const rgblight_segment_t PROGMEM layer_6_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 13, HSV_CYAN}
+    {0, 16, HSV_CYAN}
 );
 
 const rgblight_segment_t PROGMEM layer_capslock_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 13, HSV_RED}
+    {0, 16, HSV_RED}
 );
 
 
@@ -76,9 +77,12 @@ void keyboard_post_init_user(void) {
     // rgblight_sethsv_noeeprom(HSV_WHITE);
     // Enable the LED layers
     rgblight_layers = my_rgb_layers;
+    rgblight_enable();
+    // debug_enable=true;
 }
 
 uint32_t layer_state_set_user(uint32_t state) {
+    // print("In layer_state_set_user\n");
     // Both layers will light up if both kb layers are active
     rgblight_set_layer_state(0, true);
     rgblight_set_layer_state(1, LAYER_IS_ON(state, 1));
@@ -127,7 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
   KC_DEL,                KC_Z,                  KC_X,                  KC_C,                  KC_D,                  KC_V,                  KC_K,                  KC_H,                  KC_COMM,               KC_DOT,                KC_SLSH,               KC_BSPC,
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
-  XXXXXXX,               XXXXXXX,               XXXXXXX,               XXXXXXX,               LT(2,KC_ENT),          LT(4,KC_BSPC),         LT(4,KC_BSPC),         LT(3,KC_SPC),          XXXXXXX,               XXXXXXX,               XXXXXXX,               XXXXXXX
+  XXXXXXX,               XXXXXXX,               XXXXXXX,               XXXXXXX,               LT(2,KC_ENT),          LT(4,KC_DEL),          LT(4,KC_BSPC),         LT(3,KC_SPC),          XXXXXXX,               XXXXXXX,               XXXXXXX,               XXXXXXX
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
 ),
 
@@ -142,7 +146,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
   KC_DEL,                KC_Z,                  KC_X,                  KC_C,                  KC_V,                  KC_B,                  KC_N,                  KC_M,                  KC_COMM,               KC_DOT,                KC_SLSH,               KC_BSPC,
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
-  XXXXXXX,               XXXXXXX,               XXXXXXX,               XXXXXXX,               LT(2,KC_ENT),          LT(4,KC_BSPC),         LT(4,KC_BSPC),         LT(3,KC_SPC),          XXXXXXX,               XXXXXXX,               XXXXXXX,               XXXXXXX
+  XXXXXXX,               XXXXXXX,               XXXXXXX,               XXXXXXX,               LT(2,KC_ENT),          LT(4,KC_DEL),          LT(4,KC_BSPC),         LT(3,KC_SPC),          XXXXXXX,               XXXXXXX,               XXXXXXX,               XXXXXXX
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
 ),
 
@@ -157,7 +161,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
   LCTL(LALT(KC_DELETE)), LCTL(KC_Z),            LCTL(KC_X),            LCTL(KC_C),            LCTL(KC_V),            LCTL(KC_TAB),          KC_EQL,                KC_1,                  KC_2,                  KC_3,                  KC_0,                  _______,
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
-  XXXXXXX,               XXXXXXX,               XXXXXXX,               XXXXXXX,               _______,               _______,               _______,               MO(5),                 XXXXXXX,               XXXXXXX,               XXXXXXX,               XXXXXXX
+  XXXXXXX,               XXXXXXX,               XXXXXXX,               XXXXXXX,               _______,               KC_DEL,                KC_BSPC,               MO(5),                 XXXXXXX,               XXXXXXX,               XXXXXXX,               XXXXXXX
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
 ),
 
@@ -172,7 +176,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
   _______,               KC_UNDS,               KC_EQL,                _______,               LCTL(LGUI(KC_LEFT)),   _______,               _______,               LCTL(LGUI(KC_RIGHT)),  _______,               _______,               KC_SLSH,               _______,
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
-  XXXXXXX,               XXXXXXX,               XXXXXXX,               XXXXXXX,               MO(5),                 _______,               _______,               _______,               XXXXXXX,               XXXXXXX,               XXXXXXX,               XXXXXXX
+  XXXXXXX,               XXXXXXX,               XXXXXXX,               XXXXXXX,               MO(5),                 KC_DEL,                KC_BSPC,               _______,               XXXXXXX,               XXXXXXX,               XXXXXXX,               XXXXXXX
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
 ),
 
