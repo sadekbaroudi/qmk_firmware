@@ -21,9 +21,9 @@
 #define RGB_DI_PIN D3
 #ifdef RGB_DI_PIN
   #define RGBLED_NUM 11
-  #define RGBLIGHT_HUE_STEP 16
-  #define RGBLIGHT_SAT_STEP 16
-  #define RGBLIGHT_VAL_STEP 16
+  #define RGBLIGHT_HUE_STEP 2
+  #define RGBLIGHT_SAT_STEP 8
+  #define RGBLIGHT_VAL_STEP 8
   #define RGBLIGHT_LIMIT_VAL 255 /* The maximum brightness level */
   #define RGBLIGHT_SLEEP  /* If defined, the RGB lighting will be switched off when the host goes to sleep */
 // /*== all animations enable ==*/
@@ -45,6 +45,7 @@
 //   #define RGBLIGHT_EFFECT_BREATHE_CENTER 1.85  // 1 to 2.7
 //   #define RGBLIGHT_EFFECT_BREATHE_MAX    255   // 0 to 255
   #define RGBLIGHT_LAYERS
+  #define RGBLIGHT_MAX_LAYERS 16
 #endif
 
 #define TAPPING_FORCE_HOLD

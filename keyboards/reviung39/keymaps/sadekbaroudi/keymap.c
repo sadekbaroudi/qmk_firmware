@@ -26,8 +26,6 @@ static uint8_t halfmin_counter = 0;
 static bool led_on = true;
 ////// End RGB backlight timeout
 
-
-
 // Begin layer lighting
 
     /* example of multicolor layer
@@ -38,7 +36,14 @@ static bool led_on = true;
 
 // uncomment to set base layer without the abiliby to override
 const rgblight_segment_t PROGMEM layer_0_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 11, HSV_BLUE}
+    //{0, 11, HSV_BLUE}
+    // with retro keycaps
+    {0, 1, HSV_RED},
+    {1, 2, HSV_BLUE},
+    {3, 1, 16, 255, 255}, // orange
+    {4, 5, 16, 255, 90}, // brown
+    {9, 1, HSV_YELLOW},
+    {10, 1, 10, 10, 255}
 );
 
 const rgblight_segment_t PROGMEM layer_1_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
@@ -88,13 +93,11 @@ void keyboard_post_init_user(void) {
     rgblight_layers = my_rgb_layers;
 
     rgblight_enable_noeeprom();
-    rgblight_sethsv_noeeprom(HSV_BLUE);
-    rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
 }
 
 uint32_t layer_state_set_user(uint32_t state) {
-    // uncomment to set base layer without the abiliby to override
-    //rgblight_set_layer_state(0, true);
+    // Comment this next line to allow for RGB override through RGB keys
+    rgblight_set_layer_state(0, true);
     rgblight_set_layer_state(1, LAYER_IS_ON(state, 1));
     rgblight_set_layer_state(2, LAYER_IS_ON(state, 2));
     rgblight_set_layer_state(3, LAYER_IS_ON(state, 3));
@@ -248,6 +251,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         break;
     }
+
     return true;
 };
 
@@ -390,7 +394,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
   RGB_TOG,               RGB_MODE_REVERSE,      RGB_MODE_FORWARD,      _______,               E_ROBOT,               _______,               _______,               _______,               _______,               _______,               _______,               _______,
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
-  _______,               RGB_HUI,               RGB_SAI,               RGB_VAI,               _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,
+  RGB_MODE_PLAIN,        RGB_HUI,               RGB_SAI,               RGB_VAI,               _______,               _______,               _______,               _______,               _______,               _______,               _______,               _______,
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
   _______,               RGB_HUD,               RGB_SAD,               RGB_VAD,               E_CAT,                 _______,               _______,               _______,               _______,               _______,               _______,               _______,
 //---------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-------------------+
