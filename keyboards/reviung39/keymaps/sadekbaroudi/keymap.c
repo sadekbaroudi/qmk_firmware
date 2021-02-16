@@ -36,14 +36,16 @@ static bool led_on = true;
 
 // uncomment to set base layer without the abiliby to override
 const rgblight_segment_t PROGMEM layer_0_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    //{0, 11, HSV_BLUE}
+    {0, 11, HSV_BLUE}
     // with retro keycaps
+    /*
     {0, 1, HSV_RED},
     {1, 2, HSV_BLUE},
     {3, 1, 16, 255, 255}, // orange
     {4, 5, 16, 255, 90}, // brown
     {9, 1, HSV_YELLOW},
     {10, 1, 10, 10, 255}
+    */
 );
 
 const rgblight_segment_t PROGMEM layer_1_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
@@ -97,7 +99,7 @@ void keyboard_post_init_user(void) {
 
 uint32_t layer_state_set_user(uint32_t state) {
     // Comment this next line to allow for RGB override through RGB keys
-    rgblight_set_layer_state(0, true);
+    //rgblight_set_layer_state(0, true);
     rgblight_set_layer_state(1, LAYER_IS_ON(state, 1));
     rgblight_set_layer_state(2, LAYER_IS_ON(state, 2));
     rgblight_set_layer_state(3, LAYER_IS_ON(state, 3));
