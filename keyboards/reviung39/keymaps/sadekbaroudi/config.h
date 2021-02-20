@@ -27,7 +27,7 @@
   #define RGBLIGHT_LIMIT_VAL 255 /* The maximum brightness level */
   #define RGBLIGHT_SLEEP  /* If defined, the RGB lighting will be switched off when the host goes to sleep */
 // /*== all animations enable ==*/
-  #define RGBLIGHT_ANIMATIONS // Uncomment to enable ANIMATIONS
+//  #define RGBLIGHT_ANIMATIONS // Uncomment to enable ANIMATIONS
 // /*== or choose animations ==*/
 //   #define RGBLIGHT_EFFECT_BREATHING
 //   #define RGBLIGHT_EFFECT_RAINBOW_MOOD
@@ -47,6 +47,12 @@
   #define RGBLIGHT_LAYERS
   #define RGBLIGHT_MAX_LAYERS 16
 #endif
+
+#define MOUSEKEY_INTERVAL 16
+#define MOUSEKEY_DELAY 0
+#define MOUSEKEY_TIME_TO_MAX 60
+#define MOUSEKEY_MAX_SPEED 7
+#define MOUSEKEY_WHEEL_DELAY 0
 
 #define TAPPING_FORCE_HOLD
 #define IGNORE_MOD_TAP_INTERRUPT
