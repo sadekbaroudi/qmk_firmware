@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ////// Start RGB backlight timeout
 // https://gist.github.com/MaxWinterstein/c99594a5f4f8da942feb72c8233445aa/
-#define BACKLIGHT_TIMEOUT 1    // in minutes
+#define BACKLIGHT_TIMEOUT 5    // in minutes
 static uint16_t idle_timer = 0;
 static uint8_t halfmin_counter = 0;
 static bool led_on = true;

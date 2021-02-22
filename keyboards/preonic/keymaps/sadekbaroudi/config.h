@@ -30,16 +30,6 @@
 #define RGB_DI_PIN B3 
 #undef RGBLED_NUM
 #define RGBLED_NUM 16      // Number of LEDs
-#define RGBLIGHT_ANIMATIONS
-#define RGBLIGHT_HUE_STEP 2
-#define RGBLIGHT_SAT_STEP 8
-#define RGBLIGHT_VAL_STEP 8
-#define RGBLIGHT_LIMIT_VAL 255
-#define RGBLIGHT_SLEEP
-#define RGBLIGHT_LAYERS
-
-#define TAPPING_FORCE_HOLD
-#define IGNORE_MOD_TAP_INTERRUPT
 
 /* enable advanced MIDI features:
    - MIDI notes can be added to the keymap
