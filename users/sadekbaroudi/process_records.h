@@ -10,6 +10,7 @@
 enum userspace_custom_keycodes {
     VRSN = PLACEHOLDER_SAFE_RANGE,  // Prints QMK Firmware and board info
     KC_RGB_T,                       // Toggles RGB Layer Indication mode
+    KC_RGB_BLT,                     // Toggles RGB Base Layer Override mode
     RGB_IDL,                        // RGB Idling animations
     KC_MAKE,                        // Run keyboard's customized make command
     L_GREP,

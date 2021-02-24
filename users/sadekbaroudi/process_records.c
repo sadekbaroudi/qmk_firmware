@@ -28,6 +28,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     switch (keycode) {
+        case KC_CAPSLOCK:
+            if (record->event.pressed) {
+                if (is_caps_lock_on) {
+                    is_caps_lock_on = false;
+                } else {
+                    is_caps_lock_on = true;
+                }
+            }
+            break;
         case KC_MAKE:  // Compiles the firmware, and adds the flash command based on keyboard bootloader
             if (!record->event.pressed) {
 #ifndef MAKE_BOOTLOADER
@@ -79,6 +88,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #    if defined(RGBLIGHT_ENABLE) && defined(RGB_MATRIX_ENABLE)
                 } else {
                     rgblight_disable_noeeprom();
+                    // TODO: Right now, when disabling rgb_layer_change, it doesn't remember
+                    //       the current rgb hsv and mode. It just uses the current color of
+                    //       the current layer for this keycode. Tried the code below to force
+                    //       it, but it's not working
+                    //rgblight_set_hsv_and_mode(userspace_config.hue, userspace_config.sat, userspace_config.val, userspace_config.mode);
+#    endif
+                }
+            }
+#endif  // RGBLIGHT_ENABLE
+            break;
+        case KC_RGB_BLT:  // This enables the base layer as a static color, or allows you to override using RGB
+#if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
+            if (record->event.pressed) {
+                userspace_config.rgb_base_layer_override ^= 1;
+                dprintf("rgblight base layer override change [EEPROM]: %u\n", userspace_config.rgb_base_layer_override);
+                eeconfig_update_user(userspace_config.raw);
+                if (userspace_config.rgb_base_layer_override) {
+#    if defined(RGBLIGHT_ENABLE) && defined(RGB_MATRIX_ENABLE)
+                    rgblight_enable_noeeprom();
+#    endif
+                    layer_state_set(layer_state);  // This is needed to immediately set the layer color (looks better)
+#    if defined(RGBLIGHT_ENABLE) && defined(RGB_MATRIX_ENABLE)
+                } else {
+                    rgblight_disable_noeeprom();
 #    endif
                 }
             }
@@ -104,14 +137,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case RGB_MODE_FORWARD ... RGB_MODE_GRADIENT:  // quantum_keycodes.h L400 for definitions
             if (record->event.pressed) {
-                bool is_eeprom_updated;
+                bool is_eeprom_updated = false;
 #    if defined(RGBLIGHT_ENABLE) && !defined(RGBLIGHT_DISABLE_KEYCODES)
-                // This disables layer indication, as it's assumed that if you're changing this ... you want that disabled
-                if (userspace_config.rgb_layer_change) {
-                    userspace_config.rgb_layer_change = false;
-                    dprintf("rgblight layer change [EEPROM]: %u\n", userspace_config.rgb_layer_change);
-                    is_eeprom_updated = true;
-                }
+                // // This disables layer indication, as it's assumed that if you're changing this ... you want that disabled
+                // if (userspace_config.rgb_layer_change) {
+                //     userspace_config.rgb_layer_change = false;
+                //     dprintf("rgblight layer change [EEPROM]: %u\n", userspace_config.rgb_layer_change);
+                //     is_eeprom_updated = true;
+                // }
 #    endif
 #    if defined(RGB_MATRIX_ENABLE) && defined(RGB_MATRIX_FRAMEBUFFER_EFFECTS)
                 if (userspace_config.rgb_matrix_idle_anim) {
@@ -123,6 +156,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 if (is_eeprom_updated) {
                     eeconfig_update_user(userspace_config.raw);
                 }
+            }
+            if (!record->event.pressed) {
+#    if defined(RGBLIGHT_ENABLE) && !defined(RGBLIGHT_DISABLE_KEYCODES)
+                userspace_config.mode = rgblight_get_mode();
+                userspace_config.hue = rgblight_get_hue();
+                userspace_config.sat = rgblight_get_sat();
+                userspace_config.val = rgblight_get_val();
+                userspace_config.speed = rgblight_get_speed();
+                eeconfig_update_user(userspace_config.raw);     
+#    endif
             }
             break;
 #endif

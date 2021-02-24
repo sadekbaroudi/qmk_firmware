@@ -109,7 +109,7 @@ NOTE: These are all the same length.  If you do a search/replace
 #define ________________FUNCTION_3_________________			KC_VOLD,               KC_F1,                 KC_F2,                 KC_F3,                 KC_F12
 
 #define ___________________RGB_1___________________			RGB_TOG,               RGB_MODE_REVERSE,      RGB_MODE_FORWARD,      _______,               _______
-#define ___________________RGB_2___________________			RGB_MODE_PLAIN,        RGB_HUI,               RGB_SAI,               RGB_VAI,               _______
+#define ___________________RGB_2___________________			KC_RGB_BLT,            RGB_HUI,               RGB_SAI,               RGB_VAI,               _______
 #define ___________________RGB_3___________________			KC_RGB_T,              RGB_HUD,               RGB_SAD,               RGB_VAD,               _______
 
 #define __________________MOUSE_1__________________			_______,               KC_MS_WH_UP,           KC_MS_UP,              KC_MS_WH_DOWN,         _______

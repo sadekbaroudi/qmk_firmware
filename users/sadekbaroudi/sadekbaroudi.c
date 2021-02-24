@@ -1,6 +1,7 @@
 #include "sadekbaroudi.h"
 
 userspace_config_t userspace_config;
+bool is_caps_lock_on;
 
 __attribute__((weak)) void keyboard_pre_init_keymap(void) {}
 
@@ -23,6 +24,7 @@ void matrix_init_user(void) {
 __attribute__((weak)) void keyboard_post_init_keymap(void) {}
 
 void keyboard_post_init_user(void) {
+    is_caps_lock_on = false;
 #if defined(RGBLIGHT_ENABLE)
     keyboard_post_init_rgb_light();
 #endif
@@ -115,7 +117,13 @@ __attribute__((weak)) void eeconfig_init_keymap(void) {}
 
 void eeconfig_init_user(void) {
     userspace_config.raw              = 0;
+    userspace_config.rgb_base_layer_override = false;
     userspace_config.rgb_layer_change = true;
+    userspace_config.mode = RGBLIGHT_MODE_STATIC_LIGHT;
+    userspace_config.hue = 169; // BLUE
+    userspace_config.sat = 255;
+    userspace_config.val = 255;
+    userspace_config.speed = 1;
     eeconfig_update_user(userspace_config.raw);
     eeconfig_init_keymap();
     keyboard_init();

@@ -65,9 +65,8 @@ void matrix_scan_rgb_light(void) {
 }
 
 void rgblight_set_hsv_and_mode(uint8_t hue, uint8_t sat, uint8_t val, uint8_t mode) {
-    rgblight_sethsv_noeeprom(hue, sat, val);
-    // wait_us(175);  // Add a slight delay between color and mode to ensure it's processed correctly
     rgblight_mode_noeeprom(mode);
+    rgblight_sethsv_noeeprom(hue, sat, val);
 }
 
 layer_state_t layer_state_set_rgb_light(layer_state_t state) {
@@ -77,7 +76,13 @@ layer_state_t layer_state_set_rgb_light(layer_state_t state) {
         uint8_t mode = RGBLIGHT_MODE_STATIC_LIGHT;
         switch (get_highest_layer(state|default_layer_state)) {
             case _COLEMAK:
-                rgblight_set_hsv_and_mode(HSV_BLUE, mode);
+                if (is_caps_lock_on) {
+                    rgblight_set_hsv_and_mode(HSV_RED, mode);
+                } else if (userspace_config.rgb_base_layer_override) {
+                    rgblight_set_hsv_and_mode(userspace_config.hue, userspace_config.sat, userspace_config.val, userspace_config.mode);
+                } else {
+                    rgblight_set_hsv_and_mode(HSV_BLUE, mode);
+                }
                 break;
             case _QWERTY:
                 rgblight_set_hsv_and_mode(10, 10, 255, mode); // white
