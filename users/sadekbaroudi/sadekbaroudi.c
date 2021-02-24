@@ -71,8 +71,14 @@ void matrix_scan_user(void) {
         startup_user();
     }
 
+
 #if defined(RGBLIGHT_ENABLE)
     matrix_scan_rgb_light();
+    led_t led_state = host_keyboard_led_state();
+    if (led_state.caps_lock != is_caps_lock_on) {
+        is_caps_lock_on = led_state.caps_lock;
+        layer_state_set_user(layer_state);
+    }
 #endif  // RGBLIGHT_ENABLE
 #if defined(RGB_MATRIX_ENABLE)
     matrix_scan_rgb_matrix();
