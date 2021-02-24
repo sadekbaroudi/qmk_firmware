@@ -30,20 +30,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define USE_SERIAL_PD2
 
-#define TAPPING_FORCE_HOLD
-
 #ifdef RGBLIGHT_ENABLE
     #undef RGBLED_NUM
-    #define RGBLIGHT_ANIMATIONS
     #define RGBLED_NUM 27
-    #define RGBLIGHT_LIMIT_VAL 120
-    #define RGBLIGHT_HUE_STEP 2
-    #define RGBLIGHT_SAT_STEP 8
-    #define RGBLIGHT_VAL_STEP 8
     #define RGBLIGHT_LAYERS
     #define RGBLIGHT_SPLIT
 #endif
 
 #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
 
-#define IGNORE_MOD_TAP_INTERRUPT
