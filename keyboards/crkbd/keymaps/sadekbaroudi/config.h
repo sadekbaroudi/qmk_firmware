@@ -33,6 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef RGBLIGHT_ENABLE
     #undef RGBLED_NUM
     #define RGBLED_NUM 27
+    #define RGBLIGHT_LIMIT_VAL 120
     #define RGBLIGHT_LAYERS
     #define RGBLIGHT_SPLIT
 #endif

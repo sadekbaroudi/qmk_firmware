@@ -1,9 +1,11 @@
 SRC += sadekbaroudi.c \
        process_records.c
 
+BOOTLOADER = atmel-dfu
 COMMAND_ENABLE   = no  # Commands for debug and configuration
 UNICODE_ENABLE   = no  # Unicode
 SWAP_HANDS_ENABLE= no  # Allow swapping hands of keyboard
+MOUSEKEY_ENABLE = yes
 
 SPACE_CADET_ENABLE    = no
 GRAVE_ESC_ENABLE      = no

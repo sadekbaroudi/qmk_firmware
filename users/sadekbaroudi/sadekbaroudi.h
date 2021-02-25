@@ -58,11 +58,11 @@ typedef union {
         bool    rgb_layer_change        :1;
         bool    rgb_base_layer_override :1;
         bool    rgb_matrix_idle_anim    :1;
-        uint8_t mode;                   //:default 1; RGBLIGHT_MODE_STATIC_LIGHT;
-        uint8_t hue;                    //:0-255;
-        uint8_t sat;                    //:0-255;
-        uint8_t val;                    //:0-255;
-        uint8_t speed;                  //:default 1;
+        uint8_t mode;
+        uint8_t hue;
+        uint8_t sat;
+        uint8_t val;
+        uint8_t speed;
     };
 } userspace_config_t;
 // clang-format on

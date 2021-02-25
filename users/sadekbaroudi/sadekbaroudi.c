@@ -3,10 +3,21 @@
 userspace_config_t userspace_config;
 bool is_caps_lock_on;
 
+
+void handle_caps_lock_change(void) {
+#if defined(RGBLIGHT_ENABLE) // We only do this because we want the layer color to change
+    layer_state_set_user(layer_state);
+#endif  // RGBLIGHT_ENABLE
+}
+
 __attribute__((weak)) void keyboard_pre_init_keymap(void) {}
 
 void keyboard_pre_init_user(void) {
     userspace_config.raw = eeconfig_read_user();
+
+    // hack for a weird issue where userspace_config.val gets set to 0 on keyboard restart
+    userspace_config.val = 255;
+    
     keyboard_pre_init_keymap();
 }
 // Add reconfigurable functions here, for keymap customization
@@ -71,15 +82,18 @@ void matrix_scan_user(void) {
         startup_user();
     }
 
-
 #if defined(RGBLIGHT_ENABLE)
     matrix_scan_rgb_light();
+#endif  // RGBLIGHT_ENABLE
+
+    // We do this in matrix scan in case there are two keyboards connected and we
+    // need to make sure this keyboard is aware
     led_t led_state = host_keyboard_led_state();
     if (led_state.caps_lock != is_caps_lock_on) {
         is_caps_lock_on = led_state.caps_lock;
-        layer_state_set_user(layer_state);
+        handle_caps_lock_change();
     }
-#endif  // RGBLIGHT_ENABLE
+
 #if defined(RGB_MATRIX_ENABLE)
     matrix_scan_rgb_matrix();
 #endif
@@ -126,7 +140,7 @@ void eeconfig_init_user(void) {
     userspace_config.rgb_base_layer_override = false;
     userspace_config.rgb_layer_change = true;
     userspace_config.mode = RGBLIGHT_MODE_STATIC_LIGHT;
-    userspace_config.hue = 169; // BLUE
+    userspace_config.hue = 167; // BLUE
     userspace_config.sat = 255;
     userspace_config.val = 255;
     userspace_config.speed = 1;

@@ -79,6 +79,10 @@ layer_state_t layer_state_set_rgb_light(layer_state_t state) {
                 if (is_caps_lock_on) {
                     rgblight_set_hsv_and_mode(HSV_RED, mode);
                 } else if (userspace_config.rgb_base_layer_override) {
+                    xprintf("layer set: userspace_config.hue [EEPROM]: %u\n", userspace_config.hue);
+                    xprintf("layer set: userspace_config.sat [EEPROM]: %u\n", userspace_config.sat);
+                    xprintf("layer set: userspace_config.val [EEPROM]: %u\n", userspace_config.val);
+                    xprintf("layer set: userspace_config.mode [EEPROM]: %u\n", userspace_config.mode);
                     rgblight_set_hsv_and_mode(userspace_config.hue, userspace_config.sat, userspace_config.val, userspace_config.mode);
                 } else {
                     rgblight_set_hsv_and_mode(HSV_BLUE, mode);

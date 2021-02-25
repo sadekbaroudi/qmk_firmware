@@ -78,7 +78,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
             if (record->event.pressed) {
                 userspace_config.rgb_layer_change ^= 1;
-                dprintf("rgblight layer change [EEPROM]: %u\n", userspace_config.rgb_layer_change);
+                xprintf("rgblight layer change [EEPROM]: %u\n", userspace_config.rgb_layer_change);
                 eeconfig_update_user(userspace_config.raw);
                 if (userspace_config.rgb_layer_change) {
 #    if defined(RGBLIGHT_ENABLE) && defined(RGB_MATRIX_ENABLE)
@@ -88,11 +88,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #    if defined(RGBLIGHT_ENABLE) && defined(RGB_MATRIX_ENABLE)
                 } else {
                     rgblight_disable_noeeprom();
-                    // TODO: Right now, when disabling rgb_layer_change, it doesn't remember
-                    //       the current rgb hsv and mode. It just uses the current color of
-                    //       the current layer for this keycode. Tried the code below to force
-                    //       it, but it's not working
-                    //rgblight_set_hsv_and_mode(userspace_config.hue, userspace_config.sat, userspace_config.val, userspace_config.mode);
 #    endif
                 }
             }
@@ -102,7 +97,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
             if (record->event.pressed) {
                 userspace_config.rgb_base_layer_override ^= 1;
-                dprintf("rgblight base layer override change [EEPROM]: %u\n", userspace_config.rgb_base_layer_override);
+                xprintf("rgblight base layer override change [EEPROM]: %u\n", userspace_config.rgb_base_layer_override);
                 eeconfig_update_user(userspace_config.raw);
                 if (userspace_config.rgb_base_layer_override) {
 #    if defined(RGBLIGHT_ENABLE) && defined(RGB_MATRIX_ENABLE)
@@ -138,18 +133,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case RGB_MODE_FORWARD ... RGB_MODE_GRADIENT:  // quantum_keycodes.h L400 for definitions
             if (record->event.pressed) {
                 bool is_eeprom_updated = false;
-#    if defined(RGBLIGHT_ENABLE) && !defined(RGBLIGHT_DISABLE_KEYCODES)
-                // // This disables layer indication, as it's assumed that if you're changing this ... you want that disabled
-                // if (userspace_config.rgb_layer_change) {
-                //     userspace_config.rgb_layer_change = false;
-                //     dprintf("rgblight layer change [EEPROM]: %u\n", userspace_config.rgb_layer_change);
-                //     is_eeprom_updated = true;
-                // }
-#    endif
+
 #    if defined(RGB_MATRIX_ENABLE) && defined(RGB_MATRIX_FRAMEBUFFER_EFFECTS)
                 if (userspace_config.rgb_matrix_idle_anim) {
                     userspace_config.rgb_matrix_idle_anim = false;
-                    dprintf("RGB Matrix Idle Animation [EEPROM]: %u\n", userspace_config.rgb_matrix_idle_anim);
+                    xprintf("RGB Matrix Idle Animation [EEPROM]: %u\n", userspace_config.rgb_matrix_idle_anim);
                     is_eeprom_updated = true;
                 }
 #    endif

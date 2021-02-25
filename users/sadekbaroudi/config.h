@@ -2,16 +2,12 @@
 
 #ifdef RGBLIGHT_ENABLE
 #    undef RGBLIGHT_ANIMATIONS
-//#    if defined(__AVR__) && !defined(__AVR_AT90USB1286__)
-#        define RGBLIGHT_SLEEP
-#        define RGBLIGHT_EFFECT_BREATHING
-#        define RGBLIGHT_EFFECT_RAINBOW_MOOD
-#        define RGBLIGHT_EFFECT_RAINBOW_SWIRL
-#        define RGBLIGHT_EFFECT_STATIC_GRADIENT
-#        define RGBLIGHT_EFFECT_TWINKLE
-//#    else
-//#        define RGBLIGHT_ANIMATIONS
-//#    endif
+#    define RGBLIGHT_SLEEP
+#    define RGBLIGHT_EFFECT_BREATHING
+#    define RGBLIGHT_EFFECT_RAINBOW_MOOD
+#    define RGBLIGHT_EFFECT_RAINBOW_SWIRL
+#    define RGBLIGHT_EFFECT_STATIC_GRADIENT
+#    define RGBLIGHT_EFFECT_TWINKLE
 #    define RGBLIGHT_HUE_STEP 2
 #    define RGBLIGHT_SAT_STEP 8
 #    define RGBLIGHT_VAL_STEP 8
