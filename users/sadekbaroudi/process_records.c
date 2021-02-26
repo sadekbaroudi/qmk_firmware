@@ -88,10 +88,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     rgblight_enable_noeeprom();
 #    endif
                     layer_state_set(layer_state);  // This is needed to immediately set the layer color (looks better)
-#    if defined(RGBLIGHT_ENABLE) && defined(RGB_MATRIX_ENABLE)
                 } else {
+#    if defined(RGBLIGHT_ENABLE) && defined(RGB_MATRIX_ENABLE)
                     rgblight_disable_noeeprom();
 #    endif
+#    if defined(RGBLIGHT_ENABLE)
+                    rgblight_set_hsv_and_mode(userspace_config.hue, userspace_config.sat, userspace_config.val, userspace_config.mode);
+#    endif
+                    ;
                 }
             }
 #endif  // RGBLIGHT_ENABLE
