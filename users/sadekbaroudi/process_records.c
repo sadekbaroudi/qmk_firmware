@@ -1,4 +1,7 @@
 #include "sadekbaroudi.h"
+#if defined(RGBLIGHT_ENABLE)
+#include "rgb_stuff.h"
+#endif
 
 __attribute__((weak)) bool process_record_keymap(uint16_t keycode, keyrecord_t *record) { return true; }
 
@@ -133,6 +136,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case RGB_MODE_FORWARD ... RGB_MODE_GRADIENT:  // quantum_keycodes.h L400 for definitions
             if (record->event.pressed) {
                 bool is_eeprom_updated = false;
+
+                if (userspace_config.rgb_layer_change) {
+#    if defined(RGBLIGHT_ENABLE) && !defined(RGBLIGHT_DISABLE_KEYCODES)
+                    rgblight_set_hsv_and_mode(userspace_config.hue, userspace_config.sat, userspace_config.val, userspace_config.mode);
+#    endif
+                }
 
 #    if defined(RGB_MATRIX_ENABLE) && defined(RGB_MATRIX_FRAMEBUFFER_EFFECTS)
                 if (userspace_config.rgb_matrix_idle_anim) {
