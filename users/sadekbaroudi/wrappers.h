@@ -43,11 +43,11 @@ NOTE: These are all the same length.  If you do a search/replace
   lengths consistent.
 */
 
-#define _________________META_NAV_1________________			_______, KC_PGUP, KC_UP,   KC_PGDN, _______
+#define _________________META_NAV_1________________			KC_ESC,  KC_PGUP, KC_UP,   KC_PGDN, _______
 #define _________________META_NAV_2________________			KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT, KC_END
 
-#define _________________META_NAV_L1_______________			_______,               _______,               LCTL(LSFT(KC_TAB)),    LCTL(LGUI(KC_LEFT)),   _______
-#define _________________META_NAV_R1_______________			_______,               LCTL(LGUI(KC_RIGHT)),  LCTL(KC_TAB),          _______,               _______
+#define _________________META_NAV_L1_______________			KC_CAPS,               KC_GRV,               LCTL(LSFT(KC_TAB)),    LCTL(LGUI(KC_LEFT)),   _______
+#define _________________META_NAV_R1_______________			_______,               LCTL(LGUI(KC_RIGHT)),  LCTL(KC_TAB),          _______,               KC_BSLS
 
 
 #define _________________QWERTY_L1_________________			KC_Q,    KC_W,    KC_E,    KC_R,    KC_T
@@ -108,11 +108,11 @@ NOTE: These are all the same length.  If you do a search/replace
 #define ________________FUNCTION_2_________________			KC_VOLU,               KC_F4,                 KC_F5,                 KC_F6,                 KC_F11
 #define ________________FUNCTION_3_________________			KC_VOLD,               KC_F1,                 KC_F2,                 KC_F3,                 KC_F12
 
-#define ___________________RGB_1___________________			RGB_TOG,               RGB_MODE_REVERSE,      RGB_MODE_FORWARD,      _______,               _______
-#define ___________________RGB_2___________________			KC_RGB_BLT,            RGB_HUI,               RGB_SAI,               RGB_VAI,               _______
-#define ___________________RGB_3___________________			KC_RGB_T,              RGB_HUD,               RGB_SAD,               RGB_VAD,               _______
+#define ___________________RGB_1___________________			RGB_TOG,               RGB_MODE_REVERSE,      RGB_MODE_FORWARD,      _______,               TG(_QWERTY)
+#define ___________________RGB_2___________________			KC_RGB_BLT,            RGB_HUI,               RGB_SAI,               RGB_VAI,               TG(_COLEMAK)
+#define ___________________RGB_3___________________			KC_RGB_T,              RGB_HUD,               RGB_SAD,               RGB_VAD,               TG(_WORKMAN)
 
-#define __________________MOUSE_1__________________			_______,               KC_MS_WH_UP,           KC_MS_UP,              KC_MS_WH_DOWN,         _______
+#define __________________MOUSE_1__________________			RESET,                 KC_MS_WH_UP,           KC_MS_UP,              KC_MS_WH_DOWN,         _______
 #define __________________MOUSE_2__________________			KC_MS_WH_LEFT,         KC_MS_LEFT,            KC_MS_DOWN,            KC_MS_RIGHT,           KC_MS_WH_RIGHT
 #define __________________MOUSE_3__________________			KC_MS_ACCEL0,          KC_MS_ACCEL1,          KC_MS_ACCEL2,          _______,               _______
 
