@@ -39,10 +39,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     K21, K22, K23, K24, K25, K26, K27, K28, K29, K2A  \
   ) \
   LAYOUT_wrapper( \
-        KC_ESC,         K01,            K02,            K03,            K04,            K05,                K06,            K07,            K08,            K09,            K0A,            KC_BSLS, \
-        KC_TAB,         LCTL_T(K11),    LGUI_T(K12),    LALT_T(K13),    LSFT_T(K14),    K15,                K16,            RSFT_T(K17),    RALT_T(K18),    RGUI_T(K19),    RCTL_T(K1A),    LT(_MOUSE,KC_QUOT), \
-        KC_DEL,         K21,            K22,            K23,            K24,            K25,                K26,            K27,            K28,            K29,            K2A,            KC_BSPC, \
-                                            KC_QUOT, LT(_NAVIGATION,KC_ENT), LT(_FUNCTION,KC_DEL),     LT(_FUNCTION,KC_BSPC), LT(_SYMBOLS,KC_SPACE), LT(_MOUSE,KC_TAB) \
+        _______,         K01,            K02,            K03,            K04,            K05,                K06,            K07,            K08,            K09,            K0A,             _______, \
+        _______,         LCTL_T(K11),    LGUI_T(K12),    LALT_T(K13),    LSFT_T(K14),    K15,                K16,            RSFT_T(K17),    RALT_T(K18),    RGUI_T(K19),    RCTL_T(K1A),     _______, \
+        _______,         K21,            K22,            K23,            K24,            K25,                K26,            K27,            K28,            K29,            LT(_MOUSE, K2A), _______, \
+                                            KC_DEL, LT(_NAVIGATION,KC_ENT), LT(_FUNCTION,KC_TAB),     LT(_FUNCTION,KC_BSPC), LT(_SYMBOLS,KC_SPACE), KC_QUOT \
     )
 /* Re-pass though to allow templates to be used */
 #define LAYOUT_crkbd_base_wrapper(...)       LAYOUT_crkbd_base(__VA_ARGS__)
@@ -70,14 +70,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, ________________NAVIGATION_1_______________, _________________NUMPAD_1__________________, _______,
         _______, ________________NAVIGATION_2_______________, _________________NUMPAD_2__________________, _______,
         _______, ________________NAVIGATION_3_______________, _________________NUMPAD_3__________________, _______,
-                                   _______, _______,  KC_DEL, KC_BSPC, MO(_MEDIA), KC_TAB
+                                    _______, _______, KC_TAB, KC_BSPC, MO(_MEDIA), _______
     ),
 
     [_SYMBOLS] = LAYOUT_wrapper(
         _______, ________________SYMBOLS_L1_________________, ________________SYMBOLS_R1_________________, _______,
         _______, ________________SYMBOLS_L2_________________, ________________SYMBOLS_R2_________________, _______,
         _______, ________________SYMBOLS_L3_________________, ________________SYMBOLS_R3_________________, _______,
-                                 _______, MO(_MEDIA), KC_DEL, KC_BSPC, _______, _______
+                                 _______, MO(_MEDIA), KC_TAB, KC_BSPC, _______, _______
     ),
 
     [_FUNCTION] = LAYOUT_wrapper(
