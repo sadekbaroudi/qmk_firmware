@@ -30,6 +30,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define USE_SERIAL_PD2
 
+// OLED disabled, remove this line when re-enabling.
+// Seeing latency from slave side, so removing this to fix, per
+// https://www.reddit.com/r/olkb/comments/g5h7jo/slave_side_of_split_keyboard_sends_keystrokes/
+#undef SSD1306OLED
+
 #ifdef RGBLIGHT_ENABLE
     #undef RGBLED_NUM
     #define RGBLED_NUM 27
