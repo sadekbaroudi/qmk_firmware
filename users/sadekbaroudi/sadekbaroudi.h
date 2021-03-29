@@ -63,6 +63,7 @@ typedef union {
         uint8_t sat;
         uint8_t val;
         uint8_t speed;
+        uint8_t caps_lock_hue;
     };
 } userspace_config_t;
 // clang-format on

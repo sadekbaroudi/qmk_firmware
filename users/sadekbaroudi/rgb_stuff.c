@@ -76,16 +76,28 @@ layer_state_t layer_state_set_rgb_light(layer_state_t state) {
         uint8_t mode = RGBLIGHT_MODE_STATIC_LIGHT;
         switch (get_highest_layer(state|default_layer_state)) {
             case _COLEMAK:
-                if (is_caps_lock_on) {
-                    rgblight_set_hsv_and_mode(HSV_RED, mode);
-                } else if (userspace_config.rgb_base_layer_override) {
-                    xprintf("layer set: userspace_config.hue [EEPROM]: %u\n", userspace_config.hue);
-                    xprintf("layer set: userspace_config.sat [EEPROM]: %u\n", userspace_config.sat);
-                    xprintf("layer set: userspace_config.val [EEPROM]: %u\n", userspace_config.val);
-                    xprintf("layer set: userspace_config.mode [EEPROM]: %u\n", userspace_config.mode);
+                if (is_caps_lock_on) { // If caps lock is enabled, force this setting
+                    uint8_t caps_lock_rgb_hue = 0; // RED
+                    uint8_t caps_lock_rgb_mode = mode;
+                    #ifdef CAPS_LOCK_RGB_HUE
+                    caps_lock_rgb_hue = CAPS_LOCK_RGB_HUE;
+                    #endif
+                    #ifdef CAPS_LOCK_RGB_MODE
+                    caps_lock_rgb_mode = CAPS_LOCK_RGB_MODE;
+                    #endif
+                    rgblight_set_hsv_and_mode(caps_lock_rgb_hue, 255, 255, caps_lock_rgb_mode);
+                } else if (userspace_config.rgb_base_layer_override) { // If the base layer override is enabled, use that
                     rgblight_set_hsv_and_mode(userspace_config.hue, userspace_config.sat, userspace_config.val, userspace_config.mode);
-                } else {
-                    rgblight_set_hsv_and_mode(HSV_BLUE, mode);
+                } else { // if base layer override is disabled, always show the base setting
+                    uint8_t base_layer_rgb_hue = 167; // BLUE
+                    uint8_t base_layer_rgb_mode = mode;
+                    #ifdef BASE_LAYER_RGB_HUE
+                    base_layer_rgb_hue = BASE_LAYER_RGB_HUE;
+                    #endif
+                    #ifdef BASE_LAYER_RGB_MODE
+                    base_layer_rgb_mode = BASE_LAYER_RGB_MODE;
+                    #endif
+                    rgblight_set_hsv_and_mode(base_layer_rgb_hue, 255, 255, base_layer_rgb_mode);
                 }
                 break;
             case _QWERTY:
