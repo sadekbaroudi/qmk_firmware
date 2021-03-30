@@ -106,7 +106,6 @@ __attribute__((weak)) layer_state_t layer_state_set_keymap(layer_state_t state) 
 // on layer change, no matter where the change was initiated
 // Then runs keymap's layer change check
 layer_state_t layer_state_set_user(layer_state_t state) {
-    //state = update_tri_layer_state(state, _NAVIGATION, _SYMBOLS, _MEDIA);
 #if defined(RGBLIGHT_ENABLE)
     state = layer_state_set_rgb_light(state);
 #endif  // RGBLIGHT_ENABLE
@@ -118,11 +117,6 @@ __attribute__((weak)) layer_state_t default_layer_state_set_keymap(layer_state_t
 // Runs state check and changes underglow color and animation
 layer_state_t default_layer_state_set_user(layer_state_t state) {
     state = default_layer_state_set_keymap(state);
-#if 0
-#    if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
-  state = default_layer_state_set_rgb(state);
-#    endif  // RGBLIGHT_ENABLE
-#endif
     return state;
 }
 

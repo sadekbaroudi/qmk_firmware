@@ -33,15 +33,6 @@ enum userspace_custom_keycodes {
 bool process_record_secrets(uint16_t keycode, keyrecord_t *record);
 bool process_record_keymap(uint16_t keycode, keyrecord_t *record);
 
-/*
-#define GO_NAVIGATION LT(_NAVIGATION,KC_ENT)
-#define GO_SYMBOLS LT(_SYMBOLS,KC_SPACE)
-#define GO_FUNCTION LT(_FUNCTION,KC_BSPC)
-#define GO_MOUSE MO(_MOUSE)
-#define GO_MEDIA MO(_MEDIA)
-#define GO_RGB LT(_RGB,KC_QUOT)
-*/
-
 #define KC_SEC1 KC_SECRET_1
 #define KC_SEC2 KC_SECRET_2
 #define KC_SEC3 KC_SECRET_3

@@ -37,7 +37,8 @@ enum userspace_layers {
     _SYMBOLS,
     _FUNCTION,
     _MEDIA,
-    _MOUSE
+    _MOUSE,
+    _WINNAV
 };
 
 void          matrix_init_keymap(void);
