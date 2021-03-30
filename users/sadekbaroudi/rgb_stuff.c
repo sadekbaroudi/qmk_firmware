@@ -122,7 +122,7 @@ layer_state_t layer_state_set_rgb_light(layer_state_t state) {
                 rgblight_set_hsv_and_mode(16, 255, 255, mode); // orange
                 break;
             case _WINNAV:
-                rgblight_set_hsv_and_mode(HSV_WHITE, mode);
+                rgblight_set_hsv_and_mode(10, 10, 255, mode); // near-white
                 break;
             default:
                 rgblight_set_hsv_and_mode(HSV_SPRINGGREEN, mode);
