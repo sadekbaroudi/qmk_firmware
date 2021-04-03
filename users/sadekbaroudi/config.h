@@ -8,6 +8,15 @@
 #    define RGBLIGHT_EFFECT_RAINBOW_SWIRL
 #    define RGBLIGHT_EFFECT_STATIC_GRADIENT
 #    define RGBLIGHT_EFFECT_TWINKLE
+#    ifdef RGBLIGHT_HUE_STEP
+#       undef RGBLIGHT_HUE_STEP
+#    endif
+#    ifdef RGBLIGHT_SAT_STEP
+#       undef RGBLIGHT_SAT_STEP
+#    endif
+#    ifdef RGBLIGHT_VAL_STEP
+#       undef RGBLIGHT_VAL_STEP
+#    endif
 #    define RGBLIGHT_HUE_STEP 2
 #    define RGBLIGHT_SAT_STEP 8
 #    define RGBLIGHT_VAL_STEP 8
