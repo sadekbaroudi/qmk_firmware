@@ -139,10 +139,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case RGB_MODE_FORWARD ... RGB_MODE_GRADIENT:  // quantum_keycodes.h L400 for definitions
             if (record->event.pressed) {
+                xprintf("RGB: kc: %u, col: %u, row: %u, pressed: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed);
                 bool is_eeprom_updated = false;
 
                 if (userspace_config.rgb_layer_change) {
 #    if defined(RGBLIGHT_ENABLE) && !defined(RGBLIGHT_DISABLE_KEYCODES)
+                    // For some reason, this breaks setting base layer colors on the draculad, need to comment this line out
                     rgblight_set_hsv_and_mode(userspace_config.hue, userspace_config.sat, userspace_config.val, userspace_config.mode);
 #    endif
                 }
@@ -165,7 +167,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 userspace_config.sat = rgblight_get_sat();
                 userspace_config.val = rgblight_get_val();
                 userspace_config.speed = rgblight_get_speed();
-                eeconfig_update_user(userspace_config.raw);     
+                eeconfig_update_user(userspace_config.raw);
+                xprintf("RGB: mode: %u, hue: %u, sat: %u, val: %u, speed: %u\n", userspace_config.mode, userspace_config.hue, userspace_config.sat, userspace_config.val, userspace_config.speed);
 #    endif
             }
             break;
