@@ -10,6 +10,8 @@ MOUSEKEY_ENABLE = yes
 BACKLIGHT_ENABLE = no
 NKRO_ENABLE      = no
 
+EXTRAFLAGS     += -flto
+
 SPACE_CADET_ENABLE    = no
 GRAVE_ESC_ENABLE      = no
 

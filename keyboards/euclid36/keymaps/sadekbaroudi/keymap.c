@@ -22,6 +22,13 @@
 #    define UC(x) KC_NO
 #endif
 
+#ifdef THUMBSTICK_ENABLE
+#    include "thumbstick.h"
+#endif
+
+// Uncomment to set up WPM
+//char wpm_as_str[8];
+
 /*
  * The `LAYOUT_euclid36_base` macro is a template to allow the use of identical
  * modifiers for the default layouts (eg QWERTY, Colemak, Dvorak, etc), so
@@ -113,26 +120,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #ifdef OLED_DRIVER_ENABLE
 
-bool is_keyboard_left(void);
-
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-
- if (is_keyboard_master()) {
-    if(is_keyboard_left()){
-      return OLED_ROTATION_270;
-      }
-      else {
-        return OLED_ROTATION_90;
-      }
-    } else {
-        return OLED_ROTATION_0;
-    }
+      return OLED_ROTATION_0;
 }  
 
 // Commenting out logo as it takes up a lot of space :(
 // static void render_logo(void) {
-//   static const char PROGMEM drac_logo[] = {
-//     // drac_logo, 128x64px
+//   static const char PROGMEM euclid36_logo[] = {
+//     // euclid36_logo, 128x64px
 //     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
 //     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
 //     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
@@ -198,15 +193,16 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 //     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
 //     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 //   };
-//   oled_write_raw_P(drac_logo, sizeof(drac_logo));
+//   oled_write_raw_P(euclid36_logo, sizeof(euclid36_logo));
 // }
 
 static void render_status(void) {
-  oled_write_P(PSTR("This is\n~~~~~~~~~\neuclid36\n~~~~~~~~~\nv1.0\n~~~~~~~~~\n"), false);
-  sprintf(wpm_as_str, "WPM %03d", get_current_wpm());
-  oled_write(wpm_as_str,false);
+  oled_write_P(PSTR("euclid36\n"), false);
+  // Uncomment to set up WPM
+//  sprintf(wpm_as_str, "WPM %03d", get_current_wpm());
+//  oled_write(wpm_as_str,false);
   led_t led_state = host_keyboard_led_state();
-  oled_write_P(PSTR("\nCaps: "), false);
+  oled_write_P(PSTR("Caps: "), false);
   oled_write_P(led_state.caps_lock ? PSTR("on ") : PSTR("off"), false);
   oled_write_P(PSTR("\n"),false);
   switch (get_highest_layer(layer_state)) {
@@ -245,12 +241,7 @@ static void render_status(void) {
 }
 
 void oled_task_user(void) {
-      if (is_keyboard_master()) {
-        render_status(); // Renders the current keyboard state (layer, lock, caps, scroll, etc)
-    } else {
         render_status();
-        //render_logo(); // Uncomment (along with logo function) to see the draculad logo on the OLED
-    }
 }
 
 #endif
@@ -265,7 +256,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
             tap_code(KC_VOLD);
         }
     }
-    else if (index == 2) {
+    else if (index == 1) {
       if(clockwise) {
         tap_code16(C(KC_LEFT));
       }
