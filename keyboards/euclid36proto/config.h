@@ -20,12 +20,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 /* USB Device descriptor parameter */
-#define DEVICE_VER      0x0002
 #define VENDOR_ID       0xFEFE
 #define PRODUCT_ID      0x5B58
-//#define DEVICE_VER      0x0001 // Now defined in the revX/config.h
+#define DEVICE_VER      0x0001
 #define MANUFACTURER    sadekbaroudi
-#define PRODUCT         euclid36
+#define PRODUCT         euclid36proto
 
 /* key matrix size */
 /* Rows are doubled up */
@@ -34,9 +33,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // wiring
 #define MATRIX_ROW_PINS \
-    { B2, B1, B0, D4, D6, D7, C7 }
+    { F4, F5, F6, F7, B1, B3, B2 }
 #define MATRIX_COL_PINS \
-    { D5, F6, F5, F4, F1, B7 }
+    { D4, C6, D7, E6, B4, B5 }
 #define UNUSED_PINS
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
@@ -50,7 +49,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define SOFT_SERIAL_PIN D0  // or D1, D2, D3, E6
 
-#define RGB_DI_PIN B3
+#define RGB_DI_PIN D3
 #ifdef RGB_DI_PIN
   #define RGBLED_NUM 13
   #define RGBLIGHT_HUE_STEP 16
@@ -77,11 +76,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //   #define RGBLIGHT_EFFECT_BREATHE_CENTER 1.85  // 1 to 2.7
 //   #define RGBLIGHT_EFFECT_BREATHE_MAX    255   // 0 to 255
 #endif
-
-#define ENCODERS_PAD_A {B6 , C6}
-#define ENCODERS_PAD_B {B4 , B5}
-
-#define ENCODER_RESOLUTIONS { 4, 4, 4, 1}
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCE 5

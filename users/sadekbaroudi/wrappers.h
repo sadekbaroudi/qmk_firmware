@@ -29,6 +29,12 @@ expanded before being used as arguments to the LAYOUT_xxx macro.
 #    define LAYOUT LAYOUT_euclid36
 #endif
 
+// Since euclid36proto uses the name LAYOUT_euclid36proto instead of LAYOUT
+#if (!defined(LAYOUT) && defined(LAYOUT_euclid36proto))
+#    define LAYOUT LAYOUT_euclid36proto
+#endif
+
+
 // clang-format off
 #define LAYOUT_ergodox_wrapper(...)          LAYOUT_ergodox(__VA_ARGS__)
 #define LAYOUT_ergodox_pretty_wrapper(...)   LAYOUT_ergodox_pretty(__VA_ARGS__)
