@@ -133,8 +133,15 @@ NOTE: These are all the same length.  If you do a search/replace
 #define __________________MOUSE_2__________________			KC_MS_WH_LEFT,         KC_MS_LEFT,            KC_MS_DOWN,            KC_MS_RIGHT,           KC_MS_WH_RIGHT
 #define __________________MOUSE_3__________________			KC_MS_ACCEL0,          KC_MS_ACCEL1,          KC_MS_ACCEL2,          _______,               _______
 
-#define _________________MACROS_1__________________			VRSN,                  L_FIND,                L_GITCOMMIT,           _______,               E_ROBOT
-#define _________________MACROS_2__________________			P_ANGBRKT,             P_PAREN,               P_CURLY,               P_BRKT,                _______
-#define _________________MACROS_3__________________			KC_MAKE,               L_GREP,                _______,               _______,               E_CAT
+
+// COMMENT TO REENABLE MACROS
+#define _________________MACROS_1__________________			___________________BLANK___________________
+#define _________________MACROS_2__________________			___________________BLANK___________________
+#define _________________MACROS_3__________________			___________________BLANK___________________
+
+// UNCOMMENT TO REENABLE MACROS
+// #define _________________MACROS_1__________________			VRSN,                  L_FIND,                L_GITCOMMIT,           _______,               E_ROBOT
+// #define _________________MACROS_2__________________			P_ANGBRKT,             P_PAREN,               P_CURLY,               P_BRKT,                _______
+// #define _________________MACROS_3__________________			KC_MAKE,               L_GREP,                _______,               _______,               E_CAT
 
 // clang-format on

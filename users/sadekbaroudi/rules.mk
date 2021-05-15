@@ -9,6 +9,7 @@ SWAP_HANDS_ENABLE= no  # Allow swapping hands of keyboard
 MOUSEKEY_ENABLE = yes
 BACKLIGHT_ENABLE = no
 NKRO_ENABLE      = no
+ENCODER_ENABLE = yes
 
 EXTRAFLAGS     += -flto
 

@@ -133,7 +133,9 @@ void eeconfig_init_user(void) {
     userspace_config.raw              = 0;
     userspace_config.rgb_base_layer_override = false;
     userspace_config.rgb_layer_change = true;
+    #ifdef RGBLIGHT_ENABLE
     userspace_config.mode = RGBLIGHT_MODE_STATIC_LIGHT;
+    #endif
     userspace_config.hue = 167; // BLUE
     userspace_config.sat = 255;
     userspace_config.val = 255;
