@@ -45,7 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* COL2ROW, ROW2COL*/
 #define DIODE_DIRECTION COL2ROW
 
-#define RGB_DI_PIN D1
+#define RGB_DI_PIN D3
 #ifdef RGB_DI_PIN
   #define RGBLED_NUM 36
   #define RGBLIGHT_HUE_STEP 16
