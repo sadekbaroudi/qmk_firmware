@@ -7,7 +7,7 @@ An ergonomic 30% unibody dactyl like keyboard
 
 Make example for this keyboard (after setting up your build environment):
 
-    make enigma36:default
+    make handwired/enigma36:default
 
 Example of flashing this keyboard:
 
