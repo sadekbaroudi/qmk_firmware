@@ -30,3 +30,11 @@ UNICODE_ENABLE = no         # Unicode
 BLUETOOTH_ENABLE = no       # Enable Bluetooth with the Adafruit EZ-Key HID
 AUDIO_ENABLE = no           # Audio output on port C6
 FAUXCLICKY_ENABLE = no      # Use buzzer to emulate clicky switches
+THUMBSTICK_ENABLE = yes
+
+ifeq ($(strip $(THUMBSTICK_ENABLE)), yes)
+    POINTING_DEVICE_ENABLE = yes
+    OPT_DEFS += -DTHUMBSTICK_ENABLE
+	SRC += analog.c
+	SRC += thumbstick.c
+endif

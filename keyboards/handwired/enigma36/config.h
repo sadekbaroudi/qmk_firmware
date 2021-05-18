@@ -43,7 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DEBOUNCE 5
 
 /* COL2ROW, ROW2COL*/
-#define DIODE_DIRECTION COL2ROW
+#define DIODE_DIRECTION ROW2COL
 
 #define RGB_DI_PIN D3
 #ifdef RGB_DI_PIN
@@ -71,6 +71,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //   /*==== use exp() and sin() ====*/
 //   #define RGBLIGHT_EFFECT_BREATHE_CENTER 1.85  // 1 to 2.7
 //   #define RGBLIGHT_EFFECT_BREATHE_MAX    255   // 0 to 255
+#endif
+
+#ifdef THUMBSTICK_ENABLE
+//#    define THUMBSTICK_FLIP_X
+//#    define THUMBSTICK_FLIP_Y
+#    define THUMBSTICK_PIN_X F4
+#    define THUMBSTICK_PIN_Y F5
 #endif
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
