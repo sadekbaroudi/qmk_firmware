@@ -8,11 +8,11 @@ typedef enum {
 } thumbstick_mode_t;
 
 // Parameters
-#define THUMBSTICK_DEAD_ZONE 15  // Values below this are ignored (deadzone)
+#define THUMBSTICK_DEAD_ZONE 25  // Values below this are ignored (deadzone)
 #define THUMBSTICK_FINE_ZONE 40  // Values below this enable fine movement
 
 #define THUMBSTICK_MODE THUMBSTICK_MODE_MOUSE
-#define THUMBSTICK_SPEED 40  // Range [0 - 127]
+#define THUMBSTICK_SPEED 50  // Range [0 - 127]
 #define THUMBSTICK_FINE_SPEED 20
 #define THUMBSTICK_SCROLL_SPEED 1
 
