@@ -2,12 +2,14 @@
 
 #ifdef RGBLIGHT_ENABLE
 #    undef RGBLIGHT_ANIMATIONS
+// Comment the line below to save space and reduce the number of animations
+//#    define RGBLIGHT_ANIMATIONS
+// If you comment the line above, uncomment the lines below until "HERE"
 #    define RGBLIGHT_SLEEP
 #    define RGBLIGHT_EFFECT_BREATHING
-#    define RGBLIGHT_EFFECT_RAINBOW_MOOD
 #    define RGBLIGHT_EFFECT_RAINBOW_SWIRL
 #    define RGBLIGHT_EFFECT_STATIC_GRADIENT
-#    define RGBLIGHT_EFFECT_TWINKLE
+// "HERE"
 #    ifdef RGBLIGHT_HUE_STEP
 #       undef RGBLIGHT_HUE_STEP
 #    endif
