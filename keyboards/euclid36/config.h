@@ -40,7 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define UNUSED_PINS
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
-#define DEBOUNCE 5
+#define DEBOUNCE 2
 
 /* COL2ROW, ROW2COL*/
 #define DIODE_DIRECTION COL2ROW
@@ -73,10 +73,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //   #define RGBLIGHT_EFFECT_BREATHE_MAX    255   // 0 to 255
 #endif
 
-#define ENCODERS_PAD_A {B6 , C6}
-#define ENCODERS_PAD_B {B4 , B5}
+#define ENCODERS_PAD_A {B6 , B4}
+#define ENCODERS_PAD_B {C6 , B5}
 
-#define ENCODER_RESOLUTION 1
+#define ENCODER_RESOLUTION 4
 // Per encoder settings
 //#define ENCODER_RESOLUTIONS { 4, 4 }
 
@@ -86,9 +86,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    define THUMBSTICK_PIN_X F7
 #    define THUMBSTICK_PIN_Y F0
 #endif
-
-/* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
-#define DEBOUNCE 5
 
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
 #define LOCKING_SUPPORT_ENABLE
