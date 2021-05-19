@@ -6,9 +6,9 @@
 //#    define RGBLIGHT_ANIMATIONS
 // If you comment the line above, uncomment the lines below until "HERE"
 #    define RGBLIGHT_SLEEP
-#    define RGBLIGHT_EFFECT_BREATHING
 #    define RGBLIGHT_EFFECT_RAINBOW_SWIRL
 #    define RGBLIGHT_EFFECT_STATIC_GRADIENT
+#    define RGBLIGHT_EFFECT_TWINKLE
 // "HERE"
 #    ifdef RGBLIGHT_HUE_STEP
 #       undef RGBLIGHT_HUE_STEP
