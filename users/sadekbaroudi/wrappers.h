@@ -24,6 +24,11 @@ expanded before being used as arguments to the LAYOUT_xxx macro.
 #    define LAYOUT LAYOUT_ortho_5x12
 #endif
 
+// Since enigma36 uses the name LAYOUT_enigma36 instead of LAYOUT
+#if (!defined(LAYOUT) && defined(LAYOUT_enigma36))
+#    define LAYOUT LAYOUT_enigma36
+#endif
+
 // Since Euclid36 uses the name LAYOUT_euclid36 instead of LAYOUT
 #if (!defined(LAYOUT) && defined(LAYOUT_euclid36))
 #    define LAYOUT LAYOUT_euclid36
