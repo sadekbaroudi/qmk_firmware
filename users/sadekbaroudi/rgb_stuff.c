@@ -74,6 +74,9 @@ layer_state_t layer_state_set_rgb_light(layer_state_t state) {
     if (userspace_config.rgb_layer_change) {
         //uint8_t mode = layer_state_cmp(state,_MEDIA) ? RGBLIGHT_MODE_BREATHING : RGBLIGHT_MODE_STATIC_LIGHT;
         uint8_t mode = RGBLIGHT_MODE_STATIC_LIGHT;
+        #ifdef DEFAULT_RGB_LAYER_MODE
+        mode = DEFAULT_RGB_LAYER_MODE;
+        #endif
         switch (get_highest_layer(state|default_layer_state)) {
             case _COLEMAK:
                 if (is_caps_lock_on) { // If caps lock is enabled, force this setting

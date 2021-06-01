@@ -42,6 +42,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCE 5
 
+// Use twinkle as the default rgb mode for the layers
+#define DEFAULT_RGB_LAYER_MODE RGBLIGHT_MODE_TWINKLE+2
+
 /* COL2ROW, ROW2COL*/
 #define DIODE_DIRECTION ROW2COL
 
