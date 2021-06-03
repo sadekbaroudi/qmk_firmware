@@ -30,11 +30,11 @@
     K21, K22, K23, K24, K25, K26, K27, K28, K29, K2A  \
   ) \
   LAYOUT_ortho_5x12_wrapper( \
-        _______,        KC_1,           KC_2,           KC_3,           KC_4,                   KC_5,                 KC_6,                  KC_7,                  KC_8,              KC_9,           KC_0,            _______, \
-        _______,        K01,            K02,            K03,            K04,                    K05,                  K06,                   K07,                   LT(_WINNAV,K08),   K09,            K0A,             _______, \
-        _______,        LCTL_T(K11),    LGUI_T(K12),    LALT_T(K13),    LSFT_T(K14),            K15,                  K16,                   RSFT_T(K17),           RALT_T(K18),       RGUI_T(K19),    RCTL_T(K1A),     _______, \
-        _______,        K21,            K22,            K23,            K24,                    K25,                  K26,                   K27,                   K28,               K29,            LT(_MOUSE, K2A), _______, \
-        _______,        _______,        _______,        KC_DEL,         LT(_NAVIGATION,KC_ENT), LT(_FUNCTION,KC_TAB), LT(_FUNCTION,KC_BSPC), LT(_SYMBOLS,KC_SPACE), KC_QUOT,           _______,        _______,         _______ \
+        _______,        KC_1,           KC_2,           KC_3,           KC_4,                   KC_5,                 KC_6,                  KC_7,                  KC_8,               KC_9,           KC_0,            _______, \
+        _______,        K01,            K02,            K03,            K04,                    K05,                  K06,                   K07,                   LT(_WINNAV,K08),    K09,            K0A,             _______, \
+        _______,        LCTL_T(K11),    LGUI_T(K12),    LALT_T(K13),    LSFT_T(K14),            K15,                  K16,                   RSFT_T(K17),           RALT_T(K18),        RGUI_T(K19),    RCTL_T(K1A),     _______, \
+        _______,        LSFT_T(K21),    K22,            K23,            K24,                    K25,                  K26,                   K27,                   K28,                K29,            RSFT_T(K2A),     _______, \
+        _______,        _______,        _______,        KC_DEL,         LT(_NAVIGATION,KC_ENT), LT(_FUNCTION,KC_TAB), LT(_FUNCTION,KC_BSPC), LT(_SYMBOLS,KC_SPACE), LT(_MOUSE,KC_QUOT), _______,        _______,         _______ \
     )
 
 /* Re-pass though to allow templates to be used */
