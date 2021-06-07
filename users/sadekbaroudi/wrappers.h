@@ -39,6 +39,11 @@ expanded before being used as arguments to the LAYOUT_xxx macro.
 #    define LAYOUT LAYOUT_euclid36proto
 #endif
 
+// Since pteron38 uses the name LAYOUT_pteron38 instead of LAYOUT
+#if (!defined(LAYOUT) && defined(LAYOUT_pteron38))
+#    define LAYOUT LAYOUT_pteron38
+#endif
+
 
 // clang-format off
 #define LAYOUT_ergodox_wrapper(...)          LAYOUT_ergodox(__VA_ARGS__)
@@ -50,6 +55,7 @@ expanded before being used as arguments to the LAYOUT_xxx macro.
 #define LAYOUT_gergo_wrapper(...)            LAYOUT_gergo(__VA_ARGS__)
 #define LAYOUT_split_3x6_3_wrapper(...)      LAYOUT_split_3x6_3(__VA_ARGS__)
 #define LAYOUT_reviung39_wrapper(...)        LAYOUT_reviung39(__VA_ARGS__)
+#define LAYOUT_pteron38_wrapper(...)         LAYOUT_pteron38(__VA_ARGS__)
 
 /*
 Blocks for each of the four major keyboard layouts

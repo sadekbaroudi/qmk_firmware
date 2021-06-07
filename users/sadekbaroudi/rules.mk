@@ -1,7 +1,6 @@
 SRC += sadekbaroudi.c \
        process_records.c
 
-BOOTLOADER = atmel-dfu
 COMMAND_ENABLE   = no  # Commands for debug and configuration
 CONSOLE_ENABLE = no         # Console for debug
 UNICODE_ENABLE   = no  # Unicode

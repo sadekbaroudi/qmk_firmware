@@ -2,13 +2,16 @@
 #include "raw_hid.h"
 #include <stdbool.h>
 #include <string.h>
+#ifdef RGBLIGHT_ENABLE
 #include "rgblight.h"
+#endif
 
 #define RAW_EPSIZE 32
 
 __attribute__((weak)) bool raw_hid_receive_keymap(uint8_t *data, uint8_t length) { return false; }
 
 void raw_hid_receive(uint8_t *data, uint8_t length) {
+	#ifdef RGBLIGHT_ENABLE
 	if (raw_hid_receive_keymap(data, length)) {
 		return;
 	}
@@ -23,16 +26,5 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
 			}
 		}
 	}
-
-	// // Example code if you want to send back a response to the client to use for whatever reason
-	// uint8_t response[RAW_EPSIZE];
-	// memset(response, 0, RAW_EPSIZE);
-
-	// if (data[0] == 0x02) {
-	// 	response[0] = 'Y';
-	// } else {
-	// 	response[0] = 'N';
-	// }
-	// raw_hid_send(response, sizeof(response));
-
+	#endif
 }
