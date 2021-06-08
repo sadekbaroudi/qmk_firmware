@@ -21,6 +21,7 @@ enum userspace_custom_keycodes {
     P_PAREN,
     P_CURLY,
     P_BRKT,
+    P_ARROW,
     E_ROBOT,
     E_CAT,
     C_CAPSWORD,

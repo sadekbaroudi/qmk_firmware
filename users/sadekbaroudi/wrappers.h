@@ -152,7 +152,7 @@ NOTE: These are all the same length.  If you do a search/replace
 
 // COMMENT TO DISABLE MACROS
 #define _________________MACROS_1__________________			VRSN,                  L_FIND,                L_GITCOMMIT,           _______,               E_ROBOT
-#define _________________MACROS_2__________________			P_ANGBRKT,             P_PAREN,               P_CURLY,               P_BRKT,                _______
+#define _________________MACROS_2__________________			P_ANGBRKT,             P_PAREN,               P_CURLY,               P_BRKT,                P_ARROW
 #define _________________MACROS_3__________________			KC_MAKE,               L_GREP,                _______,               _______,               E_CAT
 
 // clang-format on

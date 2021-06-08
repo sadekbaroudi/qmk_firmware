@@ -244,6 +244,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 // when keycode is released
             }
             break;
+        case P_ARROW:
+            if (record->event.pressed) {
+                SEND_STRING("->");
+            } else {
+                // when keycode is released
+            }
+            break;
         case E_ROBOT:
             if (record->event.pressed) {
                 SEND_STRING("d[o_0]b");
