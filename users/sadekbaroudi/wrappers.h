@@ -72,7 +72,7 @@ NOTE: These are all the same length.  If you do a search/replace
 #define _________________META_NAV_1________________			KC_ESC,  KC_PGUP, KC_UP,   KC_PGDN, _______
 #define _________________META_NAV_2________________			KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT, KC_END
 
-#define _________________META_NAV_L1_______________			KC_CAPS,               KC_GRV,                LCTL(LSFT(KC_TAB)),    LCTL(LGUI(KC_LEFT)),   _______
+#define _________________META_NAV_L1_______________			KC_CAPS,               KC_GRV,                LCTL(LSFT(KC_TAB)),    LCTL(LGUI(KC_LEFT)),   CAPSWORD
 #define _________________META_NAV_R1_______________			_______,               LCTL(LGUI(KC_RIGHT)),  LCTL(KC_TAB),          _______,               KC_BSLS
 
 #define __________________WIN_NAV_1________________			_______,               _______,               LGUI(KC_UP),           _______,               _______
@@ -145,14 +145,14 @@ NOTE: These are all the same length.  If you do a search/replace
 #define __________________MOUSE_3__________________			KC_MS_ACCEL0,          KC_MS_ACCEL1,          KC_MS_ACCEL2,          _______,               _______
 
 
-// COMMENT TO REENABLE MACROS
-#define _________________MACROS_1__________________			___________________BLANK___________________
-#define _________________MACROS_2__________________			___________________BLANK___________________
-#define _________________MACROS_3__________________			___________________BLANK___________________
+// // UNCOMMENT TO DISABLE MACROS
+// #define _________________MACROS_1__________________			___________________BLANK___________________
+// #define _________________MACROS_2__________________			___________________BLANK___________________
+// #define _________________MACROS_3__________________			___________________BLANK___________________
 
-// UNCOMMENT TO REENABLE MACROS
-// #define _________________MACROS_1__________________			VRSN,                  L_FIND,                L_GITCOMMIT,           _______,               E_ROBOT
-// #define _________________MACROS_2__________________			P_ANGBRKT,             P_PAREN,               P_CURLY,               P_BRKT,                _______
-// #define _________________MACROS_3__________________			KC_MAKE,               L_GREP,                _______,               _______,               E_CAT
+// COMMENT TO DISABLE MACROS
+#define _________________MACROS_1__________________			VRSN,                  L_FIND,                L_GITCOMMIT,           _______,               E_ROBOT
+#define _________________MACROS_2__________________			P_ANGBRKT,             P_PAREN,               P_CURLY,               P_BRKT,                _______
+#define _________________MACROS_3__________________			KC_MAKE,               L_GREP,                _______,               _______,               E_CAT
 
 // clang-format on

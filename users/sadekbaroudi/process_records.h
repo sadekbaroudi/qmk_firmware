@@ -12,17 +12,18 @@ enum userspace_custom_keycodes {
     KC_RGB_T,                       // Toggles RGB Layer Indication mode
     KC_RGB_BLT,                     // Toggles RGB Base Layer Override mode
     RGB_IDL,                        // RGB Idling animations
-    // UNCOMMENT TO REENABLE MACROS
-    // KC_MAKE,                        // Run keyboard's customized make command
-    // L_GREP,
-    // L_FIND,
-    // L_GITCOMMIT,
-    // P_ANGBRKT,
-    // P_PAREN,
-    // P_CURLY,
-    // P_BRKT,
-    // E_ROBOT,
-    // E_CAT,
+    // COMMENT TO DISABLE MACROS
+    KC_MAKE,                        // Run keyboard's customized make command
+    L_GREP,
+    L_FIND,
+    L_GITCOMMIT,
+    P_ANGBRKT,
+    P_PAREN,
+    P_CURLY,
+    P_BRKT,
+    E_ROBOT,
+    E_CAT,
+    CAPSWORD,
     NEW_SAFE_RANGE                  // use "NEWPLACEHOLDER for keymap specific codes
 };
 

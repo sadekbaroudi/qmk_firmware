@@ -9,8 +9,11 @@ MOUSEKEY_ENABLE = yes
 BACKLIGHT_ENABLE = no
 NKRO_ENABLE      = no
 RAW_ENABLE       = yes
+CASEMODES_ENABLE = yes
 
-EXTRAFLAGS     += -flto
+# UNCOMMENT TO DISABLE MACROS
+# EXTRAFLAGS     += -flto
+# UNCOMMENT TO DISABLE MACROS
 
 SPACE_CADET_ENABLE    = no
 GRAVE_ESC_ENABLE      = no
@@ -45,4 +48,8 @@ endif
 
 ifeq ($(strip $(RAW_ENABLE)), yes)
     SRC += hid.c
+endif
+
+ifeq ($(strip $(CASEMODES_ENABLE)), yes)
+    SRC += casemodes.c
 endif
