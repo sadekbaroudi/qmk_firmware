@@ -179,9 +179,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
 #endif
-        case CAPSWORD:
+        case C_CAPSWORD:
             if (record->event.pressed) {
                 enable_caps_word();
+            }
+            break;
+        case C_HYPHENCASE:
+            if (record->event.pressed) {
+                enable_xcase_with(KC_MINS);
+            }
+            break;
+        case C_UNDERSCORECASE:
+            if (record->event.pressed) {
+                enable_xcase_with(KC_UNDS);
             }
             break;
         // COMMENT TO DISABLE MACROS

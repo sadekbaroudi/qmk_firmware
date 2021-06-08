@@ -23,7 +23,9 @@ enum userspace_custom_keycodes {
     P_BRKT,
     E_ROBOT,
     E_CAT,
-    CAPSWORD,
+    C_CAPSWORD,
+    C_HYPHENCASE,
+    C_UNDERSCORECASE,
     NEW_SAFE_RANGE                  // use "NEWPLACEHOLDER for keymap specific codes
 };
 
