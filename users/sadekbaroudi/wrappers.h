@@ -73,7 +73,7 @@ NOTE: These are all the same length.  If you do a search/replace
 #define _________________META_NAV_2________________			KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT, KC_END
 
 #define _________________META_NAV_L1_______________			KC_CAPS,               KC_GRV,                LCTL(LSFT(KC_TAB)),    LCTL(LGUI(KC_LEFT)),   C_CAPSWORD
-#define _________________META_NAV_R1_______________			C_UNDERSCORECASE,      LCTL(LGUI(KC_RIGHT)),  LCTL(KC_TAB),          C_HYPHENCASE,          KC_BSLS
+#define _________________META_NAV_R1_______________			C_UNDERSCORECASE,      LCTL(LGUI(KC_RIGHT)),  LCTL(KC_TAB),          C_ANYCASE,             KC_BSLS
 
 #define __________________WIN_NAV_1________________			_______,               _______,               LGUI(KC_UP),           _______,               _______
 #define __________________WIN_NAV_2________________			_______,               LGUI(KC_LEFT),         LGUI(KC_DOWN),         LGUI(KC_RGHT),         _______

@@ -189,6 +189,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 enable_xcase_with(KC_MINS);
             }
             break;
+        case C_ANYCASE:
+            if (record->event.pressed) {
+                enable_xcase();
+            }
+            break;            
         case C_UNDERSCORECASE:
             if (record->event.pressed) {
                 enable_xcase_with(KC_UNDS);
