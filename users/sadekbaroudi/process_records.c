@@ -180,6 +180,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
 #endif
         case C_CAPSWORD:
+            // NOTE: if you change this behavior, may want to update in keymap.c for COMBO behavior
             if (record->event.pressed) {
                 enable_caps_word();
             }

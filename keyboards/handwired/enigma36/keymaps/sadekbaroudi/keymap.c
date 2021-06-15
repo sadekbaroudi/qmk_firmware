@@ -15,12 +15,53 @@
  */
 
 #include "sadekbaroudi.h"
-
+#include "casemodes.h"
 #include QMK_KEYBOARD_H
 
 #ifndef UNICODE_ENABLE
 #    define UC(x) KC_NO
 #endif
+
+// COMBOS - https://beta.docs.qmk.fm/using-qmk/software-features/feature_combo
+// TODO - move these into sadekbaroudi.c or something (basically, the user space) so I don't have to duplicate this code in every keymap
+enum combo_events {
+  UNDO,
+  REDO,
+  CAPSWORD
+};
+
+const uint16_t PROGMEM undo_combo[] = {KC_Z, KC_X, COMBO_END};
+// TODO - this doesn't work at all since I tuse the KC_SLSH for mouse keys. Need to change that before I can use this.
+const uint16_t PROGMEM redo_combo[] = {KC_DOT, KC_SLSH, COMBO_END};
+const uint16_t PROGMEM capsword_combo[] = {KC_X, KC_C, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+  [UNDO] = COMBO_ACTION(undo_combo),
+  [REDO] = COMBO_ACTION(redo_combo),
+  [CAPSWORD] = COMBO_ACTION(capsword_combo),
+};
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+  switch(combo_index) {
+    case UNDO:
+      if (pressed) {
+        tap_code16(LCTL(KC_Z));
+      }
+      break;
+    case REDO:
+      if (pressed) {
+        tap_code16(LCTL(KC_Y));
+      }
+      break;
+    case CAPSWORD:
+      // NOTE: if you change this behavior, may want to update in process_records.c for capsword macro behavior
+      if (pressed) {
+        enable_caps_word();
+      }
+      break;
+  }
+}
+// END COMBOS
 
 /*
  * The `LAYOUT_enigma36_base` macro is a template to allow the use of identical
@@ -39,7 +80,7 @@
   LAYOUT_wrapper( \
         K01,             K02,            K03,            K04,            K05,                K06,            K07,            LT(_WINNAV,K08),  K09,            K0A, \
         LCTL_T(K11),     LGUI_T(K12),    LALT_T(K13),    LSFT_T(K14),    K15,                K16,            RSFT_T(K17),    RALT_T(K18),      RGUI_T(K19),    RCTL_T(K1A), \
-        LT(_MOUSE, K21), K22,            K23,            K24,            K25,                K26,            K27,            K28,              K29,            K2A, \
+        K21,             K22,            K23,            K24,            K25,                K26,            K27,            K28,              K29,            LT(_MOUSE, K2A), \
                              KC_DEL, LT(_NAVIGATION,KC_ENT), LT(_FUNCTION,KC_TAB),     LT(_FUNCTION,KC_BSPC), LT(_SYMBOLS,KC_SPACE), KC_QUOT \
     )
 

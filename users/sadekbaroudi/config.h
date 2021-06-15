@@ -1,5 +1,8 @@
 #pragma once
 
+#define COMBO_COUNT 3
+#define COMBO_TERM 30
+
 #ifdef RGBLIGHT_ENABLE
 #    undef RGBLIGHT_ANIMATIONS
 // Comment the line below to save space and reduce the number of animations
