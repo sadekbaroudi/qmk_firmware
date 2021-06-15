@@ -192,8 +192,10 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 
 static void render_status(void) {
   oled_write_P(PSTR("This is\n~~~~~~~~~\nDracu\nLad\n~~~~~~~~~\nv1.0\n~~~~~~~~~\n"), false);
+  #ifdef WPM_ENABLE
   sprintf(wpm_as_str, "WPM %03d", get_current_wpm());
   oled_write(wpm_as_str,false);
+  #endif
   led_t led_state = host_keyboard_led_state();
   oled_write_P(PSTR("\nCaps: "), false);
   oled_write_P(led_state.caps_lock ? PSTR("on ") : PSTR("off"), false);

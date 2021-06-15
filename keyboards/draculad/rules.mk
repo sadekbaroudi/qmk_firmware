@@ -2,7 +2,7 @@
 MCU = atmega32u4
 
 
-EXTRAFLAGS += -flto
+#EXTRAFLAGS += -flto
 # Bootloader selection
 BOOTLOADER = caterina
 
@@ -24,9 +24,7 @@ BLUETOOTH_ENABLE = no       # Enable Bluetooth
 AUDIO_ENABLE = no           # Audio output
 SPLIT_KEYBOARD = yes        # Use shared split_common code
 
-OLED_DRIVER_ENABLE = yes
-WPM_ENABLE = yes
+OLED_DRIVER_ENABLE = no
+WPM_ENABLE = no
 ENCODER_ENABLE = yes
-RGBLIGHT_ENABLE = yes 
-
-OLED_DRIVER_ENABLE = yes
+RGBLIGHT_ENABLE = yes
