@@ -3,12 +3,116 @@
 userspace_config_t userspace_config;
 bool is_caps_lock_on;
 
-
 void handle_caps_lock_change(void) {
 #if defined(RGBLIGHT_ENABLE) // We only do this because we want the layer color to change
     layer_state_set_user(layer_state);
 #endif  // RGBLIGHT_ENABLE
 }
+
+// Leader key combos - TODO move into another file?
+#if defined(LEADER_ENABLE)
+LEADER_EXTERNS();
+
+void matrix_scan_leader_key(void) {
+  LEADER_DICTIONARY() {
+    leading = false;
+    leader_end();
+
+    SEQ_ONE_KEY(KC_Q) {
+      // Anything you can do in a macro.
+      SEND_STRING("QMK is awesome.");
+    }
+
+    // Time shortcuts
+    SEQ_TWO_KEYS(KC_H, KC_SLSH) {
+      SEND_STRING("1:00");
+    }
+    SEQ_TWO_KEYS(KC_COMM, KC_SLSH) {
+      SEND_STRING("2:00");
+    }
+    SEQ_TWO_KEYS(KC_DOT, KC_SLSH) {
+      SEND_STRING("3:00");
+    }
+    SEQ_TWO_KEYS(KC_N, KC_SLSH) {
+      SEND_STRING("4:00");
+    }
+    SEQ_TWO_KEYS(KC_E, KC_SLSH) {
+      SEND_STRING("5:00");
+    }
+    SEQ_TWO_KEYS(KC_I, KC_SLSH) {
+      SEND_STRING("6:00");
+    }
+    SEQ_TWO_KEYS(KC_L, KC_SLSH) {
+      SEND_STRING("7:00");
+    }
+    SEQ_TWO_KEYS(KC_U, KC_SLSH) {
+      SEND_STRING("8:00");
+    }
+    SEQ_TWO_KEYS(KC_Y, KC_SLSH) {
+      SEND_STRING("9:00");
+    }
+    SEQ_THREE_KEYS(KC_H, KC_SLSH, KC_SLSH) {
+      SEND_STRING("10:00");
+    }
+    SEQ_THREE_KEYS(KC_H, KC_H, KC_SLSH) {
+      SEND_STRING("11:00");
+    }
+    SEQ_THREE_KEYS(KC_H, KC_COMM, KC_SLSH) {
+      SEND_STRING("12:00");
+    }
+    SEQ_TWO_KEYS(KC_H, KC_DOT) {
+      SEND_STRING("1:30");
+    }
+    SEQ_TWO_KEYS(KC_COMM, KC_DOT) {
+      SEND_STRING("2:30");
+    }
+    SEQ_TWO_KEYS(KC_DOT, KC_DOT) {
+      SEND_STRING("3:30");
+    }
+    SEQ_TWO_KEYS(KC_N, KC_DOT) {
+      SEND_STRING("4:30");
+    }
+    SEQ_TWO_KEYS(KC_E, KC_DOT) {
+      SEND_STRING("5:30");
+    }
+    SEQ_TWO_KEYS(KC_I, KC_DOT) {
+      SEND_STRING("6:30");
+    }
+    SEQ_TWO_KEYS(KC_L, KC_DOT) {
+      SEND_STRING("7:30");
+    }
+    SEQ_TWO_KEYS(KC_U, KC_DOT) {
+      SEND_STRING("8:30");
+    }
+    SEQ_TWO_KEYS(KC_Y, KC_DOT) {
+      SEND_STRING("9:30");
+    }
+    SEQ_THREE_KEYS(KC_H, KC_SLSH, KC_DOT) {
+      SEND_STRING("10:30");
+    }
+    SEQ_THREE_KEYS(KC_H, KC_H, KC_DOT) {
+      SEND_STRING("11:30");
+    }
+    SEQ_THREE_KEYS(KC_H, KC_COMM, KC_DOT) {
+      SEND_STRING("12:30");
+    }
+
+    // 
+    SEQ_TWO_KEYS(KC_D, KC_D) {
+      SEND_STRING(SS_LCTL("a") SS_LCTL("c"));
+    }
+    SEQ_THREE_KEYS(KC_D, KC_D, KC_S) {
+      SEND_STRING("https://start.duckduckgo.com\n");
+    }
+    SEQ_TWO_KEYS(KC_A, KC_S) {
+      register_code(KC_LGUI);
+      register_code(KC_S);
+      unregister_code(KC_S);
+      unregister_code(KC_LGUI);
+    }
+  }
+}
+#endif
 
 __attribute__((weak)) void keyboard_pre_init_keymap(void) {}
 
@@ -98,6 +202,10 @@ void matrix_scan_user(void) {
     matrix_scan_rgb_matrix();
 #endif
 
+#if defined(LEADER_ENABLE)
+    matrix_scan_leader_key();
+#endif
+
     matrix_scan_keymap();
 }
 
@@ -151,3 +259,4 @@ bool hasAllBitsInMask(uint8_t value, uint8_t mask) {
 
     return (value & mask) == mask;
 }
+
