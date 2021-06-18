@@ -55,3 +55,7 @@ endif
 ifeq ($(strip $(CASEMODES_ENABLE)), yes)
     SRC += casemodes.c
 endif
+
+ifeq ($(strip $(COMBO_ENABLE)), yes)
+    SRC += combos.c
+endif
