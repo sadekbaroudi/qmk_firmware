@@ -124,8 +124,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   // #define ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
 #endif
 
-#define ENCODERS_PAD_A {D5, B6, D1}
-#define ENCODERS_PAD_B {B7, F1, D0}
+#define ENCODERS_PAD_A {D5, B6} //, D1} // uncomment if using 3rd encoder, comment if using pimoroni or oled
+#define ENCODERS_PAD_B {B7, F1} //, D0} // uncomment if using 3rd encoder, comment if using pimoroni or oled
 
 #define ENCODER_RESOLUTION 2
 // Per encoder settings
