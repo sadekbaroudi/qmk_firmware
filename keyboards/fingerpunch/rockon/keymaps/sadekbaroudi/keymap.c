@@ -20,6 +20,90 @@
 // Uncomment to set up WPM
 //char wpm_as_str[8];
 
+//ascii-art  begin
+enum custom_keycodes {
+    SHRUG  = SAFE_RANGE,
+    FU,
+    HAPPYFACE,
+    HEART,
+    TFLIP,
+    TPUT,
+    DISFACE,
+    TFLIP2,
+    CLOUD,
+    SUNGLASSES
+};
+void matrix_init_user(void) {
+set_unicode_input_mode(UC_OSX);
+//type of unicode for your OS,  
+//https://github.com/qmk/qmk_firmware/blob/master/docs/feature_unicode.md#keycodes
+}; 
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case CLOUD:       // (っ◕‿◕)っ
+                if(record->event.pressed){
+                  send_unicode_hex_string("0028 3063 25D5 203F 25D5 0029 3063");
+                }
+                return false;
+                break;
+            case DISFACE:       // ಠ_ಠ
+              if(record->event.pressed){
+                  send_unicode_hex_string("0CA0 005F 0CA0");
+              }  
+              return false;
+              break;
+            case FU:       // t(-_-t)
+                if(record->event.pressed){
+                    SEND_STRING("t(-_-t)");
+                }
+                return false;
+                break; 
+            case HAPPYFACE:       // ʘ‿ʘ 
+                if(record->event.pressed){
+                     send_unicode_hex_string("0298 203F 0298");
+                }
+                return false;
+                break; 
+            case HEART:       // ♥‿♥
+                if(record->event.pressed){
+                    send_unicode_hex_string("2665 203F 2665");
+                }
+                return false;
+                break; 
+            case SHRUG:         // ¯\_(ツ)_/¯
+              if(record->event.pressed){
+                send_unicode_hex_string("00AF 005C 005F 0028 30C4 0029 005F 002F 00AF");
+              }
+          return false;
+          break;
+            case SUNGLASSES:       //(⌐■_■)
+            if(record->event.pressed){
+                send_unicode_hex_string("0028 2310 25A0 005F 25A0 0029");
+            }
+            return false;
+            break;
+            case TFLIP:         // (╯°□°)╯ ︵ ┻━┻
+        if(record->event.pressed){
+            send_unicode_hex_string("0028 256F 00B0 25A1 00B0 0029 256F 0020 FE35 0020 253B 2501 253B");
+                }
+        return false;
+        break;
+        case TFLIP2:         // ┻━┻︵ \(°□°)/ ︵ ┻━┻
+        if(record->event.pressed){
+            send_unicode_hex_string("253B 2501 253B FE35 0020 005C 0028 00B0 25A1 00B0 0029 002F 0020 FE35 0020 253B 2501 253B");
+          }
+        return false;
+        break;
+    }
+
+    return true;
+}
+
+// to use the ascii art keycodes add one of the custom keycodes just like any regular key in your keymap
+// DISFACE, CLOUD, HEART,
+// ascii-art end 
+
 #define _GAME 8
 #define _KICAD 9
 
