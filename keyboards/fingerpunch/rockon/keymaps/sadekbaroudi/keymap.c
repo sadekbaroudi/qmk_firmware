@@ -20,6 +20,10 @@
 // Uncomment to set up WPM
 //char wpm_as_str[8];
 
+//mario-animation uncomment
+// #include "mario_128_64.h"
+
+
 #define _GAME 8
 #define _KICAD 9
 
@@ -304,6 +308,10 @@ bool oled_task_user(void) {
     // If you don't want to display the logo, switch
     if (true) {
         render_status();
+        //mario-animation : comment out render_status();
+        //mario-animation uncomment 
+        //render_anim();
+
     } else if (false) {
         render_logo();
     } else {
