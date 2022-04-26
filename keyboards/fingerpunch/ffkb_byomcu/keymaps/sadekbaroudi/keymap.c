@@ -315,31 +315,31 @@ layer_state_t layer_state_set_keymap(layer_state_t state) {
     switch (get_highest_layer(state)) {
     case _ALPHA_ALT:
         if (is_caps_lock_on) {
-            trackball_set_rgbw(RGB_CYAN, 0x00);
+            pimoroni_trackball_set_rgbw(RGB_CYAN, 0x00);
         } else {
-            trackball_set_rgbw(RGB_BLUE, 0x00);
+            pimoroni_trackball_set_rgbw(RGB_BLUE, 0x00);
         }
         break;
     case _NAVIGATION:
-        trackball_set_rgbw(RGB_GREEN, 0x00);
+        pimoroni_trackball_set_rgbw(RGB_GREEN, 0x00);
         break;
     case _SYMBOLS:
-        trackball_set_rgbw(RGB_PURPLE, 0x00);
+        pimoroni_trackball_set_rgbw(RGB_PURPLE, 0x00);
         break;
     case _FUNCTION:
-        trackball_set_rgbw(RGB_YELLOW, 0x00);
+        pimoroni_trackball_set_rgbw(RGB_YELLOW, 0x00);
         break;
     case _MEDIA:
-        trackball_set_rgbw(RGB_ORANGE, 0x00);
+        pimoroni_trackball_set_rgbw(RGB_ORANGE, 0x00);
         break;
     case _MOUSE:
-        trackball_set_rgbw(RGB_WHITE, 0x00);
+        pimoroni_trackball_set_rgbw(RGB_WHITE, 0x00);
         break;
     default: //  for any other layers, or the default layer
         if (is_caps_lock_on) {
-            trackball_set_rgbw(RGB_CYAN, 0x00);
+            pimoroni_trackball_set_rgbw(RGB_CYAN, 0x00);
         } else {
-            trackball_set_rgbw(RGB_BLUE, 0x00);
+            pimoroni_trackball_set_rgbw(RGB_BLUE, 0x00);
         }
         break;
     }

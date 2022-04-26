@@ -151,7 +151,7 @@ __attribute__((weak)) void keyboard_post_init_keymap(void) {}
 void keyboard_post_init_user(void) {
     is_caps_lock_on = false;
     #if defined(PIMORONI_TRACKBALL_ENABLE) && !defined(RGBLIGHT_ENABLE)
-    trackball_set_rgbw(RGB_BLUE, 0x00);
+    pimoroni_trackball_set_rgbw(RGB_BLUE, 0x00);
     #endif
 #if defined(RGBLIGHT_ENABLE)
     keyboard_post_init_rgb_light();

@@ -77,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *  |---------------+---------------+---------------+---------------+---------------+---------------+---------------/
    *  |     Paste     |     Redo      | Create Track  |   End Track   |    Add Via    | Front<->Back  |
    *  |---------------+---------------+---------------+---------v-----^---------v-----+---------------+---------------+---------------\
-   *  |    Measure    |   3D Viewer   |  TG(_KICAD)   |         | Edit Footprint|     |    Delete     |     Enter     | Delete Track  |
+   *  |    Measure    |   3D Viewer   |  TG(_KICAD)   |         | Select Track  |     |    Delete     |     Enter     | Delete Track  |
    *  \---------------^---------------^---------------/         \---------------/     \---------------^---------------^---------------/
    * 
    *                                                   // Note that Delete Track only deletes the current copper line up to pads or vias

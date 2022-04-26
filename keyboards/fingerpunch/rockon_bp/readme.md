@@ -14,14 +14,26 @@ To build the firmware for this keyboard (after setting up your build environment
     make fingerpunch/rockon_bp/rgblight-oled:default
     make fingerpunch/rockon_bp/rgbmatrix:default
     make fingerpunch/rockon_bp/rgbmatrix-oled:default
+    make fingerpunch/rockon_bp/ec11:default
+    make fingerpunch/rockon_bp/oled_ec11:default
+    make fingerpunch/rockon_bp/rgblight_ec11:default
+    make fingerpunch/rockon_bp/rgblight_oled_ec11:default
+    make fingerpunch/rockon_bp/rgbmatrix_ec11:default
+    make fingerpunch/rockon_bp/rgbmatrix_oled_ec11:default
 
-If using the vial repository, use these:
+(As of April 2022, Vial not supported for this board yet) If using the vial repository, use these:
     make fingerpunch/rockon_bp/no-features:vial
     make fingerpunch/rockon_bp/oled:vial
     make fingerpunch/rockon_bp/rgblight:vial
     make fingerpunch/rockon_bp/rgblight-oled:vial
     make fingerpunch/rockon_bp/rgbmatrix:vial
     make fingerpunch/rockon_bp/rgbmatrix-oled:vial
+    make fingerpunch/rockon_bp/ec11:vial
+    make fingerpunch/rockon_bp/oled_ec11:vial
+    make fingerpunch/rockon_bp/rgblight_ec11:vial
+    make fingerpunch/rockon_bp/rgblight_oled_ec11:vial
+    make fingerpunch/rockon_bp/rgbmatrix_ec11:vial
+    make fingerpunch/rockon_bp/rgbmatrix_oled_ec11:vial
 
 Example of flashing this keyboard:
 

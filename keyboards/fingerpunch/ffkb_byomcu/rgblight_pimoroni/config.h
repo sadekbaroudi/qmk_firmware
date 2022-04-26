@@ -23,5 +23,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define XOIVIOX_PIMORONI
 #endif
 
+#undef ENCODERS_PAD_A
+#define ENCODERS_PAD_A {D5, B6}
+#undef ENCODERS_PAD_B
+#define ENCODERS_PAD_B {B7, F1}
+
 #pragma once
 #include "config_common.h"

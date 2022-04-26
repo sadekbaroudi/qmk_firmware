@@ -139,7 +139,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef PIMORONI_TRACKBALL_ENABLE
 #define PIMORONI_TRACKBALL_ROTATE
 #define PIMORONI_TRACKBALL_CLICK
-#define PIMORONI_TRACKBALL_INVERT_X
 #endif
 
 // If using encoder type 2, uncomment this

@@ -57,6 +57,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define WS2812_DMA_CHANNEL  3
 #define WS2812_PWM_TARGET_PERIOD 800000
 
+
+#define I2C1_CLOCK_SPEED  400000
+#define I2C1_DUTY_CYCLE FAST_DUTY_CYCLE_2
+
 /* spi config for eeprom and pmw3360 sensor */
 // disable testing
 // #define SPI_DRIVER                           SPID1
@@ -68,15 +72,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define SPI_MISO_PAL_MODE                    5
 
 /* eeprom config */
-#define EXTERNAL_EEPROM_SPI_SLAVE_SELECT_PIN B12
-#define EXTERNAL_EEPROM_SPI_CLOCK_DIVISOR    64
+//#define EXTERNAL_EEPROM_SPI_SLAVE_SELECT_PIN B12
+//#define EXTERNAL_EEPROM_SPI_CLOCK_DIVISOR    64
 
 #ifdef RGBLIGHT_ENABLE
   #define RGBLED_NUM 66
   #define RGBLIGHT_HUE_STEP 16
   #define RGBLIGHT_SAT_STEP 16
   #define RGBLIGHT_VAL_STEP 16
-  #define RGBLIGHT_LIMIT_VAL 60 /* The maximum brightness level for RGBLIGHT_ENABLE */
+  #define RGBLIGHT_LIMIT_VAL 120 /* The maximum brightness level for RGBLIGHT_ENABLE */
   #define RGBLIGHT_SLEEP  /* If defined, the RGB lighting will be switched off when the host goes to sleep */
 // /*== all animations enable ==*/
   #define RGBLIGHT_ANIMATIONS
@@ -101,7 +105,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef RGB_MATRIX_ENABLE
   #define DRIVER_LED_TOTAL 66
   #define RGB_MATRIX_CENTER {100, 32}
-  #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 60  /* The maximum brightness level for RGB_MATRIX */
+  #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 120  /* The maximum brightness level for RGB_MATRIX */
   #define RGB_MATRIX_STARTUP_VAL RGB_MATRIX_MAXIMUM_BRIGHTNESS // Sets the default brightness value, if none has been set
   #define RGB_MATRIX_KEYPRESSES
   #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
@@ -153,14 +157,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define I2C1_DUTY_CYCLE FAST_DUTY_CYCLE_2
 
 /* encoder config */
-#define ENCODERS_PAD_A {B13, B15}
-#define ENCODERS_PAD_B {B14, A8}
+#define ENCODERS_PAD_A {A8, B14}
+#define ENCODERS_PAD_B {B15, B13}
 #define ENCODER_RESOLUTION 2
 
 // disable testing
-// #define CIRQUE_PINNACLE_ADDR 0x2A
-// #define POINTING_DEVICE_ROTATION_180
-// #define POINTING_DEVICE_TASK_THROTTLE_MS 1
+#define CIRQUE_PINNACLE_ADDR 0x2A
+#define POINTING_DEVICE_ROTATION_270
+#define POINTING_DEVICE_TASK_THROTTLE_MS 1  // when I removed this, cirque stopped working
 
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
 #define LOCKING_SUPPORT_ENABLE

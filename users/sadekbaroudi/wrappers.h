@@ -101,6 +101,11 @@ expanded before being used as arguments to the LAYOUT_xxx macro.
 #    define LAYOUT LAYOUT_luakeeb
 #endif
 
+// Since sweeeeep uses the name LAYOUT_sweeeeep instead of LAYOUT
+#if (!defined(LAYOUT) && defined(LAYOUT_sweeeeep))
+#    define LAYOUT LAYOUT_sweeeeep
+#endif
+
 
 // clang-format off
 #define LAYOUT_ergodox_wrapper(...)          LAYOUT_ergodox(__VA_ARGS__)
@@ -404,11 +409,11 @@ NOTE: These are all the same length.  If you do a search/replace
 #define __MOUSE_2_K4__ KC_MS_RIGHT
 #define __MOUSE_2_K5__ KC_MS_WH_RIGHT
 
-#define __MOUSE_3_K1__ KC_MS_ACCEL0
-#define __MOUSE_3_K2__ KC_MS_ACCEL1
-#define __MOUSE_3_K3__ KC_MS_ACCEL2
-#define __MOUSE_3_K4__ _______
-#define __MOUSE_3_K5__ _______
+#define __MOUSE_3_K1__ EEP_RST
+#define __MOUSE_3_K2__ _______
+#define __MOUSE_3_K3__ KC_MS_ACCEL0
+#define __MOUSE_3_K4__ KC_MS_ACCEL1
+#define __MOUSE_3_K5__ KC_MS_ACCEL2
 
 #define __________________MOUSE_1__________________     __MOUSE_1_K1__, __MOUSE_1_K2__, __MOUSE_1_K3__, __MOUSE_1_K4__, __MOUSE_1_K5__
 #define __________________MOUSE_2__________________     __MOUSE_2_K1__, __MOUSE_2_K2__, __MOUSE_2_K3__, __MOUSE_2_K4__, __MOUSE_2_K5__
@@ -435,7 +440,7 @@ NOTE: These are all the same length.  If you do a search/replace
 #define __KICAD_TH_R__ LSFT(KC_DEL)      // Delete track, note that this only deletes the current copper line up to pads or vias
 #define __KICAD_R4_1__ __KICAD_R3_R__
 #define __KICAD_R4_2__ LALT(KC_3)        // 3D Viewer
-#define __KICAD_R4_3__ LCTL(KC_E)        // Edit Footprint
+#define __KICAD_R4_3__ KC_U              // Select track, double press for all connected... // used to be this --> LCTL(KC_E)        // Edit Footprint
 
 #define ___________________GAMES_0_________________     KC_F1,   KC_F2,   KC_C,    KC_V,    KC_G
 #define ___________________GAMES_1_________________     KC_Q,    KC_W,    KC_E,    KC_R,    KC_D

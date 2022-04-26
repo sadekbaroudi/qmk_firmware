@@ -146,28 +146,28 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     switch(get_highest_layer(state)) {
         case _QWERTY:
             if (is_caps_lock_on) {
-                trackball_set_rgbw(RGB_RED, 0x00);
+                pimoroni_trackball_set_rgbw(RGB_RED, 0x00);
             } else {
-                trackball_set_rgbw(RGB_BLUE, 0x00);
+                pimoroni_trackball_set_rgbw(RGB_BLUE, 0x00);
             }
             break;
         case _COLEMAK:
-            trackball_set_rgbw(RGB_GREEN, 0x00);
+            pimoroni_trackball_set_rgbw(RGB_GREEN, 0x00);
             break;
         case _LOWER:
-            trackball_set_rgbw(RGB_PURPLE, 0x00);
+            pimoroni_trackball_set_rgbw(RGB_PURPLE, 0x00);
             break;
         case _RAISE:
-            trackball_set_rgbw(RGB_YELLOW, 0x00);
+            pimoroni_trackball_set_rgbw(RGB_YELLOW, 0x00);
             break;
         case _ADJUST:
-            trackball_set_rgbw(RGB_ORANGE, 0x00);
+            pimoroni_trackball_set_rgbw(RGB_ORANGE, 0x00);
             break;
         default: //  for any other layers, or the default layer
             if (is_caps_lock_on) {
-                trackball_set_rgbw(RGB_RED, 0x00);
+                pimoroni_trackball_set_rgbw(RGB_RED, 0x00);
             } else {
-                trackball_set_rgbw(RGB_BLUE, 0x00);
+                pimoroni_trackball_set_rgbw(RGB_BLUE, 0x00);
             }
             break;
     }
@@ -178,7 +178,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 void keyboard_post_init_user(void) {
     is_caps_lock_on = false;
     #ifdef PIMORONI_TRACKBALL_ENABLE
-    trackball_set_rgbw(RGB_BLUE, 0x00);
+    pimoroni_trackball_set_rgbw(RGB_BLUE, 0x00);
     #endif
 }
 

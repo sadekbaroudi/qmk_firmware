@@ -30,5 +30,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ENCODERS_A_REVERSE true
 #define ENCODERS_B_REVERSE true
 
+#undef ENCODERS_PAD_A
+#define ENCODERS_PAD_A {D7, D4}
+#undef ENCODERS_PAD_B
+#define ENCODERS_PAD_B {B4, D6}
+
 #pragma once
 #include "config_common.h"

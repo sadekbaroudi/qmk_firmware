@@ -2,13 +2,6 @@
 MCU = atmega32u4
 
 # Bootloader selection
-#   Teensy       halfkay
-#   Pro Micro    caterina
-#   Atmel DFU    atmel-dfu
-#   LUFA DFU     lufa-dfu
-#   QMK DFU      qmk-dfu
-#   ATmega32A    bootloadHID
-#   ATmega328P   USBasp
 BOOTLOADER = atmel-dfu
 
 # Build Options
@@ -24,11 +17,6 @@ SLEEP_LED_ENABLE = no       # Breathing sleep LED during USB suspend
 NKRO_ENABLE = no            # USB Nkey Rollover
 BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
 
-# Either do RGBLIGHT_ENABLE or RGB_MATRIX_ENABLE and RGB_MATRIX_DRIVER
-#RGBLIGHT_ENABLE = yes
-RGB_MATRIX_ENABLE = yes
-RGB_MATRIX_DRIVER = WS2812
-
 MIDI_ENABLE = no            # MIDI support
 UNICODE_ENABLE = no         # Unicode
 BLUETOOTH_ENABLE = no       # Enable Bluetooth with the Adafruit EZ-Key HID
@@ -39,11 +27,4 @@ OLED_ENABLE = yes
 # EXTRAFLAGS     += -flto     # macros disabled, if you need the extra space
 MOUSEKEY_ENABLE = no
 
-PIMORONI_TRACKBALL_ENABLE = no
-
-ifeq ($(strip $(PIMORONI_TRACKBALL_ENABLE)), yes)
-    POINTING_DEVICE_ENABLE := yes
-    SRC += drivers/sensors/pimoroni_trackball.c
-    QUANTUM_LIB_SRC += i2c_master.c
-    OPT_DEFS += -DPIMORONI_TRACKBALL_ENABLE
-endif
+SPLIT_KEYBOARD = yes        # Use shared split_common code

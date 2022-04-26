@@ -40,15 +40,7 @@ EXTRAFLAGS     += -flto     # macros disabled, as a lot of barobord features req
                             # for instance, if you build "no_features", it's very unlikely you'll need to disable macros
 MOUSEKEY_ENABLE = no
 
-PIMORONI_TRACKBALL_ENABLE = no
 CASEMODES_ENABLE = yes
-
-ifeq ($(strip $(PIMORONI_TRACKBALL_ENABLE)), yes)
-    POINTING_DEVICE_ENABLE := yes
-    SRC += drivers/sensors/pimoroni_trackball.c
-    QUANTUM_LIB_SRC += i2c_master.c
-    OPT_DEFS += -DPIMORONI_TRACKBALL_ENABLE
-endif
 
 ifeq ($(strip $(CASEMODES_ENABLE)), yes)
     SRC += users/sadekbaroudi/casemodes.c
