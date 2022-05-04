@@ -93,18 +93,9 @@
 #    define F5 PAL_LINE(GPIOB, 2)
 #    define F6 PAL_LINE(GPIOB, 1)
 #    define F7 PAL_LINE(GPIOB, 0)
-// SADEK: added these to support the elite-c pins as well
-#    define B7 PAL_LINE(GPIOC, 13)
-#    define D5 PAL_LINE(GPIOC, 14)
-#    define C7 PAL_LINE(GPIOC, 15)
-#    define F1 PAL_LINE(GPIOA, 0)
-#    define F0 PAL_LINE(GPIOA, 1)
-// SADEK: If using stemcell 1.0.0 or earlier... If using 1.0.1, swap these back
-// SADEK: swapped this:  define B1 PAL_LINE(GPIOA, 7)
-#    define B1 PAL_LINE(GPIOA, 7)
+#    define B1 PAL_LINE(GPIOA, 5)
 #    define B3 PAL_LINE(GPIOA, 6)
-// SADEK: with this: define B2 PAL_LINE(GPIOA, 7)
-#    define B2 PAL_LINE(GPIOA, 5)
+#    define B2 PAL_LINE(GPIOA, 7)
 #    define B6 PAL_LINE(GPIOA, 4)
 
 // SADEK: no longer needed, per megamind
