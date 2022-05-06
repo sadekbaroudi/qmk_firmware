@@ -10,7 +10,7 @@ NKRO_ENABLE      = no
 RAW_ENABLE       = no
 CASEMODES_ENABLE = yes
 COMBO_ENABLE     = yes
-LTO_ENABLE       = yes
+LTO_ENABLE       = no
 
 # UNCOMMENT TO DISABLE MACROS
 #EXTRAFLAGS     += -flto

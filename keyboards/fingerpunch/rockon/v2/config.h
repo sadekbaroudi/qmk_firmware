@@ -30,7 +30,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define POINTING_DEVICE_ROTATION_270
 // If using chewiedies case
 #define POINTING_DEVICE_ROTATION_90
+#define POINTING_DEVICE_TASK_THROTTLE_MS 5
 
+#define I2C1_CLOCK_SPEED  400000
+#define I2C1_DUTY_CYCLE FAST_DUTY_CYCLE_2
 
 // #define CIRQUE_PINNACLE_TAPPING_TERM 150
 // #define CIRQUE_PINNACLE_TOUCH_DEBOUNCE 100
