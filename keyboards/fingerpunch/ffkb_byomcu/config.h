@@ -141,6 +141,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PIMORONI_TRACKBALL_CLICK
 #endif
 
+// cirque trackpad config
+#define CIRQUE_PINNACLE_ADDR 0x2A
+// If using fingerpunch case
+// #define POINTING_DEVICE_ROTATION_270
+// If using chewiedies case
+#define POINTING_DEVICE_ROTATION_90
+#define POINTING_DEVICE_TASK_THROTTLE_MS 5
+
 // If using encoder type 2, uncomment this
 // #define ENCODERS_B_REVERSE
 
