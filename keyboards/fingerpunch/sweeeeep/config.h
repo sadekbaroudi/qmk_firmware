@@ -109,6 +109,8 @@
 #ifdef ENCODER_ENABLE
 #define ENCODERS_PAD_A {D1}
 #define ENCODERS_PAD_B {D0}
+#define ENCODERS_PAD_A_RIGHT {D1}
+#define ENCODERS_PAD_B_RIGHT {D0}
 #endif
 
 #define EE_HANDS

@@ -1,4 +1,13 @@
 #!/bin/bash
+make fingerpunch/ffkb_byomcu/cirque:sadekbaroudi
+make fingerpunch/ffkb_byomcu/cirque_ec11:sadekbaroudi
+make fingerpunch/ffkb_byomcu/cirque_evq:sadekbaroudi
+make fingerpunch/ffkb_byomcu/rgblight_cirque:sadekbaroudi
+make fingerpunch/ffkb_byomcu/rgblight_cirque_ec11:sadekbaroudi
+make fingerpunch/ffkb_byomcu/rgblight_cirque_evq:sadekbaroudi
+make fingerpunch/ffkb_byomcu/rgbmatrix_cirque:sadekbaroudi
+make fingerpunch/ffkb_byomcu/rgbmatrix_cirque_ec11:sadekbaroudi
+make fingerpunch/ffkb_byomcu/rgbmatrix_cirque_evq:sadekbaroudi
 make fingerpunch/ffkb_byomcu/rgblight_evq:sadekbaroudi
 make fingerpunch/ffkb_byomcu/ec11:sadekbaroudi
 make fingerpunch/ffkb_byomcu/rgbmatrix_evq:sadekbaroudi
