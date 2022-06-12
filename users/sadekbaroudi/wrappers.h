@@ -106,6 +106,11 @@ expanded before being used as arguments to the LAYOUT_xxx macro.
 #    define LAYOUT LAYOUT_sweeeeep
 #endif
 
+// Since bigbarobord uses the name LAYOUT_bigbarobord instead of LAYOUT
+#if (!defined(LAYOUT) && defined(LAYOUT_bigbarobord))
+#    define LAYOUT LAYOUT_bigbarobord
+#endif
+
 
 // clang-format off
 #define LAYOUT_ergodox_wrapper(...)          LAYOUT_ergodox(__VA_ARGS__)

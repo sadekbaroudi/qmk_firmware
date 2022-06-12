@@ -25,20 +25,18 @@ NKRO_ENABLE = no            # USB Nkey Rollover
 BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
 
 # Either do RGBLIGHT_ENABLE or RGB_MATRIX_ENABLE and RGB_MATRIX_DRIVER
-#RGBLIGHT_ENABLE = yes
+RGBLIGHT_ENABLE = yes
 RGB_MATRIX_ENABLE = yes
 RGB_MATRIX_DRIVER = WS2812
-
-# BEGIN PWM driver: uncomment if using STeMcell as it's a better led driver
-# WS2812_DRIVER = pwm
-# END PWM driver: uncomment if using STeMcell as it's a better led driver
 
 MIDI_ENABLE = no            # MIDI support
 UNICODE_ENABLE = no         # Unicode
 BLUETOOTH_ENABLE = no       # Enable Bluetooth with the Adafruit EZ-Key HID
 AUDIO_ENABLE = no           # Audio output on port C6
 FAUXCLICKY_ENABLE = no      # Use buzzer to emulate clicky switches
-ENCODER_ENABLE = no
-OLED_ENABLE = yes
-# EXTRAFLAGS     += -flto     # macros disabled, if you need the extra space
+ENCODER_ENABLE = yes
+OLED_DRIVER_ENABLE = yes    # this can be yes or no depending on if you have an OLED
+EXTRAFLAGS     += -flto     # macros disabled, as a lot of barobord features require more space, can move this line into all the individual rules.mk, only where needed
+                            # for instance, if you build "no_features", it's very unlikely you'll need to disable macros
 MOUSEKEY_ENABLE = no
+
