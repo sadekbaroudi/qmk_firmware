@@ -220,11 +220,11 @@ NOTE: These are all the same length.  If you do a search/replace
 #define _________________META_NAV_1________________     __META_NAV_1_K1__, __META_NAV_1_K2__, __META_NAV_1_K3__, __META_NAV_1_K4__, __META_NAV_1_K5__
 #define _________________META_NAV_2________________     __META_NAV_2_K1__, __META_NAV_2_K2__, __META_NAV_2_K3__, __META_NAV_2_K4__, __META_NAV_2_K5__
 
-#define __NAV_3_K1__ LCTL(KC_Z)
-#define __NAV_3_K2__ LCTL(KC_X)
-#define __NAV_3_K3__ LCTL(KC_C)
-#define __NAV_3_K4__ _______
-#define __NAV_3_K5__ LCTL(KC_V)
+#define __NAV_3_K1__ LCTL(LSFT(KC_TAB))
+#define __NAV_3_K2__ LCTL(KC_TAB)
+#define __NAV_3_K3__ LCTL(LGUI(KC_LEFT))
+#define __NAV_3_K4__ LCTL(LGUI(KC_RIGHT))
+#define __NAV_3_K5__ MOD_MEH
 
 #define ________________NAVIGATION_1_______________			_________________META_NAV_1________________
 #define ________________NAVIGATION_2_______________			_________________META_NAV_2________________
