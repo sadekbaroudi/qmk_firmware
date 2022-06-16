@@ -46,10 +46,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* COL2ROW, ROW2COL*/
 #define DIODE_DIRECTION COL2ROW
 
-#define TAP_CODE_DELAY 25
-#define TAPPING_FORCE_HOLD
-#define IGNORE_MOD_TAP_INTERRUPT
-
 #define RGB_DI_PIN D3
 #ifdef RGBLIGHT_ENABLE
   #define RGBLED_NUM 66
