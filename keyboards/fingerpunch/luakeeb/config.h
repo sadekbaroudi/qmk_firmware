@@ -43,6 +43,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define USE_SERIAL
 
+// BEGIN PWM driver: uncomment if using STeMcell as it's a better led driver
+// #define WS2812_PWM_DRIVER PWMD2  // default: PWMD2
+// #define WS2812_PWM_CHANNEL 2  // default: 2
+// #define WS2812_PWM_PAL_MODE 2  // Pin "alternate function", see the respective datasheet for the appropriate values for your MCU. default: 2
+// #define WS2812_DMA_STREAM STM32_DMA1_STREAM2  // DMA Stream for TIMx_UP, see the respective reference manual for the appropriate values for your MCU.
+// #define WS2812_DMA_CHANNEL 2  // DMA Channel for TIMx_UP, see the respective reference manual for the appropriate values for your MCU.
+// #define WS2812_DMAMUX_ID STM32_DMAMUX1_TIM2_UP // DMAMUX configuration for TIMx_UP -- only required if your MCU has a DMAMUX peripheral, see the respective reference manual for the appropriate values for your MCU.
+// END PWM driver: uncomment if using STeMcell as it's a better led driver
 #define RGB_DI_PIN D3
 #ifdef RGBLIGHT_ENABLE
   #define RGBLIGHT_SPLIT
@@ -109,3 +117,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define NO_ACTION_ONESHOT
 //#define NO_ACTION_MACRO
 //#define NO_ACTION_FUNCTION
+
+//#define MASTER_RIGHT
+#define BOOTMAGIC_LITE_ROW_RIGHT 4
+#define BOOTMAGIC_LITE_COLUMN_RIGHT 0
