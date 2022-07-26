@@ -6,8 +6,9 @@ MOUSEKEY_ENABLE = yes # Mouse keys
 EXTRAKEY_ENABLE = yes # Audio control and System control
 AUTO_SHIFT_ENABLE = yes # Auto Shift
 BOOTMAGIC_ENABLE = yes
+CASEMODES_ENABLE = yes
 
-SRC += users/manna-harbour_miryoku/manna-harbour_miryoku.c # keymap
+SRC += users/manna-harbour_miryoku/manna-harbour_miryoku.c users/sadekbaroudi/casemodes.c # keymap
 
 # alternative layouts:
 

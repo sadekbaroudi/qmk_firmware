@@ -253,6 +253,12 @@ bool process_case_modes(uint16_t keycode, const keyrecord_t *record) {
                 tap_code16(LSFT(keycode));
                 return false;
             }
+#ifdef CAPSWORD_MINUS
+            else if (keycode == KC_MINS || keycode == KC_UNDS) {
+                tap_code16(LSFT(keycode));
+                return false;
+            }
+#endif
 #endif
 
         } // end if event.pressed
