@@ -24,6 +24,10 @@ Make example for this keyboard (after setting up your build environment):
     make fingerpunch/bigbarobord/rgbmatrix_oled:default
     make fingerpunch/bigbarobord/rgbmatrix_pimoroni:default
 
+If you want [Vial](https://get.vial.today/) support, replace `default` with `vial` in any of the above, e.g:
+
+    make fingerpunch/bigbarobord/ec11:vial
+
 Example of flashing this keyboard:
 
     make fingerpunch/bigbarobord/rgblight_oled:default:flash
