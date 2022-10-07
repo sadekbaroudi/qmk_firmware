@@ -42,7 +42,6 @@ FAUXCLICKY_ENABLE = no      # Use buzzer to emulate clicky switches
 ENCODER_ENABLE = no
 OLED_ENABLE = no
 # EXTRAFLAGS     += -flto     # macros disabled, if you need the extra space
-MOUSEKEY_ENABLE = no
 
 CIRQUE_ENABLE = no
 ifeq ($(strip $(CIRQUE_ENABLE)), yes)
