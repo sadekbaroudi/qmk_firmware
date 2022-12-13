@@ -47,7 +47,7 @@ void handle_caps_lock_change(void) {
 
 void press_super_tab(bool shift) {
     if (shift) {
-        register_code(KC_LSHIFT);
+        register_code(KC_LSFT);
     }
     if (!is_alt_tab_active) {
         is_alt_tab_active = true;
@@ -73,7 +73,7 @@ void unregister_super_tab(void) {
             is_alt_tab_active = false;
 
             if (get_mods() & MOD_MASK_SHIFT) {
-                unregister_code(KC_LSHIFT);
+                unregister_code(KC_LSFT);
             }
         }
     }

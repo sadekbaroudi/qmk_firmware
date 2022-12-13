@@ -46,7 +46,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     }
     switch (keycode) {
 #ifndef FP_DISABLE_CUSTOM_KEYCODES
-        case KC_CAPSLOCK:
+        case KC_CAPS_LOCK:
             if (record->event.pressed) {
                 fp_caps_lock_toggle();
             }
