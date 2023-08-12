@@ -26,6 +26,9 @@ void fp_set_cpi_by_mode(uint8_t mode_index);
 void fp_set_cpi_combined(uint8_t left_value, uint8_t right_value);
 void fp_set_cpi_combined_by_mode(uint8_t left_mode_index, uint8_t right_mode_index);
 #endif
+#ifdef FP_SLOW_SCROLL
+report_mouse_t fp_apply_slow_scrolling(report_mouse_t mouse_report);
+#endif
 void fp_point_dpi_update(uint8_t action);
 void fp_scroll_dpi_update(uint8_t action);
 void fp_snipe_dpi_update(uint8_t action);
@@ -120,6 +123,9 @@ bool fp_process_record_pointing(uint16_t keycode, keyrecord_t *record);
 #        define FP_POINTING_ZOOMING_LAYER 1
 #    endif
 
+#    ifndef FP_SLOW_SCROLL
+#        define FP_SLOW_SCROLL_DENOMINATOR 10.0
+#    endif
 #endif
 
 #ifdef POINTING_DEVICE_COMBINED

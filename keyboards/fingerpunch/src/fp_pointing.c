@@ -290,13 +290,14 @@ uint32_t fp_zoom_unset_hold(uint32_t triger_time, void *cb_arg) {
 float scroll_accumulated_h = 0;
 float scroll_accumulated_v = 0;
 
-// Function to handle mouse reports and perform drag scrolling from:
-// https://docs.qmk.fm/#/feature_pointing_device?id=advanced-drag-scroll
-report_mouse_t apply_slow_scrolling(report_mouse_t mouse_report) {
+/* Function to apply slow scrolling to a mouse report.
+ * modified from: https://docs.qmk.fm/#/feature_pointing_device?id=advanced-drag-scroll
+ **/
+report_mouse_t fp_apply_slow_scrolling(report_mouse_t mouse_report) {
     if (set_scrolling) {
         // Calculate and accumulate scroll values based on mouse movement and divisors
-        scroll_accumulated_h += (float)mouse_report.x / FP_SCROLL_DIVISOR_H;
-        scroll_accumulated_v += (float)mouse_report.y / FP_SCROLL_DIVISOR_V;
+        scroll_accumulated_h += (float)mouse_report.x / FP_SLOW_SCROLL_DENOMINATOR;
+        scroll_accumulated_v += (float)mouse_report.y / FP_SLOW_SCROLL_DENOMINATOR;
 
         // Assign integer parts of accumulated scroll values to the mouse report
         mouse_report.h = (int8_t)scroll_accumulated_h;
@@ -334,7 +335,7 @@ report_mouse_t pointing_device_task_kb(report_mouse_t mouse_report) {
 #endif
     if (fp_scroll_layer_get() || fp_scroll_keycode_get()) {
 #ifdef FP_SLOW_SCROLLING
-        mouse_report = apply_slow_scrolling(mouse_report);
+        mouse_report = fp_apply_slow_scrolling(mouse_report);
 #else
         mouse_report.h = mouse_report.x;
         mouse_report.v = -mouse_report.y;
@@ -405,7 +406,7 @@ report_mouse_t pointing_device_task_combined_kb(report_mouse_t left_report, repo
     } else {
         if (FP_POINTING_COMBINED_SCROLLING_LEFT) {
 #ifdef FP_SLOW_SCROLLING
-            left_report = apply_slow_scrolling(left_report);
+            left_report = fp_apply_slow_scrolling(left_report);
 #else
             left_report.h = left_report.x;
             left_report.v = -left_report.y;
@@ -416,7 +417,7 @@ report_mouse_t pointing_device_task_combined_kb(report_mouse_t left_report, repo
 
         if (FP_POINTING_COMBINED_SCROLLING_RIGHT) {
 #ifdef FP_SLOW_SCROLLING
-            right_report = apply_slow_scrolling(right_report);
+            right_report = fp_apply_slow_scrolling(right_report);
 #else
             right_report.h = right_report.x;
             right_report.v = -right_report.y;
