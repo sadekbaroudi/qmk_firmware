@@ -79,7 +79,6 @@ void fp_set_cpi_combined_by_mode(uint8_t left_mode_index, uint8_t right_mode_ind
 }
 #endif
 
-
 void fp_point_dpi_update(uint8_t action) {
     xprintf("Pointing DPI update, action %u, before value: %u\n", action, fp_config.pointing_dpi);
     switch (action) {
@@ -111,7 +110,6 @@ void fp_point_dpi_update(uint8_t action) {
     fp_apply_dpi();
     xprintf("Pointing DPI update, action %u, after value: %u\n", action, fp_config.pointing_dpi);
 }
-
 
 void fp_scroll_dpi_update(uint8_t action) {
     xprintf("Scrolling DPI update, action %u, before value: %u\n", action, fp_config.scrolling_dpi);
@@ -189,7 +187,7 @@ void fp_apply_dpi_defaults(void) {
     if (FP_POINTING_COMBINED_SNIPING_RIGHT) {
         right_mode = FP_SNIPING_MODE;
     }
-    
+
     fp_set_cpi_combined_by_mode(left_mode, right_mode);
 #else
     fp_set_cpi_by_mode(FP_POINTING_MODE);
@@ -287,6 +285,44 @@ uint32_t fp_zoom_unset_hold(uint32_t triger_time, void *cb_arg) {
     return 0;
 }
 
+#ifdef FP_SLOW_SCROLLING
+// Variables to store accumulated scroll values
+float scroll_accumulated_h = 0;
+float scroll_accumulated_v = 0;
+
+// Function to handle mouse reports and perform drag scrolling from:
+// https://docs.qmk.fm/#/feature_pointing_device?id=advanced-drag-scroll
+report_mouse_t apply_slow_scrolling(report_mouse_t mouse_report) {
+    if (set_scrolling) {
+        // Calculate and accumulate scroll values based on mouse movement and divisors
+        scroll_accumulated_h += (float)mouse_report.x / FP_SCROLL_DIVISOR_H;
+        scroll_accumulated_v += (float)mouse_report.y / FP_SCROLL_DIVISOR_V;
+
+        // Assign integer parts of accumulated scroll values to the mouse report
+        mouse_report.h = (int8_t)scroll_accumulated_h;
+        mouse_report.v = -(int8_t)scroll_accumulated_v;
+
+        // Update accumulated scroll values by subtracting the integer parts
+        scroll_accumulated_h -= (int8_t)scroll_accumulated_h;
+        scroll_accumulated_v -= (int8_t)scroll_accumulated_v;
+
+        // Clear the X and Y values of the mouse report
+        mouse_report.x = 0;
+        mouse_report.y = 0;
+    }
+    return mouse_report;
+}
+#endif
+
+// set the scroll moment key as a mouse key so that it holds the auto mouse layer active
+bool is_mouse_record_kb(uint16_t keycode, keyrecord_t* record) {
+    switch(keycode) {
+        case FP_SCROLL_MOMENT:
+            return true;
+    }
+    return false;
+}
+
 report_mouse_t pointing_device_task_kb(report_mouse_t mouse_report) {
 #ifdef CONSOLE_ENABLE
     if (mouse_report.x != 0) {
@@ -297,10 +333,14 @@ report_mouse_t pointing_device_task_kb(report_mouse_t mouse_report) {
     }
 #endif
     if (fp_scroll_layer_get() || fp_scroll_keycode_get()) {
+#ifdef FP_SLOW_SCROLLING
+        mouse_report = apply_slow_scrolling(mouse_report);
+#else
         mouse_report.h = mouse_report.x;
         mouse_report.v = -mouse_report.y;
         mouse_report.x = 0;
         mouse_report.y = 0;
+#endif
     } else if (fp_zoom_layer_get() || fp_zoom_keycode_get()) {
         bool zoom_in = false;
         mouse_xy_report_t zoom_value = mouse_report.y;
@@ -364,17 +404,25 @@ report_mouse_t pointing_device_task_combined_kb(report_mouse_t left_report, repo
         right_report = pointing_device_task_kb(right_report);
     } else {
         if (FP_POINTING_COMBINED_SCROLLING_LEFT) {
+#ifdef FP_SLOW_SCROLLING
+            left_report = apply_slow_scrolling(left_report);
+#else
             left_report.h = left_report.x;
             left_report.v = -left_report.y;
             left_report.x = 0;
             left_report.y = 0;
+#endif
         }
 
         if (FP_POINTING_COMBINED_SCROLLING_RIGHT) {
+#ifdef FP_SLOW_SCROLLING
+            right_report = apply_slow_scrolling(right_report);
+#else
             right_report.h = right_report.x;
             right_report.v = -right_report.y;
             right_report.x = 0;
             right_report.y = 0;
+#endif
         }
     }
 
@@ -438,7 +486,7 @@ void pointing_device_init_kb(void) {
 }
 
 #ifdef FP_TRACKBALL_ENABLE
-// Override when using a trackball so that you can account for acciental triggers due to a sensitive sensor
+// Override when using a trackball so that you can account for accidental triggers due to a sensitive sensor
 bool auto_mouse_activation(report_mouse_t mouse_report) {
     // If we're in sniping mode, lower the threshold, otherwise give it some room to move for accidental triggers of auto mouse layer
     if (fp_snipe_layer_get() || fp_snipe_keycode_get()) {
