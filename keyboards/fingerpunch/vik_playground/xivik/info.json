@@ -1,0 +1,11 @@
+{
+    "manufacturer": "sadekbaroudi",
+    "keyboard_name": "xivik",
+    "url": "https://fingerpunch.xyz/product/xivik/",
+    "maintainer": "Sadek Baroudi <sadekbaroudi@gmail.com>",
+    "usb": {
+        "vid": "0xFEFE",
+        "pid": "0x5177",
+        "device_version": "1.0.0"
+    }
+}

@@ -1,0 +1,23 @@
+[
+    {
+        "type" : "one-of",
+        "names" : [
+            "VIK_HAPTIC",
+            "VIK_PER56_CIRQUE_LEDS",
+            "VIK_PER56_CIRQUE_LEDS",
+            "VIK_PER56_PMW3360_LEDS",
+            "VIK_PMW3360",
+            "VIK_WEACT_ST7735",
+            "VIK_VIK_GC9A01",
+            "VIK_WAVESHARE_22224",
+            "VIK_AZOTEQ",
+            "VIK_EC11_EVQWGD001"
+        ],
+        "user_input": "Which VIK module are you testing? NONE, VIK_HAPTIC, VIK_PER56_CIRQUE_LEDS, VIK_PER56_CIRQUE_LEDS, VIK_PER56_PMW3360_LEDS, VIK_PMW3360, VIK_WEACT_ST7735, VIK_VIK_GC9A01, VIK_WAVESHARE_22224, VIK_AZOTEQ, VIK_EC11_EVQWGD001, VIK_AZOTEQ, VIK_EC11_EVQWGD001"
+    },
+    {
+        "type" : "single",
+        "name" : "RGBLIGHT_ENABLE",
+        "user_input": "Does your VIK module have RGB?"
+    }
+]

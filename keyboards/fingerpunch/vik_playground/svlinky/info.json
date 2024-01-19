@@ -1,0 +1,11 @@
+{
+    "manufacturer": "sadekbaroudi",
+    "keyboard_name": "svlinky",
+    "url": "https://fingerpunch.xyz/product/svlinky/",
+    "maintainer": "Sadek Baroudi <sadekbaroudi@gmail.com>",
+    "usb": {
+        "vid": "0xFEFE",
+        "pid": "0x5177",
+        "device_version": "1.0.0"
+    }
+}
