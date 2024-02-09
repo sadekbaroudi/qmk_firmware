@@ -589,7 +589,8 @@ static void set_led_transfer_cb(USBDriver *usbp) {
 typedef struct {
     uint8_t report_id;
     uint8_t contact_count_max : 4;
-    uint8_t pad_type : 4;
+    uint8_t pad_type : 3;
+    uint8_t surface_switch : 1;
 } PACKED digitizer_feat_t;
 
 static bool usb_requests_hook_cb(USBDriver *usbp) {
@@ -630,7 +631,7 @@ static bool usb_requests_hook_cb(USBDriver *usbp) {
 #    endif
                                 // TODO: Relocate the touchpad feature report handlers? At least make the blob optional and off by default on AVR.
                                 if (setup->wValue.hbyte == 0x3 && setup->wValue.lbyte == REPORT_ID_DIGITIZER_GET_FEATURE) {
-                                    static const digitizer_feat_t payload = { .report_id = REPORT_ID_DIGITIZER_GET_FEATURE, .contact_count_max = DIGITIZER_FINGER_COUNT, .pad_type = 2 };
+                                    static const digitizer_feat_t payload = { .report_id = REPORT_ID_DIGITIZER_GET_FEATURE, .contact_count_max = DIGITIZER_FINGER_COUNT, .pad_type = 2, .surface_switch = 0 };
                                     usbSetupTransfer(usbp, (uint8_t *)&payload, sizeof(digitizer_feat_t), NULL);
                                     return true;
                                 }
@@ -697,6 +698,12 @@ static bool usb_requests_hook_cb(USBDriver *usbp) {
                                     // TODO: Mode switching - Windows precision touchpads should start up reporting as a mouse, then switch
                                     // to trackpad reports if we get asked. For now just ACK the message by sending back an empty packet
                                     // with our report id.
+                                    usbSetupTransfer(usbp, &(setup->wValue.lbyte), 1, NULL);
+                                    return true;
+                                }
+                                else if (setup->wValue.hbyte == 0x3 && setup->wValue.lbyte == REPORT_ID_DIGITIZER_GET_FEATURE) {
+                                    // TODO: do hosts ever call set on the touchpad feature?
+                                    // For now just ACK the message by sending back an empty packet with our report id.
                                     usbSetupTransfer(usbp, &(setup->wValue.lbyte), 1, NULL);
                                     return true;
                                 }
