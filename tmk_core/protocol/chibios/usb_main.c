@@ -628,6 +628,7 @@ static bool usb_requests_hook_cb(USBDriver *usbp) {
                                     return true;
                                 }
 #    endif
+                                // TODO: Relocate the touchpad feature report handlers? At least make the blob optional and off by default on AVR.
                                 if (setup->wValue.hbyte == 0x3 && setup->wValue.lbyte == REPORT_ID_DIGITIZER_GET_FEATURE) {
                                     static const digitizer_feat_t payload = { .report_id = REPORT_ID_DIGITIZER_GET_FEATURE, .contact_count_max = DIGITIZER_FINGER_COUNT, .pad_type = 2 };
                                     usbSetupTransfer(usbp, (uint8_t *)&payload, sizeof(digitizer_feat_t), NULL);
@@ -635,6 +636,7 @@ static bool usb_requests_hook_cb(USBDriver *usbp) {
                                 }
 
                                 if (setup->wValue.hbyte == 0x3 && setup->wValue.lbyte == REPORT_ID_DIGITIZER_CERTIFICATE) {
+                                    // This is required for touchpad support on Windows 8.1.
                                     static const uint8_t cert[] __attribute__((aligned(4))) = { REPORT_ID_DIGITIZER_CERTIFICATE,
                                                                     0xfc, 0x28, 0xfe, 0x84, 0x40, 0xcb, 0x9a, 0x87, 0x0d, 0xbe, 0x57, 0x3c, 0xb6, 0x70, 0x09, 0x88, 0x07,
                                                                     0x97, 0x2d, 0x2b, 0xe3, 0x38, 0x34, 0xb6, 0x6c, 0xed, 0xb0, 0xf7, 0xe5, 0x9c, 0xf6, 0xc2, 0x2e, 0x84,
@@ -683,19 +685,27 @@ static bool usb_requests_hook_cb(USBDriver *usbp) {
 #if defined(SHARED_EP_ENABLE) && !defined(KEYBOARD_SHARED_EP)
                             case SHARED_INTERFACE:
 #endif
-/*
+
+                                // Touchpad set feature reports
                                 if ((setup->wValue.hbyte == 0x3) && (setup->wValue.lbyte == REPORT_ID_DIGITIZER_CONFIGURATION)) {
-                                    usbSetupTransfer(usbp, NULL, 0, NULL);
+                                    // TODO: Disable the touchpad/buttons on demand from the host For now just ACK the message by
+                                    // sending back an empty packet with our report id.
+                                    usbSetupTransfer(usbp, &(setup->wValue.lbyte), 1, NULL);
                                     return true;
                                 }
                                 else if ((setup->wValue.hbyte == 0x3) && (setup->wValue.lbyte == REPORT_ID_DIGITIZER_FUNCTION_SWITCH)) {
-                                    usbSetupTransfer(usbp, NULL, 0, NULL);
+                                    // TODO: Mode switching - Windows precision touchpads should start up reporting as a mouse, then switch
+                                    // to trackpad reports if we get asked. For now just ACK the message by sending back an empty packet
+                                    // with our report id.
+                                    usbSetupTransfer(usbp, &(setup->wValue.lbyte), 1, NULL);
                                     return true;
                                 }
-                                else if (setup->wValue.hbyte != 0x3) {
-                                    //usbSetupTransfer(usbp, set_report_buf, sizeof(set_report_buf), set_led_transfer_cb);
-                                    //return true;
-                                }*/
+                                else if ((setup->wValue.hbyte == 0x3) && (setup->wValue.lbyte == REPORT_ID_DIGITIZER)) {
+                                    uint8_t response[] = { REPORT_ID_DIGITIZER, 2 };
+                                    usbSetupTransfer(usbp, response, 5, NULL);
+                                    return true;
+                                }
+                                // LED handling stuff
                                 usbSetupTransfer(usbp, set_report_buf, sizeof(set_report_buf), set_led_transfer_cb);
                                 return true;
                         }
