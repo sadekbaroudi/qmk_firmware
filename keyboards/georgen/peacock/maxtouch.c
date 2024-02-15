@@ -13,11 +13,11 @@
 
 // TODO: These are peacock specific, they are used for handling CPI calculations. Is there a better default?
 #ifndef MXT_SENSOR_WIDTH
-#   define MXT_SENSOR_WIDTH 156
+#   define MXT_SENSOR_WIDTH_MM 156
 #endif
 
 #ifndef MXT_SENSOR_HEIGHT
-#   define MXT_SENSOR_HEIGHT 91
+#   define MXT_SENSOR_HEIGHT_MM 91
 #endif
 
 // By default we assume all available X and Y pins are in use, but a designer
@@ -52,7 +52,7 @@
 #   define MXT_TAP_AND_HOLD_TIME 200
 #endif
 #ifndef MXT_TAP_AND_HOLD_DISTANCE
-#   define MXT_TAP_AND_HOLD_DISTANCE 5
+#   define MXT_TAP_AND_HOLD_DISTANCE 10
 #endif
 
 #ifndef MXT_DEFAULT_DPI
@@ -60,11 +60,15 @@
 #endif
 
 #ifndef MXT_TOUCH_THRESHOLD
-    #define MXT_TOUCH_THRESHOLD 35
+    #define MXT_TOUCH_THRESHOLD 18
 #endif
 
 #ifndef MXT_GAIN
-    #define MXT_GAIN 6
+    #define MXT_GAIN 4
+#endif
+
+#ifndef MXT_DX_GAIN
+    #define MXT_DX_GAIN 255
 #endif
 
 // Data from the object table. Registers are not at fixed addresses, they may vary between firmware
@@ -188,7 +192,6 @@ void pointing_device_driver_init(void) {
     // Mutural Capacitive Touch Engine (CTE) configuration, currently we use all the default values but it feels like some of this stuff might be important.
     if (t46_cte_config_address) {
         mxt_spt_cteconfig_t46 t46 = {};
-        t46.inrushcfg = 7;
         i2c_writeReg16(MXT336UD_ADDRESS, t46_cte_config_address, (uint8_t *)&t46, sizeof(mxt_spt_cteconfig_t46), MXT_I2C_TIMEOUT_MS);
     }
 
@@ -203,18 +206,22 @@ void pointing_device_driver_init(void) {
         cfg.numtch                          = MAX_TOUCH_REPORTS;    // The number of touch reports we want to receive (upto 10)
         cfg.xsize                           = MXT_MATRIX_X_SIZE;    // Make configurable as this depends on the sensor design.
         cfg.ysize                           = MXT_MATRIX_Y_SIZE;    // Make configurable as this depends on the sensor design.
-        cfg.xpitch                          = MXT_SENSOR_WIDTH / MXT_MATRIX_X_SIZE;     // Pitch between X-Lines (5mm + 0.1mm * XPitch).
-        cfg.ypitch                          = MXT_SENSOR_HEIGHT / MXT_MATRIX_Y_SIZE;    // Pitch between Y-Lines (5mm + 0.1mm * YPitch).
+        cfg.xpitch                          = MXT_SENSOR_WIDTH_MM / MXT_MATRIX_X_SIZE;     // Pitch between X-Lines (5mm + 0.1mm * XPitch).
+        cfg.ypitch                          = MXT_SENSOR_HEIGHT_MM / MXT_MATRIX_Y_SIZE;    // Pitch between Y-Lines (5mm + 0.1mm * YPitch).
         cfg.gain                            = MXT_GAIN; // Single transmit gain for mutual capacitance measurements
-        cfg.dxgain                          = 255;  // Dual transmit gain for mutual capacitance measurements (255 = auto calibrate)
+        cfg.dxgain                          = MXT_DX_GAIN;  // Dual transmit gain for mutual capacitance measurements (255 = auto calibrate)
         cfg.tchthr                          = MXT_TOUCH_THRESHOLD;  // Touch threshold
         cfg.mrgthr                          = 5;    // Merge threshold
         cfg.mrghyst                         = 5;    // Merge threshold hysteresis
         cfg.movsmooth                       = 224;
         cfg.movfilter                       = 4;
+        cfg.movhystn                        = 4;
+        cfg.movhysti                        = 5;
+        cfg.tchdiup                         = 4;
+        cfg.tchdidown                       = 2;
 
-        cfg.xrange                          = CPI_TO_SAMPLES(cpi, MXT_SENSOR_HEIGHT);    // CPI handling, adjust the reported resolution
-        cfg.yrange                          = CPI_TO_SAMPLES(cpi, MXT_SENSOR_WIDTH);     // CPI handling, adjust the reported resolution
+        cfg.xrange                          = CPI_TO_SAMPLES(cpi, MXT_SENSOR_HEIGHT_MM);    // CPI handling, adjust the reported resolution
+        cfg.yrange                          = CPI_TO_SAMPLES(cpi, MXT_SENSOR_WIDTH_MM);     // CPI handling, adjust the reported resolution
     
         status                              = i2c_writeReg16(MXT336UD_ADDRESS, t100_multiple_touch_touchscreen_address,
                                                 (uint8_t *)&cfg, sizeof(mxt_touch_multiscreen_t100), MXT_I2C_TIMEOUT_MS);
@@ -352,8 +359,8 @@ void pointing_device_driver_set_cpi(uint16_t new_cpi) {
         mxt_touch_multiscreen_t100 cfg  = {};
         i2c_status_t status             = i2c_readReg16(MXT336UD_ADDRESS, t100_multiple_touch_touchscreen_address, 
                                             (uint8_t *)&cfg, sizeof(mxt_touch_multiscreen_t100), MXT_I2C_TIMEOUT_MS);
-        cfg.xrange                      = CPI_TO_SAMPLES(cpi, MXT_SENSOR_HEIGHT);
-        cfg.yrange                      = CPI_TO_SAMPLES(cpi, MXT_SENSOR_WIDTH);
+        cfg.xrange                      = CPI_TO_SAMPLES(cpi, MXT_SENSOR_HEIGHT_MM);
+        cfg.yrange                      = CPI_TO_SAMPLES(cpi, MXT_SENSOR_WIDTH_MM);
         status                          = i2c_writeReg16(MXT336UD_ADDRESS, t100_multiple_touch_touchscreen_address,
                                             (uint8_t *)&cfg, sizeof(mxt_touch_multiscreen_t100), MXT_I2C_TIMEOUT_MS);
         if (status != I2C_STATUS_SUCCESS) {
