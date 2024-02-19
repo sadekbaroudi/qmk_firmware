@@ -1,0 +1,2 @@
+I2C_DRIVER_REQUIRED = yes
+DIGITIZER_DRIVER = maxtouch

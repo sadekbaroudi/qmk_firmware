@@ -84,6 +84,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef POINTING_DEVICE_ENABLE
 #    include "pointing_device.h"
 #endif
+#ifdef DIGITIZER_ENABLE
+#    include "digitizer.h"
+#endif
 #ifdef MIDI_ENABLE
 #    include "process_midi.h"
 #endif
@@ -98,9 +101,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 #ifdef ST7565_ENABLE
 #    include "st7565.h"
-#endif
-#ifdef VELOCIKEY_ENABLE
-#    include "velocikey.h"
 #endif
 #ifdef VIA_ENABLE
 #    include "via.h"
@@ -177,6 +177,10 @@ uint32_t last_pointing_device_activity_elapsed(void) {
     return sync_timer_elapsed32(last_pointing_device_modification_time);
 }
 void last_pointing_device_activity_trigger(void) {
+    last_pointing_device_modification_time = last_input_modification_time = sync_timer_read32();
+}
+void last_digitizer_activity_trigger(void) {
+    // TODO: differentiate between digitizer and pointing device? How is this time used?
     last_pointing_device_modification_time = last_input_modification_time = sync_timer_read32();
 }
 
@@ -395,9 +399,6 @@ void quantum_init(void) {
 #if defined(UNICODE_COMMON_ENABLE)
     unicode_input_mode_init();
 #endif
-#ifdef HAPTIC_ENABLE
-    haptic_init();
-#endif
 }
 
 /** \brief keyboard_init
@@ -459,8 +460,14 @@ void keyboard_init(void) {
     // init after split init
     pointing_device_init();
 #endif
+#ifdef DIGITIZER_ENABLE
+    digitizer_init();
+#endif
 #ifdef BLUETOOTH_ENABLE
     bluetooth_init();
+#endif
+#ifdef HAPTIC_ENABLE
+    haptic_init();
 #endif
 
 #if defined(DEBUG_MATRIX_SCAN_RATE) && defined(CONSOLE_ENABLE)
@@ -617,10 +624,6 @@ void quantum_task(void) {
     decay_wpm();
 #endif
 
-#ifdef HAPTIC_ENABLE
-    haptic_task();
-#endif
-
 #ifdef DIP_SWITCH_ENABLE
     dip_switch_read(false);
 #endif
@@ -683,6 +686,13 @@ void keyboard_task(void) {
     }
 #endif
 
+#ifdef DIGITIZER_ENABLE
+    if (digitizer_task()) {
+        last_digitizer_activity_trigger();
+        activity_has_occurred = true;
+    }
+#endif
+
 #ifdef OLED_ENABLE
     oled_task();
 #    if OLED_TIMEOUT > 0
@@ -712,18 +722,16 @@ void keyboard_task(void) {
     midi_task();
 #endif
 
-#ifdef VELOCIKEY_ENABLE
-    if (velocikey_enabled()) {
-        velocikey_decelerate();
-    }
-#endif
-
 #ifdef JOYSTICK_ENABLE
     joystick_task();
 #endif
 
 #ifdef BLUETOOTH_ENABLE
     bluetooth_task();
+#endif
+
+#ifdef HAPTIC_ENABLE
+    haptic_task();
 #endif
 
     led_task();
