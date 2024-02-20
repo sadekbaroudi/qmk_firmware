@@ -78,4 +78,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define POINTING_DEVICE_LEFT
 #endif
 
+#ifdef VIK_PEACOCK
+    #define POINTING_DEVICE_LEFT
+#endif
+
 #include "keyboards/fingerpunch/src/config_post.h"

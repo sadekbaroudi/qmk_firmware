@@ -123,8 +123,9 @@ endif
 ifeq ($(strip $(VIK_PEACOCK)), yes)
    OPT_DEFS += -DVIK_PEACOCK
    I2C_DRIVER_REQUIRED = yes
-   DIGITIZER_ENABLE = yes
-   DIGITIZER_DRIVER = maxtouch
+   POINTING_DEVICE_ENABLE = yes
+   POINTING_DEVICE_DRIVER = custom
+   SRC += keyboards/fingerpunch/src/pointing/maxtouch.c
 endif
 
 ifeq ($(strip $(VIK_RGB_ONLY)), yes)

@@ -27,6 +27,6 @@ https://github.com/sadekbaroudi/vulpes-minora/
 
 ## Sadek's personal peacock trackpad build
 
-`bin/fp_build.sh -k vulpes_minora/xivik -m sadekbaroudi -i -r -e "RGBLIGHT_ENABLE=yes FP_XIVIK_V01=yes"`
+`bin/fp_build.sh -k vulpes_minora/xivik -m sadekbaroudi -i -r -e "RGB_MATRIX_ENABLE=yes FP_XIVIK_V01=yes"`
 
 Select `VIK_PEACOCK` for vik option
