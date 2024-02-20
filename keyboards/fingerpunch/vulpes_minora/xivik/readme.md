@@ -1,11 +1,11 @@
 # vulpes minora
 
 * Keyboard Maintainer: sadekbaroudi
-* Hardware Supported: vulpes minora (rp2040-zero)
+* Hardware Supported: vulpes minora (xivik)
 
 Make example for this keyboard (after setting up your build environment):
 ```
-    make fingerpunch/vulpes_minora:default RGBLIGHT_ENABLE=yes ENCODER_ENABLE=yes
+    make fingerpunch/vulpes_minora/xivik:default RGBLIGHT_ENABLE=yes ENCODER_ENABLE=yes
 ```
 
 Options are:
@@ -23,3 +23,10 @@ See [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools)
 
 See:
 https://github.com/sadekbaroudi/vulpes-minora/
+
+
+## Sadek's personal peacock trackpad build
+
+`bin/fp_build.sh -k vulpes_minora/xivik -m sadekbaroudi -i -r -e "RGBLIGHT_ENABLE=yes FP_XIVIK_V01=yes"`
+
+Select `VIK_PEACOCK` for vik option
