@@ -36,10 +36,8 @@ enum userspace_layers {
 };
 
 void          matrix_init_keymap(void);
-void          shutdown_keymap(void);
 void          suspend_power_down_keymap(void);
 void          suspend_wakeup_init_keymap(void);
-void          matrix_scan_keymap(void);
 layer_state_t layer_state_set_keymap(layer_state_t state);
 layer_state_t default_layer_state_set_keymap(layer_state_t state);
 void          led_set_keymap(uint8_t usb_led);

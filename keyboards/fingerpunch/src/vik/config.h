@@ -12,6 +12,7 @@
  * VIK_AZOTEQ
  * VIK_EC11_EVQWGD001
  * VIK_TRACKPOINT
+ * VIK_PEACOCK
  * 
  * Pin config:
  * VIK_SPI_DRIVER
@@ -185,6 +186,11 @@
 #ifdef VIK_TRACKPOINT
     #define PS2_CLOCK_PIN VIK_GPIO_2
     #define PS2_DATA_PIN  VIK_GPIO_1
+#endif
+
+#ifdef VIK_PEACOCK
+    #define DIGITIZER_MOTION_PIN VIK_GPIO_1
+    #define DIGITIZER_MOTION_PIN_ACTIVE_LOW yes
 #endif
 
 #ifdef CIRQUE_ENABLE

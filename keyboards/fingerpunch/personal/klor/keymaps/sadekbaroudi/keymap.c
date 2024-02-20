@@ -141,27 +141,6 @@ int dmacro_num = 0;
 #endif //DYNAMIC_MACRO_ENABLE
 
 
-void matrix_scan_keymap(void) {
-  #ifdef DYNAMIC_MACRO_ENABLE
-    // DynMacroTimer
-    if(dmacro_num > 0){
-        if (timer_elapsed(dmacro_timer) < 3000) {
-            strcpy ( o_text, dmacro_text[dmacro_num] );
-          }    
-        else {
-            if (dmacro_num == 1) {
-                strcpy ( o_text, dmacro_text[1] );
-              }
-            else {
-                strcpy ( o_text, layer_state_str );
-                dmacro_num = 0;
-              }
-          }
-      }
-   #endif //DYNAMIC_MACRO_ENABLE
-}
-
-
 // ┌───────────────────────────────────────────────────────────┐
 // │ o l e d   g r a p h i c s                                 │
 // └───────────────────────────────────────────────────────────┘

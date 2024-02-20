@@ -113,13 +113,7 @@ void keyboard_post_init_user(void) {
     keyboard_post_init_keymap();
 }
 
-__attribute__((weak)) void shutdown_keymap(void) {}
-
 void rgb_matrix_update_pwm_buffers(void);
-
-void shutdown_user(void) {
-    shutdown_keymap();
-}
 
 __attribute__((weak)) void suspend_power_down_keymap(void) {}
 
@@ -129,23 +123,10 @@ __attribute__((weak)) void suspend_wakeup_init_keymap(void) {}
 
 void suspend_wakeup_init_user(void) { suspend_wakeup_init_keymap(); }
 
-__attribute__((weak)) void matrix_scan_keymap(void) {}
-
-// No global matrix scan code, so just run keymap's matrix
-// scan function
-void matrix_scan_user(void) {
-    static bool has_ran_yet;
-    if (!has_ran_yet) {
-        has_ran_yet = true;
-        startup_user();
-    }
-
 #if defined(LEADER_ENABLE)
     matrix_scan_leader_key();
 #endif
 
-    matrix_scan_keymap();
-}
 
 __attribute__((weak)) layer_state_t layer_state_set_keymap(layer_state_t state) { return state; }
 

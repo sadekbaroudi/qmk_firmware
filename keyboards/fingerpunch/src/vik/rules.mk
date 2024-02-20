@@ -12,6 +12,7 @@
 # VIK_AZOTEQ
 # VIK_EC11_EVQWGD001
 # VIK_TRACKPOINT
+# VIK_PEACOCK
 
 ifeq ($(strip $(VIK_HAPTIC)), yes)
    HAPTIC_ENABLE = yes
@@ -117,6 +118,13 @@ ifeq ($(strip $(VIK_TRACKPOINT)), yes)
    # PS2_DRIVER = vendor
 
    OPT_DEFS += -DVIK_TRACKPOINT
+endif
+
+ifeq ($(strip $(VIK_PEACOCK)), yes)
+   OPT_DEFS += -DVIK_PEACOCK
+   I2C_DRIVER_REQUIRED = yes
+   DIGITIZER_ENABLE = yes
+   DIGITIZER_DRIVER = maxtouch
 endif
 
 ifeq ($(strip $(VIK_RGB_ONLY)), yes)
