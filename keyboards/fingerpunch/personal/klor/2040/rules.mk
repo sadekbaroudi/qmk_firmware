@@ -1,9 +1,3 @@
-# MCU name
-MCU = RP2040
-
-# Bootloader selection
-BOOTLOADER = rp2040
-
 # Ignore some warnings during the build, likely to be fixed before RP2040 PR is merged
 ALLOW_WARNINGS = yes
 
@@ -15,10 +9,11 @@ SERIAL_DRIVER = vendor
 WS2812_DRIVER = vendor
 
 # CONVERTER - if you use a listed MCU comment the first line and uncomment the appropiate line
-CONVERT_TO = promicro_rp2040
+#CONVERT_TO = promicro_rp2040
 #CONVERT_TO = kb2040
 #CONVERT_TO = blok
 #CONVERT_TO = elite_pi
+CONVERT_TO = rp2040_ce
 
 # AUDIO 
 AUDIO_ENABLE = no
