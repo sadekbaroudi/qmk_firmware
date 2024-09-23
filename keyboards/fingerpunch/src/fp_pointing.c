@@ -17,6 +17,8 @@
 #include "keyboards/fingerpunch/src/fp_pointing.h"
 #include "keyboards/fingerpunch/src/fp_keyhandler.h"
 #include "math.h"
+#include "keyboards/fingerpunch/src/fp_os_detection.h"
+
 // is_keyboard_master()
 
 #ifdef POINTING_DEVICE_ENABLE
@@ -365,11 +367,8 @@ report_mouse_t pointing_device_task_kb(report_mouse_t mouse_report) {
 
         // Set timer to prevent mass zoom and set threshold for zoom value, otherwise too sensitive
         if (!zooming_hold && zoom_value > 1) {
-#ifdef FP_MAC_PREFERRED
-            register_code(KC_LGUI);
-#else
-            register_code(KC_LCTL);
-#endif
+            is_mac ? register_code(KC_LGUI) : register_code(KC_LCTL);
+
             zooming_hold = true;
             defer_exec(50, fp_zoom_unset_hold, NULL);
             if (zoom_in) {
@@ -379,11 +378,7 @@ report_mouse_t pointing_device_task_kb(report_mouse_t mouse_report) {
             } else {
                 tap_code(KC_MINUS);
             }
-#ifdef FP_MAC_PREFERRED
-            unregister_code(KC_LGUI);
-#else
-            unregister_code(KC_LCTL);
-#endif
+            is_mac ? unregister_code(KC_LGUI) : unregister_code(KC_LCTL);
         }
 
         mouse_report.h = 0;

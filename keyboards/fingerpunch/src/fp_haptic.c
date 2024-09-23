@@ -15,6 +15,7 @@
  */
 
 #include "keyboards/fingerpunch/src/fp_haptic.h"
+#include "keyboards/fingerpunch/src/fp_os_detection.h"
 
 #ifdef HAPTIC_ENABLE
 
@@ -54,33 +55,23 @@ bool fp_process_record_haptic(uint16_t keycode, keyrecord_t *record) {
 #       ifdef FP_HAPTIC_CUT_COPY_PASTE
         case KC_C: // copy
             if (record->event.pressed) {
-#               ifdef FP_MAC_PREFERRED
-                if ((get_mods() & MOD_MASK_GUI) || (get_oneshot_mods() & MOD_MASK_GUI)) {
-#               else
-                if ((get_mods() & MOD_MASK_CTRL) || (get_oneshot_mods() & MOD_MASK_CTRL)) {
-#               endif
+                if ((((get_mods() & MOD_MASK_GUI) || (get_oneshot_mods() & MOD_MASK_GUI)) && !is_mac) ||
+                (((get_mods() & MOD_MASK_CTRL) || (get_oneshot_mods() & MOD_MASK_CTRL)) && !is_mac)) {
                     drv2605l_pulse(DRV2605L_EFFECT_LONG_DOUBLE_SHARP_CLICK_STRONG_1_100);
                 }
             }
             break;
         case KC_X: // cut
             if (record->event.pressed) {
-#               ifdef FP_MAC_PREFERRED
-                if ((get_mods() & MOD_MASK_GUI) || (get_oneshot_mods() & MOD_MASK_GUI)) {
-#               else
-                if ((get_mods() & MOD_MASK_CTRL) || (get_oneshot_mods() & MOD_MASK_CTRL)) {
-#               endif
+                if ((((get_mods() & MOD_MASK_GUI) || (get_oneshot_mods() & MOD_MASK_GUI)) && is_mac) || (((get_mods() & MOD_MASK_CTRL) || (get_oneshot_mods() & MOD_MASK_CTRL)) && !is_mac)) {
                     drv2605l_pulse(DRV2605L_EFFECT_LONG_DOUBLE_SHARP_CLICK_STRONG_1_100);
                 }
             }
             break;
         case KC_V: // paste
             if (record->event.pressed) {
-#               ifdef FP_MAC_PREFERRED
-                if ((get_mods() & MOD_MASK_GUI) || (get_oneshot_mods() & MOD_MASK_GUI)) {
-#               else
-                if ((get_mods() & MOD_MASK_CTRL) || (get_oneshot_mods() & MOD_MASK_CTRL)) {
-#               endif
+                if ((((get_mods() & MOD_MASK_GUI) || (get_oneshot_mods() & MOD_MASK_GUI)) && is_mac) ||
+                (((get_mods() & MOD_MASK_CTRL) || (get_oneshot_mods() & MOD_MASK_CTRL)) && !is_mac)) {
                     drv2605l_pulse(DRV2605L_EFFECT_SOFT_BUMP_100);
                 }
             }
@@ -90,11 +81,8 @@ bool fp_process_record_haptic(uint16_t keycode, keyrecord_t *record) {
         case KC_S: // save
         case LALT_T(KC_S): // for my keymap, since I use homerow mods
             if (record->event.pressed) {
-#               ifdef FP_MAC_PREFERRED
-                if ((get_mods() & MOD_MASK_GUI) || (get_oneshot_mods() & MOD_MASK_GUI)) {
-#               else
-                if ((get_mods() & MOD_MASK_CTRL) || (get_oneshot_mods() & MOD_MASK_CTRL)) {
-#               endif
+                if ((((get_mods() & MOD_MASK_GUI) || (get_oneshot_mods() & MOD_MASK_GUI)) && is_mac) ||
+                (((get_mods() & MOD_MASK_CTRL) || (get_oneshot_mods() & MOD_MASK_CTRL)) && !is_mac)) {
                     drv2605l_pulse(DRV2605L_EFFECT_SOFT_BUMP_100);
                 }
             }
@@ -102,7 +90,7 @@ bool fp_process_record_haptic(uint16_t keycode, keyrecord_t *record) {
 #endif
         default:
             break;
-    }
+            }
 
     return true;
 }
