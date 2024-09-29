@@ -7,7 +7,8 @@ SRC +=  keyboards/fingerpunch/src/fp.c \
         keyboards/fingerpunch/src/fp_pointing.c \
         keyboards/fingerpunch/src/fp_rgb_common.c \
         keyboards/fingerpunch/src/fp_rgblight.c \
-        keyboards/fingerpunch/src/fp_rgb_matrix.c
+        keyboards/fingerpunch/src/fp_rgb_matrix.c \
+		keyboards/fingerpunch/src/fp_os_detection.c
 
 ifeq ($(strip $(FP_CONVERT_TO)), svlinky_v01)
         VIK_ENABLE = yes

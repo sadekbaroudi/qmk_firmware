@@ -16,6 +16,7 @@
 
 #include "keyboards/fingerpunch/src/fp.h"
 #include "eeconfig.h"
+#include "keyboards/fingerpunch/src/fp_os_detection.h"
 
 fp_config_t fp_config;
 
@@ -68,11 +69,8 @@ void press_super_tab(bool shift) {
     }
     if (!is_super_tab_active) {
         is_super_tab_active = true;
-#ifdef FP_MAC_PREFERRED
-        register_code(KC_LGUI);
-#else
-        register_code(KC_LALT);
-#endif
+
+    is_mac ? register_code(KC_LGUI) : register_code(KC_LALT);
     }
 
     super_tab_timer = timer_read();
@@ -82,12 +80,8 @@ void press_super_tab(bool shift) {
 void unregister_super_tab(void) {
     if (is_super_tab_active) {
         if (timer_elapsed(super_tab_timer) > FP_SUPER_TAB_TIMEOUT) {
-#ifdef FP_MAC_PREFERRED
-            unregister_code(KC_LGUI);
-#else
-            unregister_code(KC_LALT);
-#endif
-            is_super_tab_active = false;
+        is_mac ? unregister_code(KC_LGUI) : unregister_code(KC_LALT);
+        is_super_tab_active = false;
 
             if (get_mods() & MOD_MASK_SHIFT) {
                 unregister_code(KC_LSFT);
