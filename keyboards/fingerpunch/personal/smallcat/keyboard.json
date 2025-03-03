@@ -36,10 +36,10 @@
                 ]
             }
         },
-        "transport": {
-            "protocol": "serial"
-        },
-        "soft_serial_pin": "GP1"
+        "serial": {
+            "pin": "GP1",
+            "driver": "vendor"
+        }
     },
     "layout_aliases": {
         "LAYOUT": "LAYOUT_smallcat"
