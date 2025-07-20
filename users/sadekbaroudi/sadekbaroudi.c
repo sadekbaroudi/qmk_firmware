@@ -173,12 +173,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         // I always type the shift keys too fast, so tapping term of 200 is way too high
         case LSFT_T(KC_T):
         case RSFT_T(KC_N):
-#ifdef KEYBOARD_fingerpunch_personal_smallcat
-            // There is an exception for smallcat, since the tapping term seems to be too short only on that board
             return 150;
-#else
-            return 75;
-#endif
         default:
             return TAPPING_TERM;
     }

@@ -195,7 +195,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 #if defined(FP_TRACKBALL_RIGHT_ONLY)
     #define POINTING_DEVICE_RIGHT               // one pointing device, on the right
-    #define POINTING_DEVICE_INVERT_X_RIGHT      // for trackball on the right
+    #define POINTING_DEVICE_INVERT_X            // for trackball on the right
 #endif
 #if defined(FP_CIRQUE_LEFT_ONLY)
     #define POINTING_DEVICE_LEFT                // one pointing device, on the left
