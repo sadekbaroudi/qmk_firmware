@@ -40,8 +40,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* COL2ROW, ROW2COL*/
 #define DIODE_DIRECTION COL2ROW
 
-#define ENCODERS_PAD_A {GP24, GP8}
-#define ENCODERS_PAD_B {GP26, GP7}
+#define ENCODER_A_PINS {GP24, GP8}
+#define ENCODER_B_PINS {GP26, GP7}
 #define ENCODER_RESOLUTION 4
 
 #ifdef FP_EVQ

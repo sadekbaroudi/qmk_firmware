@@ -35,8 +35,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SPI_MOSI_PIN GP23
 #define SPI_MISO_PIN GP20
 
-#define ENCODERS_PAD_A { GP7 }
-#define ENCODERS_PAD_B { GP8 }
+#define ENCODER_A_PINS { GP7 }
+#define ENCODER_B_PINS { GP8 }
 
 // Got help from https://www.eisbahn.jp/yoichiro/2022/08/luankey_pico_qmk_firmware.html
 #define MASTER_LEFT

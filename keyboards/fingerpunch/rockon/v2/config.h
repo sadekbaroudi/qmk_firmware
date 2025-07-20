@@ -30,8 +30,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 /* encoder config */
-#define ENCODERS_PAD_A {F0, C7}
-#define ENCODERS_PAD_B {F1, F1}
+#define ENCODER_A_PINS {F0, C7}
+#define ENCODER_B_PINS {F1, F1}
 #define ENCODER_RESOLUTION 2
 
 #ifdef CIRQUE_ENABLE

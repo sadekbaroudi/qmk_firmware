@@ -148,7 +148,7 @@ void fp_rgb_set_config_from_current_values(void) {
     fp_config.rgb_sat = rgblight_get_sat();
     fp_config.rgb_val = rgblight_get_val();
     fp_config.rgb_speed = rgblight_get_speed();
-    eeconfig_update_kb_datablock(&fp_config.raw);
+    eeconfig_update_kb_datablock(&fp_config.raw, 0, EECONFIG_KB_DATA_SIZE);
     xprintf("RGB: mode: %u, hue: %u, sat: %u, val: %u, speed: %u\n", fp_config.rgb_mode, fp_config.rgb_hue, fp_config.rgb_sat, fp_config.rgb_val, fp_config.rgb_speed);
 }
 

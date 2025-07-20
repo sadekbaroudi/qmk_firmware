@@ -131,7 +131,7 @@ void fp_point_dpi_update(uint8_t action) {
             break;
     }
 
-    eeconfig_update_kb_datablock(&fp_config.raw);
+    eeconfig_update_kb_datablock(&fp_config.raw, 0, EECONFIG_KB_DATA_SIZE);
     #ifdef CONSOLE_ENABLE
     fp_log_eeprom();
     #endif
@@ -164,7 +164,7 @@ void fp_scroll_dpi_update(uint8_t action) {
             break;
     }
 
-    eeconfig_update_kb_datablock(&fp_config.raw);
+    eeconfig_update_kb_datablock(&fp_config.raw, 0, EECONFIG_KB_DATA_SIZE);
     fp_apply_dpi();
     xprintf("Scrolling DPI update, action %u, after value: %u\n", action, fp_config.scrolling_dpi);
 }
@@ -193,7 +193,7 @@ void fp_snipe_dpi_update(uint8_t action) {
             break;
     }
 
-    eeconfig_update_kb_datablock(&fp_config.raw);
+    eeconfig_update_kb_datablock(&fp_config.raw, 0, EECONFIG_KB_DATA_SIZE);
     fp_apply_dpi();
     xprintf("Sniping DPI update, action %u, after value: %u\n", action, fp_config.sniping_dpi);
 }

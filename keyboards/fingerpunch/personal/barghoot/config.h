@@ -28,11 +28,11 @@
 #define SPI_MISO_PIN GP20
 
 // Sadek: Modified to fit my fingerpunch firmware encoder order
-// #define ENCODERS_PAD_A {GP29, GP10, GP27}
-// #define ENCODERS_PAD_B {GP28, GP11, GP16}
+// #define ENCODER_A_PINS {GP29, GP10, GP27}
+// #define ENCODER_B_PINS {GP28, GP11, GP16}
 // #define ENCODER_RESOLUTIONS { 1, 4, 4}
-#define ENCODERS_PAD_A { GP16, GP11, GP29 }
-#define ENCODERS_PAD_B { GP27, GP10, GP28 }
+#define ENCODER_A_PINS { GP16, GP11, GP29 }
+#define ENCODER_B_PINS { GP27, GP10, GP28 }
 #define ENCODER_RESOLUTIONS { 4, 4, 1}
 
 #define PMW33XX_CS_PIN GP1

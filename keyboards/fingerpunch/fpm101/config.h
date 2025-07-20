@@ -123,12 +123,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // If we have audio enabled, that means we're not using the left encoder, as they share a pin on the controller
 // Note that you need to solder the jumper on the pcb to use the audio buzzer on the pcb if you are not using the left encoder
 #ifdef AUDIO_ENABLE
-    #define ENCODERS_PAD_A {C7, B7}
-    #define ENCODERS_PAD_B {D2, D5}
+    #define ENCODER_A_PINS {C7, B7}
+    #define ENCODER_B_PINS {D2, D5}
     #define ENCODER_RESOLUTIONS { 2, 1 }
 #else
-    #define ENCODERS_PAD_A {C7, F1, B7}
-    #define ENCODERS_PAD_B {D2, F0, D5}
+    #define ENCODER_A_PINS {C7, F1, B7}
+    #define ENCODER_B_PINS {D2, F0, D5}
     #define ENCODER_RESOLUTIONS { 2, 2, 1 }
 #endif
 

@@ -18,6 +18,7 @@ Help()
     echo "  -i (interactive mode, take feature selection user input to generate build command)"
 	echo "  -r (run the build command(s), defaults to outputting the build string)"
 	echo "  -e (add environment variables, only used in interactive mode, e.g. RGB_MATRIX_REACTIVE_LAYERS=yes or -e \"RGB_LED_RING=yes RGBLIGHT_SNAKE_LAYERS=yes\")"
+	echo "  -d run using util/docker_build.sh"
 	echo "  -h (show this dialog)"
 	echo ""
 	echo "Examples: "
@@ -111,8 +112,9 @@ build_keyboard_user_input() {
 	local keyboard_base_dir="${1}"
 	local keyboard_name="${1#${2}/}"
 	local run_build="${4}"
+	local build_executor="${7}"
 
-	local build_string="make ${keyboard_base_dir#keyboards\/}:${3}"
+	local build_string="${build_executor} ${keyboard_base_dir#keyboards\/}:${3}"
 	echo "${build_string}"
 	# get the total number of paramters
 	top_level_element_count=$(cat "${build_json}" | jq 'length')
@@ -194,8 +196,9 @@ build_keyboard_all_combinations() {
 	local keyboard_base_dir="${1}"
 	local keyboard_name="${1#${2}/}"
 	local run_build="${4}"
+	local build_executor="${7}"
 
-	local build_string_base="make ${keyboard_base_dir#keyboards\/}:${3}"
+	local build_string_base="${build_executor} ${keyboard_base_dir#keyboards\/}:${3}"
 
 	if [[ -n "${5}" && "${5}" != "no" ]]; then
 		build_string_base+=" CONVERT_TO=${5}"
@@ -349,7 +352,8 @@ ConvertTo="no"
 Interactive="no"
 ListKeyboards="no"
 EnvVariables="no"
-while getopts "k:m:c:e:rhil" option; do
+UseDocker="make" # defaults to make, so it doesn't use docker by default
+while getopts "k:m:c:e:rhild" option; do
     case $option in
         l) ListKeyboards="yes";;
         k) Keyboard=${OPTARG};;
@@ -358,6 +362,7 @@ while getopts "k:m:c:e:rhil" option; do
         i) Interactive="yes";;
         r) RunBuild="yes";;
         e) EnvVariables="${OPTARG}";;
+        d) UseDocker="util/docker_build.sh";;
         h) Help
            exit;;
     esac
@@ -385,9 +390,9 @@ else
     for filename in $FP_KB; do
         if [[ "${Interactive}" == "yes" ]]; then
             echo "Running for ${filename}"
-            build_keyboard_user_input "${filename}" "${FP_KB_DIR}" "${Keymap}" "${RunBuild}" "${ConvertTo}" "${EnvVariables}"
+            build_keyboard_user_input "${filename}" "${FP_KB_DIR}" "${Keymap}" "${RunBuild}" "${ConvertTo}" "${EnvVariables}" "${UseDocker}"
         else
-            build_keyboard_all_combinations "${filename}" "${FP_KB_DIR}" "${Keymap}" "${RunBuild}" "${ConvertTo}" ""
+            build_keyboard_all_combinations "${filename}" "${FP_KB_DIR}" "${Keymap}" "${RunBuild}" "${ConvertTo}" "" "${UseDocker}"
         fi
     done
 fi

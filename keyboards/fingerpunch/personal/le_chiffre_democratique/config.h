@@ -57,8 +57,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* COL2ROW, ROW2COL*/
 #define DIODE_DIRECTION COL2ROW
 
-#define ENCODERS_PAD_A {D2}
-#define ENCODERS_PAD_B {D3}
+#define ENCODER_A_PINS {D2}
+#define ENCODER_B_PINS {D3}
 #define ENCODER_RESOLUTION 2
 
 // VIK pin config

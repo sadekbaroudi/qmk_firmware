@@ -51,20 +51,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // https://github.com/sadekbaroudi/vik/tree/master/pcb/pers60-cirque-leds or https://github.com/sadekbaroudi/vik/tree/master/pcb/pers60-pmw3360-leds
 #ifdef FP_VIK_PERS60_MODULE
 // This config assumes the VIK module is connected to the left half
-#define ENCODERS_PAD_A { GP14, GP15 }
-#define ENCODERS_PAD_B { GP13, GP26 }
+#define ENCODER_A_PINS { GP14, GP15 }
+#define ENCODER_B_PINS { GP13, GP26 }
 #define ENCODER_RESOLUTIONS { 2, 1 }
-#define ENCODERS_PAD_A_RIGHT { GP14 }
-#define ENCODERS_PAD_B_RIGHT { GP13 }
+#define ENCODER_A_PINS_RIGHT { GP14 }
+#define ENCODER_B_PINS_RIGHT { GP13 }
 #define ENCODER_RESOLUTIONS_RIGHT { 2 }
 // Switch the default for the PERS60 rotary encoder to scrolling
 #define FP_ENC_1_LAYER_SCROLL_WHEEL 0
 #define FP_ENC_1_LAYER_SUPER_TAB 5
 #else
-#define ENCODERS_PAD_A { GP14 }
-#define ENCODERS_PAD_B { GP13 }
-#define ENCODERS_PAD_A_RIGHT { GP14 }
-#define ENCODERS_PAD_B_RIGHT { GP13 }
+#define ENCODER_A_PINS { GP14 }
+#define ENCODER_B_PINS { GP13 }
+#define ENCODER_A_PINS_RIGHT { GP14 }
+#define ENCODER_B_PINS_RIGHT { GP13 }
 #endif
 
 #ifdef AUDIO_ENABLE

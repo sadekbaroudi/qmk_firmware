@@ -52,30 +52,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Encoder configuration from VIK
 #ifdef VIK_EC11_EVQWGD001
-    #define ENCODERS_PAD_A { GP26 }
-    #define ENCODERS_PAD_B { GP27 }
+    #define ENCODER_A_PINS { GP26 }
+    #define ENCODER_B_PINS { GP27 }
     #define ENCODER_RESOLUTIONS { 2 }
 #elif defined(VIK_PER56_CIRQUE_LEDS) || defined(VIK_PER56_PMW3360_LEDS)
-    #define ENCODERS_PAD_A { GP26 }
-    #define ENCODERS_PAD_B { GP27 }
+    #define ENCODER_A_PINS { GP26 }
+    #define ENCODER_B_PINS { GP27 }
     #define ENCODER_RESOLUTIONS { 1 }
 #else
-    #define ENCODERS_PAD_A { }
-    #define ENCODERS_PAD_B { }
+    #define ENCODER_A_PINS { }
+    #define ENCODER_B_PINS { }
     #define ENCODER_RESOLUTIONS { }
 #endif
 
 #ifdef VIK_EC11_EVQWGD001_RIGHT
-    #define ENCODERS_PAD_A_RIGHT { GP26 }
-    #define ENCODERS_PAD_B_RIGHT { GP27 }
+    #define ENCODER_A_PINS_RIGHT { GP26 }
+    #define ENCODER_B_PINS_RIGHT { GP27 }
     #define ENCODER_RESOLUTIONS_RIGHT { 2 }
 #elif defined(VIK_PER56_CIRQUE_LEDS_RIGHT) || defined(VIK_PER56_PMW3360_LEDS_RIGHT)
-    #define ENCODERS_PAD_A_RIGHT { GP26 }
-    #define ENCODERS_PAD_B_RIGHT { GP27 }
+    #define ENCODER_A_PINS_RIGHT { GP26 }
+    #define ENCODER_B_PINS_RIGHT { GP27 }
     #define ENCODER_RESOLUTIONS_RIGHT { 1 }
 #else
-    #define ENCODERS_PAD_A_RIGHT { }
-    #define ENCODERS_PAD_B_RIGHT { }
+    #define ENCODER_A_PINS_RIGHT { }
+    #define ENCODER_B_PINS_RIGHT { }
     #define ENCODER_RESOLUTIONS_RIGHT { }
 #endif
 

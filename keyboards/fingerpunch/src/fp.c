@@ -139,7 +139,7 @@ void matrix_scan_kb(void) {
 }
 
 void keyboard_pre_init_kb(void) {
-    eeconfig_read_kb_datablock(&fp_config.raw);
+    eeconfig_read_kb_datablock(&fp_config.raw, 0, EECONFIG_KB_DATA_SIZE);
     keyboard_pre_init_user();
 }
 
@@ -201,6 +201,15 @@ layer_state_t layer_state_set_kb(layer_state_t state) {
     return layer_state_set_user(state);
 }
 
+
+// void fp_eeconfig_read_kb_datablock(const void *data) {
+//     eeconfig_read_kb_datablock(data, 0, EECONFIG_KB_DATA_SIZE);
+// }
+
+// void fp_eeconfig_update_kb_datablock(const void *data) {
+//     eeconfig_update_kb_datablock(data, 0, EECONFIG_KB_DATA_SIZE);
+// }
+
 void eeconfig_init_kb(void) {
     fp_config.raw              = 0;
     #if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
@@ -215,7 +224,7 @@ void eeconfig_init_kb(void) {
     fp_config.sniping_dpi = FP_POINTING_SNIPING_DPI;
     fp_config.scrolling_dpi = FP_POINTING_SCROLLING_DPI;
     #endif
-    eeconfig_update_kb_datablock(&fp_config.raw);
+    eeconfig_update_kb_datablock(&fp_config.raw, 0, EECONFIG_KB_DATA_SIZE);
     eeconfig_init_user();
 }
 

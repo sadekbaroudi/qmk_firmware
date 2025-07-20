@@ -52,8 +52,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DIODE_DIRECTION COL2ROW
 
 /* encoder config */
-#define ENCODERS_PAD_A {GP6}
-#define ENCODERS_PAD_B {GP5}
+#define ENCODER_A_PINS {GP6}
+#define ENCODER_B_PINS {GP5}
 #define ENCODER_RESOLUTION 2
 
 #define WS2812_DI_PIN GP9
