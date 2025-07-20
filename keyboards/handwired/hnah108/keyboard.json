@@ -1,7 +1,6 @@
 {
     "keyboard_name": "Hnah108",
     "manufacturer": "HnahKB",
-    "url": "",
     "maintainer": "HnahKB",
     "usb": {
         "vid": "0xFEED",
@@ -39,8 +38,6 @@
             "pixel_rain": true,
             "pixel_flow": true,
             "pixel_fractal": true,
-            "typing_heatmap": true,
-            "digital_rain": true,
             "solid_reactive_simple": true,
             "solid_reactive": true,
             "solid_reactive_wide": true,
@@ -59,8 +56,6 @@
     "features": {
         "backlight": true,
         "bootmagic": true,
-        "command": false,
-        "console": false,
         "encoder": true,
         "extrakey": true,
         "mousekey": false,

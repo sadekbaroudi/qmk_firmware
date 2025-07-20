@@ -1,7 +1,6 @@
 {
     "keyboard_name": "MW75",
     "manufacturer": "MWStudio",
-    "url": "",
     "maintainer": "TW59420",
     "usb": {
         "vid": "0x7BA1",
@@ -38,8 +37,6 @@
             "hue_wave": true,
             "pixel_fractal": true,
             "pixel_rain": true,
-            "typing_heatmap": true,
-            "digital_rain": true,
             "solid_reactive_simple": true,
             "solid_reactive": true,
             "solid_reactive_wide": true,
@@ -58,8 +55,6 @@
     },
     "features": {
         "bootmagic": true,
-        "command": false,
-        "console": false,
         "encoder": true,
         "extrakey": true,
         "mousekey": true,

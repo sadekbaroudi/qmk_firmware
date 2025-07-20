@@ -1,7 +1,6 @@
 {
     "keyboard_name": "MoJo68",
     "manufacturer": "MelGeek",
-    "url": "",
     "maintainer": "melgeek001365",
     "usb": {
         "vid": "0xEDED",
@@ -10,8 +9,6 @@
     },
     "features": {
         "bootmagic": true,
-        "command": false,
-        "console": false,
         "extrakey": true,
         "mousekey": true,
         "nkro": true,
@@ -45,8 +42,6 @@
             "hue_breathing": true,
             "hue_pendulum": true,
             "hue_wave": true,
-            "typing_heatmap": true,
-            "digital_rain": true,
             "solid_reactive_simple": true,
             "solid_reactive": true,
             "solid_reactive_wide": true,
