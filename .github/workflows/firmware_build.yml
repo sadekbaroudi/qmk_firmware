@@ -7,7 +7,14 @@ on:
       - master
       - 'develop**'
       - github-actions-build
+      - 'fp/qmk_merge**'
   workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to build'
+        required: true
+        default: 'master'
+        type: string
 jobs:
   gather-keyboards:
     runs-on: ubuntu-latest
@@ -27,7 +34,7 @@ jobs:
   Build:
     needs: gather-keyboards
     runs-on: ubuntu-latest
-    container: ghcr.io/qmk/qmk_cli@sha256:16c4916e95b99bf88d27b15aec8db409ee17265d1710287fde248c6666508966
+    container: ghcr.io/qmk/qmk_cli@sha256:7f7492b0095c153fbf8046515543b3549ca3e6f5af15de9e8c83d82dfcdf7e4e
     strategy:
       fail-fast: false
       matrix: ${{fromJson(needs.gather-keyboards.outputs.matrix)}}
