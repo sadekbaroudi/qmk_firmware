@@ -103,9 +103,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // SDA, 27, 25
 // 19, 27, 25
+#undef ENCODERS_PAD_A
 #define ENCODERS_PAD_A {D7, D4, D1}
 // SCL, 28, 26
 // 28, 28, 26
+#undef ENCODERS_PAD_B
 #define ENCODERS_PAD_B {B4, D6, D0}
 
 #ifdef FP_EVQ_UNDER_PALMS
@@ -119,7 +121,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #if defined(OLED_ENABLE) || defined(PIMORONI_TRACKBALL_ENABLE)
 #undef ENCODERS_PAD_A
+#undef ENCODERS_PAD_A
 #define ENCODERS_PAD_A {D7, D4}
+#undef ENCODERS_PAD_B
 #undef ENCODERS_PAD_B
 #define ENCODERS_PAD_B {B4, D6}
 #endif

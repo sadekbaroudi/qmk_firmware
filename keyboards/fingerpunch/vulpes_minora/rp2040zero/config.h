@@ -51,7 +51,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // In case there is a VIK module that has an encoder
 #ifdef ENCODER_ENABLE
+#undef ENCODERS_PAD_A
     #define ENCODERS_PAD_A { GP13 }
+#undef ENCODERS_PAD_B
     #define ENCODERS_PAD_B { GP29 }
 #endif
 

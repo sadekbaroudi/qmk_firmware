@@ -148,7 +148,7 @@ void fp_rgb_set_config_from_current_values(void) {
     fp_config.rgb_sat = rgblight_get_sat();
     fp_config.rgb_val = rgblight_get_val();
     fp_config.rgb_speed = rgblight_get_speed();
-    eeconfig_update_kb_datablock(&fp_config.raw);
+    eeconfig_update_kb_datablock(&fp_config.raw, 0, sizeof(fp_config.raw));
     xprintf("RGB: mode: %u, hue: %u, sat: %u, val: %u, speed: %u\n", fp_config.rgb_mode, fp_config.rgb_hue, fp_config.rgb_sat, fp_config.rgb_val, fp_config.rgb_speed);
 }
 
@@ -160,7 +160,7 @@ uint32_t fp_rgb_set_config_from_current_values_deferred(uint32_t triger_time, vo
 
 bool fp_process_record_rgb_common(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case RGB_MODE_FORWARD ... RGB_MODE_GRADIENT:  // quantum_keycodes.h L400 for definitions
+        case UG_TOGG ... UG_SPDD:  // All underglow keycodes
             if (record->event.pressed) {
                 fp_rgb_set_hsv_and_mode(fp_config.rgb_hue, fp_config.rgb_sat, fp_config.rgb_val, fp_config.rgb_mode);
             }

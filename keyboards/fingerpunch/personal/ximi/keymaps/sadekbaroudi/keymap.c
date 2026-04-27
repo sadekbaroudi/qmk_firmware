@@ -37,9 +37,9 @@
               K33, K34, K35, K36, K37, K38 \
   ) \
   LAYOUT_wrapper( \
-        KC_MS_BTN3,      K01,             K02,            K03,            LT(_FUNCTION, K04),  K05,            K06,                 LT(_FUNCTION, K07), K08,              K09,            K0A,         KC_BSLS, \
-        KC_MS_BTN1,      LCTL_T(K11),     LGUI_T(K12),    LALT_T(K13),    LSFT_T(K14),         K15,            LT(_MOUSE, K16),     RSFT_T(K17),        RALT_T(K18),      RGUI_T(K19),    RCTL_T(K1A), LCTL(KC_V), \
-        KC_MS_BTN2,      K21,             K22,            K23,            K24,                 K25,            K26,                 K27,                K28,              K29,            K2A,         S_ALT_TAB, \
+        MS_BTN3,      K01,             K02,            K03,            LT(_FUNCTION, K04),  K05,            K06,                 LT(_FUNCTION, K07), K08,              K09,            K0A,         KC_BSLS, \
+        MS_BTN1,      LCTL_T(K11),     LGUI_T(K12),    LALT_T(K13),    LSFT_T(K14),         K15,            LT(_MOUSE, K16),     RSFT_T(K17),        RALT_T(K18),      RGUI_T(K19),    RCTL_T(K1A), LCTL(KC_V), \
+        MS_BTN2,      K21,             K22,            K23,            K24,                 K25,            K26,                 K27,                K28,              K29,            K2A,         S_ALT_TAB, \
                                                           K33,            LT(_NAVIGATION,K34), LT(_FUNCTION,K35), LT(_MEDIA,K36),   LT(_SYMBOLS,K37),   K38, \
                                                           C(KC_Z),        C(S(KC_Z)),          C(KC_Y),        KC_VOLD,             KC_MUTE,            KC_VOLU \
     )
@@ -99,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, __________________MOUSE_1__________________, ___________________BLANK___________________, _______, 
         _______, __________________MOUSE_2__________________, ___________________BLANK___________________, _______, 
         _______, __________________MOUSE_3__________________, ___________________BLANK___________________, _______, 
-                             _______, KC_MS_BTN1, KC_MS_BTN3, KC_MS_BTN3, KC_MS_BTN2, _______,
+                             _______, MS_BTN1, MS_BTN3, MS_BTN3, MS_BTN2, _______,
                                    _______, _______, _______, _______, _______, _______
     )
 

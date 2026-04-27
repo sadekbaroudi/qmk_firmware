@@ -37,9 +37,9 @@
               K33, K34, K35 \
   ) \
   LAYOUT_wrapper( \
-        KC_MS_BTN3,      K01,             K02,            K03,            LT(_FUNCTION, K04),  K05, \
-        KC_MS_BTN1,      LCTL_T(K11),     LGUI_T(K12),    LALT_T(K13),    LSFT_T(K14),         K15, \
-        KC_MS_BTN2,      K21,             K22,            K23,            K24,                 K25, \
+        MS_BTN3,      K01,             K02,            K03,            LT(_FUNCTION, K04),  K05, \
+        MS_BTN1,      LCTL_T(K11),     LGUI_T(K12),    LALT_T(K13),    LSFT_T(K14),         K15, \
+        MS_BTN2,      K21,             K22,            K23,            K24,                 K25, \
                                                           K33,            LT(_NAVIGATION,K34), LT(_FUNCTION,K35), \
                                                           C(KC_Z),        C(S(KC_Z)),          C(KC_Y) \
     )
@@ -99,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, __________________MOUSE_1__________________,
         _______, __________________MOUSE_2__________________,
         _______, __________________MOUSE_3__________________,
-                             _______, KC_MS_BTN1, KC_MS_BTN3,
+                             _______, MS_BTN1, MS_BTN3,
                                    _______, _______, _______
     )
 

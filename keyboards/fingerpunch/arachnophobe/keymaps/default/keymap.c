@@ -44,10 +44,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     
     [_MOUSE] = LAYOUT_arachnophobe(
-                       KC_MS_WH_UP, KC_MS_UP,                                                                 _______, _______,
-        KC_MS_WH_LEFT, KC_MS_LEFT,  KC_MS_DOWN,    KC_MS_RIGHT,  KC_MS_WH_RIGHT,            _______, _______, _______, _______, _______,
-        QK_BOOT,       KC_MS_WH_UP, KC_MS_WH_DOWN, KC_MS_ACCEL1, KC_MS_ACCEL2,              _______, _______, _______, _______, _______,
-                                                    _______, KC_MS_BTN1, KC_MS_BTN3, KC_MS_BTN3, KC_MS_BTN2, _______
+                       MS_WHLU, MS_UP,                                                                 _______, _______,
+        MS_WHLL, MS_LEFT,  MS_DOWN,    MS_RGHT,  MS_WHLR,            _______, _______, _______, _______, _______,
+        QK_BOOT,       MS_WHLU, MS_WHLD, MS_ACL1, MS_ACL2,              _______, _______, _______, _______, _______,
+                                                    _______, MS_BTN1, MS_BTN3, MS_BTN3, MS_BTN2, _______
     )
 };
 

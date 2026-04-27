@@ -219,7 +219,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =  {
    [_MOUSE] = LAYOUT_yubitsume(
  //╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷
     _______,  _______,  _______,  _______,  _______,                       _______,  _______,  _______,  _______,  _______,
-    _______,KC_MS_BTN2,KC_MS_BTN3,KC_MS_BTN1,_______,                      _______,  _______,  _______,  _______,  _______,
+    _______,MS_BTN2,MS_BTN3,MS_BTN1,_______,                      _______,  _______,  _______,  _______,  _______,
     _______,  _______,  SCROLL,   _______,  _______,  _______,   _______,  _______,  _______,  _______,  _______,  _______,
                         _______,  _______,  _______,  _______,   _______,  _______,  _______,  _______
 ),
@@ -244,7 +244,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =  {
     KC_CAPS,  KC_NUM,   KC_UP,    KC_EQL,   KC_LCBR,                       KC_RCBR,  KC_P7,    KC_P8,    KC_P9,    KC_PPLS,
     KC_LSFT,  KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_LBRC,                       KC_RBRC,  KC_P4,    KC_P5,    KC_P6,    KC_MINS,
     SNAP,     KC_PGUP,  C(KC_S),  KC_PGDN,  KC_LPRN,  KC_MUTE,   KC_MPLY,  KC_RPRN,  KC_P1,    KC_P2,    KC_P3,    KC_PAST,
-                        _______,  _______,  _______,  RGB_MOD,   RGB_MOD,  _______,  ADJUST,   KC_P0
+                        _______,  _______,  _______,  UG_NEXT,   UG_NEXT,  _______,  ADJUST,   KC_P0
  ),
  /*
    ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
@@ -287,9 +287,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =  {
 
    [_ADJUST] = LAYOUT_yubitsume(
  //╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷
-    QK_BOOT,  AU_TOG,   OS_SWAP,  RGB_HUI,  RGB_MOD,                       XXXXXXX,  KC_F7,    KC_F8,    KC_F9,    KC_F12,
-    DB_TOGG,  _______,  QWERTY,   RGB_SAI,  XXXXXXX,                       XXXXXXX,  KC_F4,    KC_F5,    KC_F6,    KC_F11,
-    MAKE_H,   HPT_TOG,  COLEMAK,  RGB_VAI,  XXXXXXX,  KC_MUTE,   KC_MPLY,  XXXXXXX,  KC_F1,    KC_F2,    KC_F3,    KC_F10,
+    QK_BOOT,  AU_TOG,   OS_SWAP,  UG_HUEU,  UG_NEXT,                       XXXXXXX,  KC_F7,    KC_F8,    KC_F9,    KC_F12,
+    DB_TOGG,  _______,  QWERTY,   UG_SATU,  XXXXXXX,                       XXXXXXX,  KC_F4,    KC_F5,    KC_F6,    KC_F11,
+    MAKE_H,   HPT_TOG,  COLEMAK,  UG_VALU,  XXXXXXX,  KC_MUTE,   KC_MPLY,  XXXXXXX,  KC_F1,    KC_F2,    KC_F3,    KC_F10,
                         _______,  _______,  _______,  _______,   _______,  _______,  _______,  _______
  ),
 

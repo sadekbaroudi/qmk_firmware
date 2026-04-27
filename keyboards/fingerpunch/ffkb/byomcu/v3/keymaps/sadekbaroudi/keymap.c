@@ -34,8 +34,8 @@
   ) \
   LAYOUT_wrapper( \
         FP_SCROLL_TOG,   K01,            K02,            K03,            LT(_FUNCTION, K04),     K05,                      K06,                   LT(_FUNCTION, K07),    K08,              K09,            K0A,          FP_ACCEL_TOG, \
-        KC_MS_BTN1,      LCTL_T(K11),    LGUI_T(K12),    LALT_T(K13),    LSFT_T(K14),            K15,                      LT(_MOUSE, K16),       RSFT_T(K17),           RALT_T(K18),      RGUI_T(K19),    RCTL_T(K1A),  FP_SNIPE_TOG, \
-        KC_MS_BTN2,      K21,            K22,            K23,            K24,                    K25,                      K26,                   K27,                   K28,              K29,            K2A,          FP_ZOOM_TOG, \
+        MS_BTN1,      LCTL_T(K11),    LGUI_T(K12),    LALT_T(K13),    LSFT_T(K14),            K15,                      LT(_MOUSE, K16),       RSFT_T(K17),           RALT_T(K18),      RGUI_T(K19),    RCTL_T(K1A),  FP_SNIPE_TOG, \
+        MS_BTN2,      K21,            K22,            K23,            K24,                    K25,                      K26,                   K27,                   K28,              K29,            K2A,          FP_ZOOM_TOG, \
                                  KC_MUTE,                K33,            LT(_NAVIGATION,K34),    LT(_FUNCTION,K35),        LT(_MEDIA,K36),        LT(_SYMBOLS,K37),      K38,              LCTL(KC_BSPC) \
     )
 
@@ -90,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______________AUTO_MOUSE_1________________, ___________________BLANK___________________, _______,
         _______, _______________AUTO_MOUSE_2________________, ___________________BLANK___________________, _______,
         _______, _______________AUTO_MOUSE_3________________, ___________________BLANK___________________, _______,
-                    _______, _______, KC_MS_BTN1, KC_MS_BTN3, KC_MS_BTN3, KC_MS_BTN2, _______, _______
+                    _______, _______, MS_BTN1, MS_BTN3, MS_BTN3, MS_BTN2, _______, _______
     )
 };
 

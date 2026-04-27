@@ -21,7 +21,7 @@
 
 #pragma once
 
-#if defined(CONVERT_TO_ELITE_PI) || defined(CONVERT_TO_RP2040_CE) || defined(CONVERT_TO_HELIOS) || defined(CONVERT_TO_LIATRIS) || defined(CONVERT_TO_KB2040) || defined(CONVERT_TO_PROMICRO_RP2040)
+#if defined(CONVERT_TO_ELITE_PI) || defined(CONVERT_TO_RP2040_CE) || defined(CONVERT_TO_HELIOS) || defined(CONVERT_TO_LIATRIS) || defined(CONVERT_TO_KB2040) || defined(CONVERT_TO_SPARKFUN_RP2040)
 #define HAL_USE_PWM    TRUE
 #define HAL_USE_I2C    TRUE
 #define HAL_USE_PAL    TRUE

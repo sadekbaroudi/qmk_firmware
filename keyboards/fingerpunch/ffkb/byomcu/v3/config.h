@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SPI_MOSI_PIN B2
 #define SPI_MISO_PIN B3
 
-#if defined(CONVERT_TO_ELITE_PI) || defined(CONVERT_TO_RP2040_CE) || defined(CONVERT_TO_HELIOS) || defined(CONVERT_TO_LIATRIS) || defined(CONVERT_TO_KB2040) || defined(CONVERT_TO_PROMICRO_RP2040)
+#if defined(CONVERT_TO_ELITE_PI) || defined(CONVERT_TO_RP2040_CE) || defined(CONVERT_TO_HELIOS) || defined(CONVERT_TO_LIATRIS) || defined(CONVERT_TO_KB2040) || defined(CONVERT_TO_SPARKFUN_RP2040)
 #define SPI_DRIVER SPID0
 #endif // CONVERT_TO_(any_rp2040)
 
@@ -47,7 +47,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* COL2ROW, ROW2COL*/
 #define DIODE_DIRECTION COL2ROW
 
+#undef ENCODERS_PAD_A
 #define ENCODERS_PAD_A {C6, E6}
+#undef ENCODERS_PAD_B
 #define ENCODERS_PAD_B {D7, B4}
 
 

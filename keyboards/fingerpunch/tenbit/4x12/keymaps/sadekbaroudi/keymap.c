@@ -26,8 +26,8 @@
   ) \
   LAYOUT_ortho_4x12_wrapper( \
         K01,            K02,            K03,            LT(_FUNCTION, K04),     K05,            FP_SCROLL_TOG,        _______,               K06,                   LT(_FUNCTION, K07),    K08,               K09,            K0A,        \
-        LCTL_T(K11),    LGUI_T(K12),    LALT_T(K13),    LSFT_T(K14),            K15,            KC_MS_BTN1,           _______,               LT(_MOUSE, K16),       RSFT_T(K17),           RALT_T(K18),       RGUI_T(K19),    RCTL_T(K1A),\
-        K21,            K22,            K23,            K24,                    K25,            KC_MS_BTN2,           _______,               K26,                   K27,                   K28,               K29,            K2A,        \
+        LCTL_T(K11),    LGUI_T(K12),    LALT_T(K13),    LSFT_T(K14),            K15,            MS_BTN1,           _______,               LT(_MOUSE, K16),       RSFT_T(K17),           RALT_T(K18),       RGUI_T(K19),    RCTL_T(K1A),\
+        K21,            K22,            K23,            K24,                    K25,            MS_BTN2,           _______,               K26,                   K27,                   K28,               K29,            K2A,        \
         _______,        _______,        _______,        K33,            LT(_NAVIGATION,K34),    LT(_FUNCTION,K35),    LT(_MEDIA,K36),        LT(_SYMBOLS,K37),      K38,                   _______,           _______,        _______     \
     )
 
@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __________________MOUSE_1__________________,       _______, _______,      ___________________BLANK___________________,
         __________________MOUSE_2__________________,       _______, _______,      ___________________BLANK___________________,
         __________________MOUSE_3__________________,       _______, _______,      ___________________BLANK___________________,
-        _______, _______, _______, _______, KC_MS_BTN1, KC_MS_BTN3, KC_MS_BTN3, KC_MS_BTN2, _______, _______, _______, _______
+        _______, _______, _______, _______, MS_BTN1, MS_BTN3, MS_BTN3, MS_BTN2, _______, _______, _______, _______
     )
 };
 

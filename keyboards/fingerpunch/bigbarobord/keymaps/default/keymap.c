@@ -65,9 +65,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_ADJUST] =  LAYOUT_bigbarobord(
   _______,      _______,      _______,      _______,      _______,                             _______,  _______,     _______,        _______,      _______,
-  RGB_TOG,      RGB_RMOD,     RGB_MOD,      _______,      _______,                             KC_F1,    KC_F2,       KC_F3,          KC_F4,        KC_F5,
-  RGB_SPI,      RGB_HUI,      RGB_SAI,      RGB_VAI,      _______,          _______,           KC_F6,    KC_F7,       KC_F8,          KC_F9,        KC_F10,
-  RGB_SPD,      RGB_HUD,      RGB_SAD,      RGB_VAD,      _______,  _______,       _______,    KC_F11,   KC_F12,      _______,        _______,      QK_BOOT,
+  UG_TOGG,      UG_PREV,     UG_NEXT,      _______,      _______,                             KC_F1,    KC_F2,       KC_F3,          KC_F4,        KC_F5,
+  UG_SPDU,      UG_HUEU,      UG_SATU,      UG_VALU,      _______,          _______,           KC_F6,    KC_F7,       KC_F8,          KC_F9,        KC_F10,
+  UG_SPDD,      UG_HUED,      UG_SATD,      UG_VALD,      _______,  _______,       _______,    KC_F11,   KC_F12,      _______,        _______,      QK_BOOT,
                 _______,      _______,      _______,      _______,  _______,       _______,    _______,  _______,     _______,        _______
 )
 };

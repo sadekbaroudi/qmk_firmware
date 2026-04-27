@@ -101,15 +101,15 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
                 // scroll wheel
                 if (clockwise){
                     #ifdef ENCODERS_A_REVERSE
-                    tap_code16(KC_MS_WH_UP);
+                    tap_code16(MS_WHLU);
                     #else
-                    tap_code16(KC_MS_WH_DOWN);
+                    tap_code16(MS_WHLD);
                     #endif
                 } else{
                     #ifdef ENCODERS_A_REVERSE
-                    tap_code16(KC_MS_WH_DOWN);
+                    tap_code16(MS_WHLD);
                     #else
-                    tap_code16(KC_MS_WH_UP);
+                    tap_code16(MS_WHLU);
                     #endif
                 }
                 break;
@@ -269,15 +269,15 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
                 // scroll wheel
                 if (clockwise){
                     #ifdef ENCODERS_B_REVERSE
-                    tap_code16(KC_MS_WH_UP);
+                    tap_code16(MS_WHLU);
                     #else
-                    tap_code16(KC_MS_WH_DOWN);
+                    tap_code16(MS_WHLD);
                     #endif
                 } else{
                     #ifdef ENCODERS_B_REVERSE
-                    tap_code16(KC_MS_WH_DOWN);
+                    tap_code16(MS_WHLD);
                     #else
-                    tap_code16(KC_MS_WH_UP);
+                    tap_code16(MS_WHLU);
                     #endif
                 }
                 break;
@@ -389,15 +389,15 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
                 // scroll wheel
                 if (clockwise){
                     #ifdef ENCODERS_B_REVERSE
-                    tap_code16(KC_MS_WH_UP);
+                    tap_code16(MS_WHLU);
                     #else
-                    tap_code16(KC_MS_WH_DOWN);
+                    tap_code16(MS_WHLD);
                     #endif
                 } else{
                     #ifdef ENCODERS_B_REVERSE
-                    tap_code16(KC_MS_WH_DOWN);
+                    tap_code16(MS_WHLD);
                     #else
-                    tap_code16(KC_MS_WH_UP);
+                    tap_code16(MS_WHLU);
                     #endif
                 }
                 break;

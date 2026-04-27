@@ -66,7 +66,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   // END If pointing device enabled
 #endif
 
+#undef ENCODERS_PAD_A
 #define ENCODERS_PAD_A {B5}
+#undef ENCODERS_PAD_B
 #define ENCODERS_PAD_B {B4}
 
 #define ENCODER_RESOLUTION 2

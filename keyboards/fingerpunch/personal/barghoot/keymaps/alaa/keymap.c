@@ -67,22 +67,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_W,  KC_F,   KC_M,   KC_P,   KC_B,                   KC_SLSH,   KC_X,   KC_QUOTE, KC_J, KC_K,
         KC_R,  KC_S,   KC_N,   KC_T,   KC_G,                   KC_COMMA,  KC_A,   KC_E,     KC_I, KC_H,
         KC_Z,  KC_C,   KC_L,   KC_D,   KC_V,                   KC_DOT,    KC_U,   KC_O,     KC_Y, KC_J,
-    KC_BTN3, KC_BTN2, KC_BTN1, MO_NAV, KC_SPACE,               OSM(MOD_LSFT), MO_SYM, KC_BTN1, KC_BTN2, KC_BTN3,
-                          KC_0,        KC_BTN3, KC_BTN1, KC_BTN2, KC_0
+    MS_BTN3, MS_BTN2, MS_BTN1, MO_NAV, KC_SPACE,               OSM(MOD_LSFT), MO_SYM, MS_BTN1, MS_BTN2, MS_BTN3,
+                          KC_0,        MS_BTN3, MS_BTN1, MS_BTN2, KC_0
     ),
 
     [NAV] = LAYOUT_4x5_3(
         SCRNSHT,  KC_ENT,  KC_BSPC,  KC_TAB,  KC_DEL,            DWRD,    KC_NO,     KC_UP,    QUIT,     WRKFLW1,
         OS_LCTL,  OS_LALT, OS_LGUI,  OS_LSFT, SALL,              KC_DOT,  KC_LEFT,   KC_DOWN,  KC_RIGHT, WRKFLW2,
         KC_6,  CUT,     COPY,      PASTE,     SALL,              KC_0,    KC_ENT,    KC_BSPC,  KC_TAB,   KC_6,
-     RGB_MOD, RGB_RMOD, RGB_SPI, KC_TRNS, KC_TRNS,               KC_TRNS, KC_TRNS,   RGB_SPD,  RGB_RMOD, RGB_MOD,
+     UG_NEXT, UG_PREV, UG_SPDU, KC_TRNS, KC_TRNS,               KC_TRNS, KC_TRNS,   UG_SPDD,  UG_PREV, UG_NEXT,
                           KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
     ),
     [SYM] = LAYOUT_4x5_3(
         KC_9,   KC_9,   KC_8,   KC_7,   KC_EQUAL,           KC_COMMA, KC_SCLN, KC_COLN, KC_BSLS,  KC_GRAVE,
         KC_3,   KC_2,   KC_1,   KC_0,   KC_MINUS,           KC_DOT,   OS_LSFT, OS_LGUI, OS_RALT,  OS_LCTL,
         KC_6,   KC_6,   KC_5,   KC_4,   KC_0,               KC_0,     KC_QUES, KC_EXLM, KC_SLSH,  KC_6,
-     RGB_VAI, RGB_SAI, RGB_HUI, KC_TRNS, KC_TRNS,           KC_TRNS, KC_TRNS,  RGB_HUD, RGB_SAD, RGB_VAD,
+     UG_VALU, UG_SATU, UG_HUEU, KC_TRNS, KC_TRNS,           KC_TRNS, KC_TRNS,  UG_HUED, UG_SATD, UG_VALD,
                                  KC_TRNS,       KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS
     ),
 };
@@ -287,7 +287,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
-    [HDN]  =  { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN), ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(SW_WIN_REVERSE, SW_WIN) },
-    [NAV]  =  { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN), ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(SW_WIN_REVERSE, SW_WIN) },
-    [SYM]  =  { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN), ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(SW_WIN_REVERSE, SW_WIN) }
+    [HDN]  =  { ENCODER_CCW_CW(MS_WHLU, MS_WHLD), ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(SW_WIN_REVERSE, SW_WIN) },
+    [NAV]  =  { ENCODER_CCW_CW(MS_WHLU, MS_WHLD), ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(SW_WIN_REVERSE, SW_WIN) },
+    [SYM]  =  { ENCODER_CCW_CW(MS_WHLU, MS_WHLD), ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(SW_WIN_REVERSE, SW_WIN) }
 };

@@ -56,7 +56,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #define RGBLIGHT_EFFECT_TWINKLE
 #endif
 
+#undef ENCODERS_PAD_A
 #define ENCODERS_PAD_A {B4}
+#undef ENCODERS_PAD_B
 #define ENCODERS_PAD_B {B5}
 
 #define ENCODER_RESOLUTION 2

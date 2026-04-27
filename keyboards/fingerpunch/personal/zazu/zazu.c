@@ -54,8 +54,8 @@ led_config_t g_led_config = { {
 //   /* debug_keyboard=false; */
 //   /* debug_mouse=true; */
 
-//   /* setPinOutput(LCD_POWER_ENABLE_PIN); */
-//   /* writePinHigh(LCD_POWER_ENABLE_PIN); */
+//   /* gpio_set_pin_output(LCD_POWER_ENABLE_PIN); */
+//   /* gpio_write_pin_high(LCD_POWER_ENABLE_PIN); */
 //   display = qp_st7789_make_spi_device(320, 172, LCD_CS_PIN, LCD_DC_PIN, LCD_RST_PIN, 8, 3);
 //   qp_set_viewport_offsets(display, 0, 34);
 //   qp_init(display, QP_ROTATION_90); // Initialise the display

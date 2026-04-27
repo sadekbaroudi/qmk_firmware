@@ -40,7 +40,7 @@
     KC_TAB,      LCTL_T(K11),    LGUI_T(K12),    LALT_T(K13),   LSFT_T(K14),            K15,                                          LT(_MOUSE, K16),       RSFT_T(K17),        RALT_T(K18),      RGUI_T(K19),    RCTL_T(K1A),     KC_QUOT, \
                  K21,            K22,            K23,           K24,                    K25,                                          K26,                   K27,                K28,              K29,            K2A, \
                                                  K33,           LT(_NAVIGATION,K34),    LT(_FUNCTION,K35),                  LT(_MEDIA,K36),                  LT(_SYMBOLS,K37),   K38, \
-                                                                                            KC_MS_BTN3,     KC_MS_BTN1,     KC_MS_BTN2, \
+                                                                                            MS_BTN3,     MS_BTN1,     MS_BTN2, \
                                                                                     KC_MUTE, KC_WWW_FORWARD, KC_VOLD, KC_WWW_BACK, KC_VOLU \
     )
 
@@ -114,12 +114,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #ifdef ENCODER_MAP_ENABLE
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
-    [_ALPHA_ALT]  =   { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN)},
-    [_ALPHA]  =       { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN)},
-    [_NAVIGATION]  =  { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN)},
-    [_SYMBOLS] =      { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN)},
-    [_FUNCTION] =     { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN)},
-    [_MEDIA] =        { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN)},
-    [_MOUSE] =        { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN)}
+    [_ALPHA_ALT]  =   { ENCODER_CCW_CW(MS_WHLU, MS_WHLD)},
+    [_ALPHA]  =       { ENCODER_CCW_CW(MS_WHLU, MS_WHLD)},
+    [_NAVIGATION]  =  { ENCODER_CCW_CW(MS_WHLU, MS_WHLD)},
+    [_SYMBOLS] =      { ENCODER_CCW_CW(MS_WHLU, MS_WHLD)},
+    [_FUNCTION] =     { ENCODER_CCW_CW(MS_WHLU, MS_WHLD)},
+    [_MEDIA] =        { ENCODER_CCW_CW(MS_WHLU, MS_WHLD)},
+    [_MOUSE] =        { ENCODER_CCW_CW(MS_WHLU, MS_WHLD)}
 };
 #endif

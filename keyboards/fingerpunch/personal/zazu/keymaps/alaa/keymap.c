@@ -71,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_R, KC_2,   KC_S,   KC_N,   KC_T,   KC_G,                   KC_DOT,   KC_A,   KC_E,     KC_I, KC_2,  KC_H,
               KC_6,   KC_C,   KC_L,   KC_D,   KC_0,                   KC_0,     KC_U,   KC_O,     KC_Y, KC_6,
                                 MO_NAV, KC_SPACE,  KC_DOT, KC_COMMA,  OSM(MOD_LSFT), MO_SYM,
-                                        KC_BTN1, KC_BTN2, KC_BTN3,
+                                        MS_BTN1, MS_BTN2, MS_BTN3,
                                      // click  ,  right           , down    , left          , up
                                      ACCEL_TOG , KC_AUDIO_VOL_DOWN, SNP_TOG, KC_AUDIO_VOL_UP, DRG_TOG
 
@@ -91,9 +91,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_3,     KC_2,   KC_2,   KC_1,   KC_0,   KC_MINUS,           KC_DOT,   OS_LSFT, OS_LGUI,  OS_RALT, KC_2, OS_LCTL,
                   KC_6,   KC_6,   KC_5,   KC_4,   KC_0,               KC_0,     KC_QUES, KC_EXLM, KC_SLSH,  KC_6,
                                  KC_TRNS,       KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-                                            RGB_HUD, RGB_SAI, RGB_SAD,
+                                            UG_HUED, UG_SATU, UG_SATD,
                                          // click  ,  right , down      , left   , up
-                                            RGB_TOG, RGB_VAI, RGB_RMOD, RGB_VAD, RGB_MOD
+                                            UG_TOGG, UG_VALU, UG_PREV, UG_VALD, UG_NEXT
     ),
     [HDNW] = LAYOUT_2_3x5_3(
         KC_W, KC_9,  KC_F,   KC_M,   KC_P,   KC_B,                   KC_COMMA, KC_X,   KC_QUOTE, KC_J, KC_9,   KC_K,
@@ -119,9 +119,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_3,     KC_2,  KC_2,   KC_1,   KC_0,   KC_MINUS,           KC_DOT,   OS_LSFT, OS_LCTL, OS_RALT, KC_2, OS_LGUI,
                   KC_6,  KC_6,   KC_5,   KC_4,   KC_0,               KC_0,     KC_QUES, KC_EXLM, KC_SLSH, KC_6,
                                             KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,KC_TRNS,KC_TRNS,
-                                            RGB_HUD, RGB_SAI, RGB_SAD,
+                                            UG_HUED, UG_SATU, UG_SATD,
                                          // click  ,  right , down      , left   , up
-                                            RGB_TOG, RGB_VAI, RGB_RMOD, RGB_VAD, RGB_MOD
+                                            UG_TOGG, UG_VALU, UG_PREV, UG_VALD, UG_NEXT
     )
 };
 
@@ -254,10 +254,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
-    [HDN]  =  { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN)},
-    [NAV]  =  { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN)},
-    [SYM]  =  { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN)},
-    [HDNW] =  { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN)},
-    [NAVW] =  { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN)},
-    [SYMW] =  { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN)}
+    [HDN]  =  { ENCODER_CCW_CW(MS_WHLU, MS_WHLD)},
+    [NAV]  =  { ENCODER_CCW_CW(MS_WHLU, MS_WHLD)},
+    [SYM]  =  { ENCODER_CCW_CW(MS_WHLU, MS_WHLD)},
+    [HDNW] =  { ENCODER_CCW_CW(MS_WHLU, MS_WHLD)},
+    [NAVW] =  { ENCODER_CCW_CW(MS_WHLU, MS_WHLD)},
+    [SYMW] =  { ENCODER_CCW_CW(MS_WHLU, MS_WHLD)}
 };

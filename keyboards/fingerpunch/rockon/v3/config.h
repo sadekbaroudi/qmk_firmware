@@ -67,10 +67,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   // If we have audio enabled, that means we're not using the center encoder, as they share a pin on the controller
   // Note that you need to solder the jumper on the pcb and remove teh audio buzzer from the pcb if using the center encoder
   #ifdef AUDIO_ENABLE
+#undef ENCODERS_PAD_A
       #define ENCODERS_PAD_A {C7, D5}
+#undef ENCODERS_PAD_B
       #define ENCODERS_PAD_B {D2, B7}
   #else
+#undef ENCODERS_PAD_A
       #define ENCODERS_PAD_A {C7, D5, F1}
+#undef ENCODERS_PAD_B
       #define ENCODERS_PAD_B {D2, B7, F0}
   #endif
 

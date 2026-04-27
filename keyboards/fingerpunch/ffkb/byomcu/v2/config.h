@@ -28,7 +28,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MATRIX_COL_PINS \
     { B5, B4, E6, D7, C6, D4, B2, B3 }
 
+#undef ENCODERS_PAD_A
 #define ENCODERS_PAD_A {D5, B6, D1}
+#undef ENCODERS_PAD_B
 #define ENCODERS_PAD_B {B7, F1, D0}
 
 #ifdef FP_EVQ_UNDER_PALMS
@@ -42,7 +44,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #if defined(OLED_ENABLE) || defined(PIMORONI_TRACKBALL_ENABLE)
 #undef ENCODERS_PAD_A
+#undef ENCODERS_PAD_A
 #define ENCODERS_PAD_A {D5, B6}
+#undef ENCODERS_PAD_B
 #undef ENCODERS_PAD_B
 #define ENCODERS_PAD_B {B7, F1}
 #endif
@@ -67,7 +71,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef AUDIO_ENABLE
     #define AUDIO_VOICES
     #define AUDIO_PIN F0
-    #if defined(CONVERT_TO_ELITE_PI) || defined(CONVERT_TO_RP2040_CE) || defined(CONVERT_TO_HELIOS) || defined(CONVERT_TO_LIATRIS) || defined(CONVERT_TO_KB2040) || defined(CONVERT_TO_PROMICRO_RP2040)
+    #if defined(CONVERT_TO_ELITE_PI) || defined(CONVERT_TO_RP2040_CE) || defined(CONVERT_TO_HELIOS) || defined(CONVERT_TO_LIATRIS) || defined(CONVERT_TO_KB2040) || defined(CONVERT_TO_SPARKFUN_RP2040)
     #define AUDIO_PWM_DRIVER PWMD0
     #define AUDIO_PWM_CHANNEL RP2040_PWM_CHANNEL_A
     #else

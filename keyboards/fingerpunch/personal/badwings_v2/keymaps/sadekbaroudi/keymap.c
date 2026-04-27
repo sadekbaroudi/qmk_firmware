@@ -76,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ________________SHIFTNAV_1_________________, ________________FUNCTION_1_________________,
         ________________SHIFTNAV_2_________________, ________________FUNCTION_2_________________,
         ________________SHIFTNAV_3_________________, ________________FUNCTION_3_________________,
-                 KC_MS_BTN3, KC_MS_BTN1, KC_MS_BTN2, N_DEL_LINE, KC_SPACE, _______
+                 MS_BTN3, MS_BTN1, MS_BTN2, N_DEL_LINE, KC_SPACE, _______
     ),
 
     [_MEDIA] = LAYOUT_wrapper(
@@ -90,6 +90,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______________AUTO_MOUSE_1________________, ___________________BLANK___________________,
         _______________AUTO_MOUSE_2________________, ___________________BLANK___________________,
         _______________AUTO_MOUSE_3________________, ___________________BLANK___________________,
-                    _______, KC_MS_BTN1, KC_MS_BTN3, KC_MS_BTN3, KC_MS_BTN2, _______
+                    _______, MS_BTN1, MS_BTN3, MS_BTN3, MS_BTN2, _______
     )
 };

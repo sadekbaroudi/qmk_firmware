@@ -528,29 +528,29 @@ NOTE: These are all the same length.  If you do a search/replace
 
 // MEDIA LAYER
 
-#define __RGB_1_K1__ RGB_TOG
-#define __RGB_1_K2__ RGB_MODE_REVERSE
-#define __RGB_1_K3__ RGB_MODE_FORWARD
+#define __RGB_1_K1__ UG_TOGG
+#define __RGB_1_K2__ UG_PREV
+#define __RGB_1_K3__ UG_NEXT
 #define __RGB_1_K4__ _______
 #define __RGB_1_K5__ TG(_ALPHA_ALT)
 
 #define __RGB_2_K1__ KC_RGB_BLT
-#define __RGB_2_K2__ RGB_HUI
-#define __RGB_2_K3__ RGB_SAI
-#define __RGB_2_K4__ RGB_VAI
+#define __RGB_2_K2__ UG_HUEU
+#define __RGB_2_K3__ UG_SATU
+#define __RGB_2_K4__ UG_VALU
 #define __RGB_2_K5__ TG(_ALPHA)
 
 #define __RGB_3_K1__ KC_RGB_T
-#define __RGB_3_K2__ RGB_HUD
-#define __RGB_3_K3__ RGB_SAD
-#define __RGB_3_K4__ RGB_VAD
+#define __RGB_3_K2__ UG_HUED
+#define __RGB_3_K3__ UG_SATD
+#define __RGB_3_K4__ UG_VALD
 #define __RGB_3_K5__ _______
 
 #define ___________________RGB_1___________________			__RGB_1_K1__, __RGB_1_K2__, __RGB_1_K3__, __RGB_1_K4__, __RGB_1_K5__
 #define ___________________RGB_2___________________			__RGB_2_K1__, __RGB_2_K2__, __RGB_2_K3__, __RGB_2_K4__, __RGB_2_K5__
 #define ___________________RGB_3___________________			__RGB_3_K1__, __RGB_3_K2__, __RGB_3_K3__, __RGB_3_K4__, __RGB_3_K5__
 
-#define __MACROS_1_K1__ RGB_SPI
+#define __MACROS_1_K1__ UG_SPDU
 #define __MACROS_1_K2__ FP_POINT_DPI_RESET
 #define __MACROS_1_K3__ FP_SCROLL_DPI_RESET
 #define __MACROS_1_K4__ FP_SNIPE_DPI_RESET
@@ -562,7 +562,7 @@ NOTE: These are all the same length.  If you do a search/replace
 #define __MACROS_2_K4__ FP_SNIPE_DPI_UP
 #define __MACROS_2_K5__ P_ARROW
 
-#define __MACROS_3_K1__ RGB_SPD
+#define __MACROS_3_K1__ UG_SPDD
 #define __MACROS_3_K2__ FP_POINT_DPI_DN
 #define __MACROS_3_K3__ FP_SCROLL_DPI_DN
 #define __MACROS_3_K4__ FP_SNIPE_DPI_DN
@@ -581,44 +581,44 @@ NOTE: These are all the same length.  If you do a search/replace
 // MOUSE LAYER
 
 #define __MOUSE_1_K1__ _______
-#define __MOUSE_1_K2__ KC_MS_WH_UP
-#define __MOUSE_1_K3__ KC_MS_UP
-#define __MOUSE_1_K4__ KC_MS_WH_DOWN
+#define __MOUSE_1_K2__ MS_WHLU
+#define __MOUSE_1_K3__ MS_UP
+#define __MOUSE_1_K4__ MS_WHLD
 #define __MOUSE_1_K5__ _______
 
-#define __MOUSE_2_K1__ KC_MS_WH_LEFT
-#define __MOUSE_2_K2__ KC_MS_LEFT
-#define __MOUSE_2_K3__ KC_MS_DOWN
-#define __MOUSE_2_K4__ KC_MS_RIGHT
-#define __MOUSE_2_K5__ KC_MS_WH_RIGHT
+#define __MOUSE_2_K1__ MS_WHLL
+#define __MOUSE_2_K2__ MS_LEFT
+#define __MOUSE_2_K3__ MS_DOWN
+#define __MOUSE_2_K4__ MS_RGHT
+#define __MOUSE_2_K5__ MS_WHLR
 
 #define __MOUSE_3_K1__ _______
-#define __MOUSE_3_K2__ KC_MS_WH_UP
-#define __MOUSE_3_K3__ KC_MS_WH_DOWN
-#define __MOUSE_3_K4__ KC_MS_ACCEL1
-#define __MOUSE_3_K5__ KC_MS_ACCEL2
+#define __MOUSE_3_K2__ MS_WHLU
+#define __MOUSE_3_K3__ MS_WHLD
+#define __MOUSE_3_K4__ MS_ACL1
+#define __MOUSE_3_K5__ MS_ACL2
 
 #define __________________MOUSE_1__________________     __MOUSE_1_K1__, __MOUSE_1_K2__, __MOUSE_1_K3__, __MOUSE_1_K4__, __MOUSE_1_K5__
 #define __________________MOUSE_2__________________     __MOUSE_2_K1__, __MOUSE_2_K2__, __MOUSE_2_K3__, __MOUSE_2_K4__, __MOUSE_2_K5__
 #define __________________MOUSE_3__________________     __MOUSE_3_K1__, __MOUSE_3_K2__, __MOUSE_3_K3__, __MOUSE_3_K4__, __MOUSE_3_K5__
 
 #define __AMOUSE_1_K1_ _______
-#define __AMOUSE_1_K2_ KC_MS_WH_UP
-#define __AMOUSE_1_K3_ KC_MS_UP
-#define __AMOUSE_1_K4_ KC_MS_WH_DOWN
+#define __AMOUSE_1_K2_ MS_WHLU
+#define __AMOUSE_1_K3_ MS_UP
+#define __AMOUSE_1_K4_ MS_WHLD
 #define __AMOUSE_1_K5_ _______
 
-#define __AMOUSE_2_K1_ KC_MS_WH_LEFT
-#define __AMOUSE_2_K2_ KC_BTN3
-#define __AMOUSE_2_K3_ KC_BTN2
-#define __AMOUSE_2_K4_ KC_BTN1
-#define __AMOUSE_2_K5_ KC_MS_WH_RIGHT
+#define __AMOUSE_2_K1_ MS_WHLL
+#define __AMOUSE_2_K2_ MS_BTN3
+#define __AMOUSE_2_K3_ MS_BTN2
+#define __AMOUSE_2_K4_ MS_BTN1
+#define __AMOUSE_2_K5_ MS_WHLR
 
 #define __AMOUSE_3_K1_ EE_CLR
-#define __AMOUSE_3_K2_ KC_MS_WH_UP
-#define __AMOUSE_3_K3_ KC_MS_WH_DOWN
-#define __AMOUSE_3_K4_ KC_MS_ACCEL1
-#define __AMOUSE_3_K5_ KC_MS_ACCEL2
+#define __AMOUSE_3_K2_ MS_WHLU
+#define __AMOUSE_3_K3_ MS_WHLD
+#define __AMOUSE_3_K4_ MS_ACL1
+#define __AMOUSE_3_K5_ MS_ACL2
 
 #define _______________AUTO_MOUSE_1________________     __AMOUSE_1_K1_, __AMOUSE_1_K2_, __AMOUSE_1_K3_, __AMOUSE_1_K4_, __AMOUSE_1_K5_
 #define _______________AUTO_MOUSE_2________________     __AMOUSE_2_K1_, __AMOUSE_2_K2_, __AMOUSE_2_K3_, __AMOUSE_2_K4_, __AMOUSE_2_K5_

@@ -76,9 +76,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_FUNCTION] = LAYOUT_wrapper( \
     QK_BOOT, TG(_KICAD), TG(_FUSION),      TG(_ALPHA),        KC_4,     KC_5,       KC_LBRC, \
-    KC_TAB,  RGB_TOG,    RGB_MODE_REVERSE, RGB_MODE_FORWARD,  _______,  RGB_SPI,    BL_ON, \
-    KC_CAPS, KC_RGB_BLT, RGB_HUI,          RGB_SAI,           RGB_VAI,  RGB_SPI,    BL_OFF, \
-    KC_LSFT, KC_RGB_T,   RGB_HUD,          RGB_SAD,           RGB_VAD,  RGB_SPD,                                KC_UP, \
+    KC_TAB,  UG_TOGG,    UG_PREV, UG_NEXT,  _______,  UG_SPDU,    BL_ON, \
+    KC_CAPS, KC_RGB_BLT, UG_HUEU,          UG_SATU,           UG_VALU,  UG_SPDU,    BL_OFF, \
+    KC_LSFT, KC_RGB_T,   UG_HUED,          UG_SATD,           UG_VALD,  UG_SPDD,                                KC_UP, \
     KC_LCTL, KC_LGUI,   _______,                              KC_LALT,  KC_BSPC,   KC_SPC,             KC_LEFT, KC_MPLY, KC_RIGHT,  \
                                                                                                                 KC_DOWN, \
                                                    KC_VOLD,   KC_MUTE,   KC_VOLU, \

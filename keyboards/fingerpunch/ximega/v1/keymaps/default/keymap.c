@@ -43,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_CAPS,      LCTL_T(KC_A), LGUI_T(KC_S), LALT_T(KC_D), LSFT_T(KC_F), KC_G,         KC_H,    RSFT_T(KC_J), RALT_T(KC_K), RGUI_T(KC_L), RCTL_T(KC_SCLN), KC_QUOT,
   KC_LSFT,      KC_Z,         KC_X,         KC_C,         KC_V,         KC_B,         KC_N,    KC_M,         KC_COMM,      KC_DOT,       KC_SLSH,         KC_RCTL,
                 KC_VOLD,      KC_VOLU,      LOWER,        KC_ENT,       KC_DEL,       KC_BSPC, KC_SPC,       RAISE,        KC_VOLD,      KC_VOLU,
-                                            KC_MS_BTN3,   KC_MS_BTN1,   KC_MS_BTN2,   KC_VOLD, KC_MUTE,      KC_VOLU
+                                            MS_BTN3,   MS_BTN1,   MS_BTN2,   KC_VOLD, KC_MUTE,      KC_VOLU
 ),
 
 /* Colemak
@@ -141,9 +141,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_ADJUST] =  LAYOUT_ximega(
   _______,      _______, _______, _______, _______, _______,            _______, _______, _______, _______,  _______, _______,
-  _______,      RGB_TOG, RGB_RMOD, RGB_MOD, _______, TO(_QWERTY),       KC_F1,   KC_F2,   KC_F3,   KC_F4,    KC_F5,   _______,
-  _______,      RGB_SPI, RGB_HUI,  RGB_SAI, RGB_VAI, TO(_COLEMAK),      KC_F6,   KC_F7,   KC_F8,   KC_F9,    KC_F10,  _______,
-  _______,      RGB_SPD, RGB_HUD,  RGB_SAD, RGB_VAD, _______,           KC_F11,  KC_F12,  _______, QK_RBT,   QK_BOOT, _______,
+  _______,      UG_TOGG, UG_PREV, UG_NEXT, _______, TO(_QWERTY),       KC_F1,   KC_F2,   KC_F3,   KC_F4,    KC_F5,   _______,
+  _______,      UG_SPDU, UG_HUEU,  UG_SATU, UG_VALU, TO(_COLEMAK),      KC_F6,   KC_F7,   KC_F8,   KC_F9,    KC_F10,  _______,
+  _______,      UG_SPDD, UG_HUED,  UG_SATD, UG_VALD, _______,           KC_F11,  KC_F12,  _______, QK_RBT,   QK_BOOT, _______,
                 _______, _______,  _______, _______, _______,           _______, _______, _______, _______,  _______,
                                    _______, _______, _______,           _______, _______, _______
 )

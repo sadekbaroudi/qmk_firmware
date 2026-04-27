@@ -3,7 +3,7 @@
 This is the RP2040 revision of the firmware.
 You can use several RP2040 based MCUs with Pro Micro formfactor.
 By default the config is setup for the pinout of the Sparkfun Pro Micro RP2040, which is used by most of the RP2040 based MCUs. Since the KB2040/Blok/Elite-Pi have a slightly different pinout you need to change this line
-`CONVERT_TO = promicro_rp2040`
+`CONVERT_TO = rp2040_ce`
 to one of tis lines
 `CONVERT_TO = kb2040`
 `CONVERT_TO = blok`

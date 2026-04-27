@@ -139,7 +139,7 @@ void matrix_scan_kb(void) {
 }
 
 void keyboard_pre_init_kb(void) {
-    eeconfig_read_kb_datablock(&fp_config.raw);
+    eeconfig_read_kb_datablock(&fp_config.raw, 0, sizeof(fp_config.raw));
     keyboard_pre_init_user();
 }
 
@@ -215,7 +215,7 @@ void eeconfig_init_kb(void) {
     fp_config.sniping_dpi = FP_POINTING_SNIPING_DPI;
     fp_config.scrolling_dpi = FP_POINTING_SCROLLING_DPI;
     #endif
-    eeconfig_update_kb_datablock(&fp_config.raw);
+    eeconfig_update_kb_datablock(&fp_config.raw, 0, sizeof(fp_config.raw));
     eeconfig_init_user();
 }
 
