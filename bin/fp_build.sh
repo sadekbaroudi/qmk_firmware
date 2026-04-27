@@ -337,7 +337,7 @@ process_build_string() {
 		echo "exit status: ${build_run_status}"
         if [[ $build_run_status -ne 0 ]]; then
 			# if the firmware is too large, we proceed, but append to filename, otherwise we error out
-			if [[ "${build_run_output}" == *"The firmware is too large"* ]]; then
+			if [[ "${build_run_output}" == *"The firmware is too large"* ]] || [[ "${build_run_output}" == *"will not fit in region"* ]]; then
 				append_to_filename="FIRMWARE_SIZE_CHECK_FAILED"
 			else
 				echo "${0} build run failed with status ${build_run_status}"
