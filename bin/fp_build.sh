@@ -112,7 +112,7 @@ build_keyboard_user_input() {
 	local keyboard_name="${1#${2}/}"
 	local run_build="${4}"
 
-	local build_string="make ${keyboard_base_dir#keyboards\/}:${3}"
+	local build_string="qmk compile -kb ${keyboard_base_dir#keyboards\/} -km ${3}"
 	echo "${build_string}"
 	# get the total number of paramters
 	top_level_element_count=$(cat "${build_json}" | jq 'length')
@@ -142,7 +142,7 @@ build_keyboard_user_input() {
 			param_names=$(cat "${build_json}" | jq -r ".[${param_iter}].names | @sh" | tr -d \')
 			for param_name in $param_names; do
 			    if [[ $param_names_counter -eq $user_choice ]]; then
-			    	build_string+=" ${param_name}=yes"
+			    	build_string+=" -e ${param_name}=yes"
 			    fi
 			    ((param_names_counter+=1))
 			done
@@ -167,7 +167,7 @@ build_keyboard_user_input() {
             fi
 
 			param_name=$(cat "${build_json}" | jq -r ".[${param_iter}].name")
-			build_string+=" ${param_name}=${user_choice}"
+			build_string+=" -e ${param_name}=${user_choice}"
         elif [[ "${param_type}" == "convert-to" ]]; then
             # Do nothing, we can skip this for interactive mode
 			param_name=$(cat "${build_json}" | jq -r ".[${param_iter}].name")
@@ -178,11 +178,13 @@ build_keyboard_user_input() {
 	done
 
 	if [[ -n "${5}" && "${5}" != "no" ]]; then
-		build_string+=" CONVERT_TO=${5}"
+		build_string+=" -e CONVERT_TO=${5}"
 	fi
 
 	if [[ -n "${6}" && "${6}" != "no" ]]; then
-		build_string+=" ${6}"
+		for env_var in ${6}; do
+			build_string+=" -e ${env_var}"
+		done
 	fi
 
 	process_build_string "${build_string}" "${run_build}"
@@ -195,10 +197,10 @@ build_keyboard_all_combinations() {
 	local keyboard_name="${1#${2}/}"
 	local run_build="${4}"
 
-	local build_string_base="make ${keyboard_base_dir#keyboards\/}:${3}"
+	local build_string_base="qmk compile -kb ${keyboard_base_dir#keyboards\/} -km ${3}"
 
 	if [[ -n "${5}" && "${5}" != "no" ]]; then
-		build_string_base+=" CONVERT_TO=${5}"
+		build_string_base+=" -e CONVERT_TO=${5}"
 	fi
 
 	make_build_string_recursive "${build_json}" "${run_build}" 0 "${build_string_base}"
@@ -224,16 +226,16 @@ make_build_string_recursive() {
     if [[ "${param_type}" == "one-of" ]]; then
 		local param_names=$(cat "${build_json}" | jq -r ".[${param_number}].names | @sh" | tr -d \')
 		for param_name in $param_names; do
-			make_build_string_recursive "${build_json}" "${run_build}" $next_param_number "${build_string_base} ${param_name}=yes"
+			make_build_string_recursive "${build_json}" "${run_build}" $next_param_number "${build_string_base} -e ${param_name}=yes"
 		done
     # if it's a single value choice for a parmeter, or "yes or no" question
     elif [[ "${param_type}" == "single" ]]; then
 		local param_name=$(cat "${build_json}" | jq -r ".[${param_number}].name")
-		make_build_string_recursive "${build_json}" "${run_build}" $next_param_number "${build_string_base} ${param_name}=yes"
-		make_build_string_recursive "${build_json}" "${run_build}" $next_param_number "${build_string_base} ${param_name}=no"
+		make_build_string_recursive "${build_json}" "${run_build}" $next_param_number "${build_string_base} -e ${param_name}=yes"
+		make_build_string_recursive "${build_json}" "${run_build}" $next_param_number "${build_string_base} -e ${param_name}=no"
     elif [[ "${param_type}" == "convert-to" ]]; then
 		local param_name=$(cat "${build_json}" | jq -r ".[${param_number}].name")
-        make_build_string_recursive "${build_json}" "${run_build}" $next_param_number "${build_string_base} CONVERT_TO=${param_name}"
+        make_build_string_recursive "${build_json}" "${run_build}" $next_param_number "${build_string_base} -e CONVERT_TO=${param_name}"
     else
         echo "invalid type in json file: ${param_type}"
         exit
@@ -249,37 +251,42 @@ rename_file_from_build_string() {
 		target_filename_suffix="_${2}"
 	fi
 
+    # Parse -kb, -km, and -e flags from the qmk compile command
+    local kb_name=""
+    local km_name=""
+    local env_vars=()
+    local i=0
+    for token in "${tokens[@]}"; do
+        case "$token" in
+            -kb) kb_name="${tokens[$((i+1))]}" ;;
+            -km) km_name="${tokens[$((i+1))]}" ;;
+            -e)  env_vars+=("${tokens[$((i+1))]}") ;;
+        esac
+        ((i++))
+    done
+
     # Calculate the qmk build filename prefix to move it
-    token_file_prefix="${tokens[1]//\//_}"
-    token_file_prefix="${token_file_prefix//:/_}"
+    token_file_prefix="${kb_name//\//_}_${km_name}"
 
     # Start the new filename, which will be appended to below
     target_filename="${token_file_prefix}"
 
-    # check if token_i>1
-    # check if first paramter is CONVERT_TO, then grab other side of = (stemcell for example)
-    # otherwise grab first parameter (RGBLIGHT_ENABLE for example)
-    # rename file accordingly
-    token_i=0
-    for token in "${tokens[@]}"
-    do
-        if [[ $token_i -gt 1 ]]; then
-            config_param="${token%%=*}"
-            config_value="${token#*=}"
-            if [[ "${config_param}" == "CONVERT_TO" ]]; then
-                token_file_prefix+="_${config_value}"
-                target_filename+="_${config_value}"
-            else
-                # Make sure that the value is yes (it's enabled), otherwise we shouldn't include in the filename
-                if [[ "${config_value}" == "yes" ]]; then
-                    # ,, converts to lowercase
-                    target_filename+="_${config_param,,}"
-                    # remove _enable suffix as it's implied
-                    target_filename=${target_filename%"_enable"}
-                fi
+    # Process environment variables for CONVERT_TO and feature flags
+    for env_var in "${env_vars[@]}"; do
+        config_param="${env_var%%=*}"
+        config_value="${env_var#*=}"
+        if [[ "${config_param}" == "CONVERT_TO" ]]; then
+            token_file_prefix+="_${config_value}"
+            target_filename+="_${config_value}"
+        else
+            # Make sure that the value is yes (it's enabled), otherwise we shouldn't include in the filename
+            if [[ "${config_value}" == "yes" ]]; then
+                # ,, converts to lowercase
+                target_filename+="_${config_param,,}"
+                # remove _enable suffix as it's implied
+                target_filename=${target_filename%"_enable"}
             fi
         fi
-        token_i+=1
     done
 
     echo "${0}: filename token is ${token_file_prefix}"
