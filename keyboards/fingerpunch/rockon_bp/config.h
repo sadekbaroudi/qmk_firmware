@@ -134,10 +134,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define I2C1_DUTY_CYCLE FAST_DUTY_CYCLE_2
 
 /* encoder config */
-#undef ENCODERS_PAD_A
-#define ENCODERS_PAD_A {A8, B14}
-#undef ENCODERS_PAD_B
-#define ENCODERS_PAD_B {B15, B13}
+#undef ENCODER_A_PINS
+#define ENCODER_A_PINS {A8, B14}
+#undef ENCODER_B_PINS
+#define ENCODER_B_PINS {B15, B13}
 #define ENCODER_RESOLUTION 2
 
 // disable testing

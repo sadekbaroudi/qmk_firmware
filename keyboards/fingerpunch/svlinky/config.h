@@ -74,15 +74,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // For VIK modules with encoders
 #ifdef ENCODER_ENABLE
 #ifdef FP_SVLINKY_V01
-#undef ENCODERS_PAD_A
-#define ENCODERS_PAD_A { GP18 } // svlinky v0.1
-#undef ENCODERS_PAD_B
-#define ENCODERS_PAD_B { GP24 } // svlinky v0.1
+#undef ENCODER_A_PINS
+#define ENCODER_A_PINS { GP18 } // svlinky v0.1
+#undef ENCODER_B_PINS
+#define ENCODER_B_PINS { GP24 } // svlinky v0.1
 #else
-#undef ENCODERS_PAD_A
-#define ENCODERS_PAD_A { GP26 } // svlinky v0.2
-#undef ENCODERS_PAD_B
-#define ENCODERS_PAD_B { GP27 } // svlinky v0.2
+#undef ENCODER_A_PINS
+#define ENCODER_A_PINS { GP26 } // svlinky v0.2
+#undef ENCODER_B_PINS
+#define ENCODER_B_PINS { GP27 } // svlinky v0.2
 #endif
 #endif
 

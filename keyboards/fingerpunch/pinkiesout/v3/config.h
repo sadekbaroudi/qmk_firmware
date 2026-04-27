@@ -50,10 +50,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DIODE_DIRECTION COL2ROW
 
 /* encoder config */
-#undef ENCODERS_PAD_A
-#define ENCODERS_PAD_A {GP1, GP13}
-#undef ENCODERS_PAD_B
-#define ENCODERS_PAD_B {GP14, GP12}
+#undef ENCODER_A_PINS
+#define ENCODER_A_PINS {GP1, GP13}
+#undef ENCODER_B_PINS
+#define ENCODER_B_PINS {GP14, GP12}
 #define ENCODER_RESOLUTION 2
 
 #define WS2812_DI_PIN GP25

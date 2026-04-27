@@ -28,10 +28,10 @@
 /* COL2ROW or ROW2COL */
 #define DIODE_DIRECTION ROW2COL
 
-#undef ENCODERS_PAD_A
-#define ENCODERS_PAD_A {F6 , F4}
-#undef ENCODERS_PAD_B
-#define ENCODERS_PAD_B {F5 , D3}
+#undef ENCODER_A_PINS
+#define ENCODER_A_PINS {F6 , F4}
+#undef ENCODER_B_PINS
+#define ENCODER_B_PINS {F5 , D3}
 
 #define ENCODER_RESOLUTION 2
 // Per encoder settings

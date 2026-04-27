@@ -61,10 +61,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //   #define RGBLIGHT_EFFECT_BREATHE_MAX    255   // 0 to 255
 #endif
 
-#undef ENCODERS_PAD_A
-#define ENCODERS_PAD_A {C6 , B4}
-#undef ENCODERS_PAD_B
-#define ENCODERS_PAD_B {B6 , B5}
+#undef ENCODER_A_PINS
+#define ENCODER_A_PINS {C6 , B4}
+#undef ENCODER_B_PINS
+#define ENCODER_B_PINS {B6 , B5}
 
 #define ENCODER_RESOLUTION 2
 // Per encoder settings

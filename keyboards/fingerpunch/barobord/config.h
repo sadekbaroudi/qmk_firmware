@@ -99,10 +99,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #define ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
 #endif
 
-#undef ENCODERS_PAD_A
-#define ENCODERS_PAD_A {B4 , D6}
-#undef ENCODERS_PAD_B
-#define ENCODERS_PAD_B {D7 , D4}
+#undef ENCODER_A_PINS
+#define ENCODER_A_PINS {B4 , D6}
+#undef ENCODER_B_PINS
+#define ENCODER_B_PINS {D7 , D4}
 
 #define ENCODER_RESOLUTION 2
 

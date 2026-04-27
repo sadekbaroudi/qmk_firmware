@@ -51,14 +51,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // │ e n c o d e r s                                 │
 // └─────────────────────────────────────────────────┘
 
-#undef ENCODERS_PAD_A
-#define ENCODERS_PAD_A       { F5 }
-#undef ENCODERS_PAD_B
-#define ENCODERS_PAD_B       { F4 }
-#undef ENCODERS_PAD_A_RIGHT
-#define ENCODERS_PAD_A_RIGHT { F4 }
-#undef ENCODERS_PAD_B_RIGHT
-#define ENCODERS_PAD_B_RIGHT { F5 }
+#undef ENCODER_A_PINS
+#define ENCODER_A_PINS       { F5 }
+#undef ENCODER_B_PINS
+#define ENCODER_B_PINS       { F4 }
+#undef ENCODER_A_PINS_RIGHT
+#define ENCODER_A_PINS_RIGHT { F4 }
+#undef ENCODER_B_PINS_RIGHT
+#define ENCODER_B_PINS_RIGHT { F5 }
 #define ENCODER_RESOLUTION 2
 
 

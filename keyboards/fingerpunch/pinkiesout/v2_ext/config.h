@@ -47,10 +47,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DIODE_DIRECTION COL2ROW
 
 /* encoder config */
-#undef ENCODERS_PAD_A
-#define ENCODERS_PAD_A {C7, D5}
-#undef ENCODERS_PAD_B
-#define ENCODERS_PAD_B {D2, B7}
+#undef ENCODER_A_PINS
+#define ENCODER_A_PINS {C7, D5}
+#undef ENCODER_B_PINS
+#define ENCODER_B_PINS {D2, B7}
 #define ENCODER_RESOLUTION 2
 
 #define WS2812_DI_PIN D3

@@ -71,10 +71,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define VIK_WS2812_DI_PIN GP16
 
 #ifdef VIK_EC11_EVQWGD001
-#undef ENCODERS_PAD_A
-#define ENCODERS_PAD_A {GP18}
-#undef ENCODERS_PAD_B
-#define ENCODERS_PAD_B {GP24}
+#undef ENCODER_A_PINS
+#define ENCODER_A_PINS {GP18}
+#undef ENCODER_B_PINS
+#define ENCODER_B_PINS {GP24}
 #endif
 #endif
 

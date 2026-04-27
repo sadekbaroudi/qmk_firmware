@@ -83,15 +83,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // For VIK modules with encoders
 #ifdef ENCODER_ENABLE
 #if defined(FP_XIVIK_V01) || defined(FP_XIVIK_V02)
-#undef ENCODERS_PAD_A
-#define ENCODERS_PAD_A { GP18 }
-#undef ENCODERS_PAD_B
-#define ENCODERS_PAD_B { GP10 }
+#undef ENCODER_A_PINS
+#define ENCODER_A_PINS { GP18 }
+#undef ENCODER_B_PINS
+#define ENCODER_B_PINS { GP10 }
 #else // If we're here, it's v03
-#undef ENCODERS_PAD_A
-#define ENCODERS_PAD_A { GP26 }
-#undef ENCODERS_PAD_B
-#define ENCODERS_PAD_B { GP27 }
+#undef ENCODER_A_PINS
+#define ENCODER_A_PINS { GP26 }
+#undef ENCODER_B_PINS
+#define ENCODER_B_PINS { GP27 }
 #endif
 #endif
 

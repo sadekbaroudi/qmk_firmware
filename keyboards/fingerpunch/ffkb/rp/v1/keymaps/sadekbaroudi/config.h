@@ -1,7 +1,5 @@
 // --------------------------- Other keyboard build specific configs ------------------------------
 #ifdef FFKB_TRACKPOINT_BUILD
-#undef ENCODERS_PAD_A
-#undef ENCODERS_PAD_B
 #ifdef RGBLIGHT_LED_COUNT
     #undef RGBLIGHT_LED_COUNT
 #endif
