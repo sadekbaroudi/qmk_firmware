@@ -309,6 +309,12 @@ static bool tetris_falling_horizontal(effect_params_t* params) {
         for (uint8_t check_col = 0; check_col <= 1; check_col++) {
             for (uint8_t check_row = 0; check_row <= get_blocktype_row_starting_offset(h_active_t_blocktype); check_row++) {
                 if (active_t_block_matrix[check_row][check_col] == T_CHK_YS) {
+                    // Bounds check before array access: if the block extends past the right edge, treat as no-collision settle
+                    if (h_active_t_col + check_col >= MATRIX_COLS) {
+                        subtract = 1;
+                        h_drop_active = false;
+                        continue;
+                    }
                     if ((active_t_block_matrix[check_row][check_col] & h_g_rgb_frame_buffer_copy[h_active_t_row+check_row][h_active_t_col+check_col]) == 0) {
                         // If we're here, no collision
                         if (h_active_t_col >= (MATRIX_COLS-1)) {
@@ -348,7 +354,7 @@ static bool tetris_falling_horizontal(effect_params_t* params) {
                 if (active_t_block_matrix[check_row][check_col] == T_CHK_YS) {
                     // This if condition is just to check to make sure that we don't try to draw above the top row
                     // This is a possibility if the last tetromino had a block that had a collision that left the top part of it in row -1
-                    if ( h_active_t_col+check_col-subtract >= 0) {
+                    if ( (int16_t)(h_active_t_col+check_col-subtract) >= 0) {
                         h_g_rgb_frame_buffer_copy[h_active_t_row+check_row][h_active_t_col+check_col-subtract] = h_active_t_blocktype;
                     }
                 }
