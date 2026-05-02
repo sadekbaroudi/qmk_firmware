@@ -78,7 +78,7 @@ layer_state_t fp_layer_state_set_rgb(layer_state_t state) {
 #           ifndef FP_LAYER_LIGHTING_DISABLE
             if (fp_caps_lock_get()) {
                 fp_rgb_set_hsv_and_mode(FP_LAYER_LIGHTING_CAPS_LOCK_HUE, FP_LAYER_LIGHTING_CAPS_LOCK_MODE);
-                xprintf("caps lock /n");
+                xprintf("caps lock \n");
             } else {
 #           ifdef FP_LAYER_LIGHTING_DYNAMIC_BASE_LAYER_DISABLE
                 fp_rgb_set_hsv_and_mode(FP_LAYER_LIGHTING_HUE_0, FP_LAYER_LIGHTING_MODE_0);
