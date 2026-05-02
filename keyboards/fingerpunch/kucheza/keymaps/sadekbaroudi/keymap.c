@@ -9,7 +9,7 @@
 #define _ALPHA 4
 
 enum custom_keycodes {
-  GAME = SAFE_RANGE,
+  GAME = NEW_SAFE_RANGE,
   FUNCTION,
   KICAD,
   FUSION,

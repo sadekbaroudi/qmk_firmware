@@ -185,9 +185,8 @@ bool fp_process_record_rgb_common(uint16_t keycode, keyrecord_t *record) {
 uint8_t fp_rgb_get_element_from_hsv(uint8_t hue, uint8_t sat, uint8_t val, uint8_t whichOne) {
     switch (whichOne) {
         case 0:
-            return hue;
             xprintf("fp_rgb_get_element_from_hsv: returning hue value: %d", hue);
-            break;
+            return hue;
         case 1:
             return sat;
             break;

@@ -124,6 +124,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 register_code(KC_LSFT);
                 SEND_STRING(SS_TAP(X_HOME));
                 unregister_code(KC_LSFT);
+                tap_code(KC_BSPC);
             } else {
                 // when keycode is released
             }

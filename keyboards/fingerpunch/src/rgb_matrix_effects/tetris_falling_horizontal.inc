@@ -49,7 +49,7 @@ RGB_MATRIX_EFFECT(tetris_falling_horizontal)
  */
 uint8_t h_get_random_blocktype(void) {
     // random 0-6
-    uint8_t randomInt = rand() % 6;
+    uint8_t randomInt = rand() % 7;
     uint8_t blockType = 1;
 
     switch (randomInt) {

@@ -492,12 +492,12 @@ void pointing_device_init_kb(void) {
 bool auto_mouse_activation(report_mouse_t mouse_report) {
     // If we're in sniping mode, lower the threshold, otherwise give it some room to move for accidental triggers of auto mouse layer
     if (fp_snipe_layer_get() || fp_snipe_keycode_get()) {
-        return fabs(mouse_report.x) >= 0.5 || fabs(mouse_report.y) >= 0.5 || fabs(mouse_report.h) >= 0.5 || fabs(mouse_report.v) >= 0.5 || mouse_report.buttons;
+        return abs(mouse_report.x) >= 1 || abs(mouse_report.y) >= 1 || abs(mouse_report.h) >= 1 || abs(mouse_report.v) >= 1 || mouse_report.buttons;
     } else {
-        return fabs(mouse_report.x) >= FP_AUTO_MOUSE_TRACKBALL_SENSITIVITY_X ||
-               fabs(mouse_report.y) >= FP_AUTO_MOUSE_TRACKBALL_SENSITIVITY_Y ||
-               fabs(mouse_report.h) >= FP_AUTO_MOUSE_TRACKBALL_SENSITIVITY_H ||
-               fabs(mouse_report.v) >= FP_AUTO_MOUSE_TRACKBALL_SENSITIVITY_V ||
+        return abs(mouse_report.x) >= FP_AUTO_MOUSE_TRACKBALL_SENSITIVITY_X ||
+               abs(mouse_report.y) >= FP_AUTO_MOUSE_TRACKBALL_SENSITIVITY_Y ||
+               abs(mouse_report.h) >= FP_AUTO_MOUSE_TRACKBALL_SENSITIVITY_H ||
+               abs(mouse_report.v) >= FP_AUTO_MOUSE_TRACKBALL_SENSITIVITY_V ||
                mouse_report.buttons;
     }
 }

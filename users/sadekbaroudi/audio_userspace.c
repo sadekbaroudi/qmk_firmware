@@ -1,4 +1,4 @@
-#ifdef AUDIO_ENABLED
+#ifdef AUDIO_ENABLE
 #include "audio_userspace.h"
 #include "song_list.h"
 #include "musical_notes.h"

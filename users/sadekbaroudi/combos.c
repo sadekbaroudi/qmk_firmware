@@ -346,6 +346,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
       if (pressed) {
         tap_code16(__META_NAV_L1_K5__);
       }
+      break;
     case SYM_R_TL:
       if (pressed) {
         tap_code16(__SYMBOLS_R1_K1__);
