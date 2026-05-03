@@ -49,7 +49,7 @@ RGB_MATRIX_EFFECT(tetris_falling)
  */
 uint8_t get_random_blocktype(void) {
     // random 0-6
-    uint8_t randomInt = rand() % 6;
+    uint8_t randomInt = rand() % 7;
     uint8_t blockType = 1;
 
     switch (randomInt) {
@@ -336,6 +336,12 @@ static bool tetris_falling(effect_params_t* params) {
         for (uint8_t check_col = 0; check_col <= get_blocktype_column_starting_offset(active_t_blocktype); check_col++) {
             for (uint8_t check_row = 0; check_row <= 1; check_row++) {
                 if (active_t_block_matrix[check_row][check_col] == T_CHK_YS) {
+                    // Bounds check before array access: if the block extends past the bottom, treat as no-collision settle
+                    if (active_t_row + check_row >= MATRIX_ROWS) {
+                        subtract = 1;
+                        drop_active = false;
+                        continue;
+                    }
                     if ((active_t_block_matrix[check_row][check_col] & g_rgb_frame_buffer_copy[active_t_row+check_row][active_t_col+check_col]) == 0) {
                         // If we're here, no collision
                         if (active_t_row >= (MATRIX_ROWS-1)) {
@@ -375,7 +381,7 @@ static bool tetris_falling(effect_params_t* params) {
                 if (active_t_block_matrix[check_row][check_col] == T_CHK_YS) {
                     // This if condition is just to check to make sure that we don't try to draw above the top row
                     // This is a possibility if the last tetromino had a block that had a collision that left the top part of it in row -1
-                    if ( active_t_row+check_row-subtract >= 0) {
+                    if ( (int16_t)(active_t_row+check_row-subtract) >= 0) {
                         g_rgb_frame_buffer_copy[active_t_row+check_row-subtract][active_t_col+check_col] = active_t_blocktype;
                     }
                 }

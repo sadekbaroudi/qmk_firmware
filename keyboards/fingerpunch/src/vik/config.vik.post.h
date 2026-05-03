@@ -68,10 +68,6 @@
     #define WS2812_DI_PIN VIK_WS2812_DI_PIN
 #endif
 
-#ifndef WS2812_DI_PIN
-    #define WS2812_DI_PIN VIK_WS2812_DI_PIN
-#endif
-
 #ifdef VIK_HAPTIC
     #define FB_ERM_LRA 1
     #define FB_BRAKEFACTOR 3 // For 1x:0, 2x:1, 3x:2, 4x:3, 6x:4, 8x:5, 16x:6, Disable Braking:7

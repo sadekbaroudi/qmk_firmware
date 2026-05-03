@@ -2,89 +2,60 @@
 
 userspace_config_t userspace_config;
 
-// Leader key combos - TODO move into another file?
+// Leader key combos
 #if defined(LEADER_ENABLE)
-LEADER_EXTERNS();
-
-void matrix_scan_leader_key(void) {
-  LEADER_DICTIONARY() {
-    leading = false;
-    leader_end();
-
-    // Time shortcuts
-    SEQ_TWO_KEYS(KC_H, KC_SLSH) {
-      SEND_STRING("1:00");
+void leader_end_user(void) {
+    // Time shortcuts - :00
+    if (leader_sequence_two_keys(KC_H, KC_SLSH)) {
+        SEND_STRING("1:00");
+    } else if (leader_sequence_two_keys(KC_COMM, KC_SLSH)) {
+        SEND_STRING("2:00");
+    } else if (leader_sequence_two_keys(KC_DOT, KC_SLSH)) {
+        SEND_STRING("3:00");
+    } else if (leader_sequence_two_keys(KC_N, KC_SLSH)) {
+        SEND_STRING("4:00");
+    } else if (leader_sequence_two_keys(KC_E, KC_SLSH)) {
+        SEND_STRING("5:00");
+    } else if (leader_sequence_two_keys(KC_I, KC_SLSH)) {
+        SEND_STRING("6:00");
+    } else if (leader_sequence_two_keys(KC_L, KC_SLSH)) {
+        SEND_STRING("7:00");
+    } else if (leader_sequence_two_keys(KC_U, KC_SLSH)) {
+        SEND_STRING("8:00");
+    } else if (leader_sequence_two_keys(KC_Y, KC_SLSH)) {
+        SEND_STRING("9:00");
+    } else if (leader_sequence_three_keys(KC_H, KC_SLSH, KC_SLSH)) {
+        SEND_STRING("10:00");
+    } else if (leader_sequence_three_keys(KC_H, KC_H, KC_SLSH)) {
+        SEND_STRING("11:00");
+    } else if (leader_sequence_three_keys(KC_H, KC_COMM, KC_SLSH)) {
+        SEND_STRING("12:00");
+    // Time shortcuts - :30
+    } else if (leader_sequence_two_keys(KC_H, KC_DOT)) {
+        SEND_STRING("1:30");
+    } else if (leader_sequence_two_keys(KC_COMM, KC_DOT)) {
+        SEND_STRING("2:30");
+    } else if (leader_sequence_two_keys(KC_DOT, KC_DOT)) {
+        SEND_STRING("3:30");
+    } else if (leader_sequence_two_keys(KC_N, KC_DOT)) {
+        SEND_STRING("4:30");
+    } else if (leader_sequence_two_keys(KC_E, KC_DOT)) {
+        SEND_STRING("5:30");
+    } else if (leader_sequence_two_keys(KC_I, KC_DOT)) {
+        SEND_STRING("6:30");
+    } else if (leader_sequence_two_keys(KC_L, KC_DOT)) {
+        SEND_STRING("7:30");
+    } else if (leader_sequence_two_keys(KC_U, KC_DOT)) {
+        SEND_STRING("8:30");
+    } else if (leader_sequence_two_keys(KC_Y, KC_DOT)) {
+        SEND_STRING("9:30");
+    } else if (leader_sequence_three_keys(KC_H, KC_SLSH, KC_DOT)) {
+        SEND_STRING("10:30");
+    } else if (leader_sequence_three_keys(KC_H, KC_H, KC_DOT)) {
+        SEND_STRING("11:30");
+    } else if (leader_sequence_three_keys(KC_H, KC_COMM, KC_DOT)) {
+        SEND_STRING("12:30");
     }
-    SEQ_TWO_KEYS(KC_COMM, KC_SLSH) {
-      SEND_STRING("2:00");
-    }
-    SEQ_TWO_KEYS(KC_DOT, KC_SLSH) {
-      SEND_STRING("3:00");
-    }
-    SEQ_TWO_KEYS(KC_N, KC_SLSH) {
-      SEND_STRING("4:00");
-    }
-    SEQ_TWO_KEYS(KC_E, KC_SLSH) {
-      SEND_STRING("5:00");
-    }
-    SEQ_TWO_KEYS(KC_I, KC_SLSH) {
-      SEND_STRING("6:00");
-    }
-    SEQ_TWO_KEYS(KC_L, KC_SLSH) {
-      SEND_STRING("7:00");
-    }
-    SEQ_TWO_KEYS(KC_U, KC_SLSH) {
-      SEND_STRING("8:00");
-    }
-    SEQ_TWO_KEYS(KC_Y, KC_SLSH) {
-      SEND_STRING("9:00");
-    }
-    SEQ_THREE_KEYS(KC_H, KC_SLSH, KC_SLSH) {
-      SEND_STRING("10:00");
-    }
-    SEQ_THREE_KEYS(KC_H, KC_H, KC_SLSH) {
-      SEND_STRING("11:00");
-    }
-    SEQ_THREE_KEYS(KC_H, KC_COMM, KC_SLSH) {
-      SEND_STRING("12:00");
-    }
-    SEQ_TWO_KEYS(KC_H, KC_DOT) {
-      SEND_STRING("1:30");
-    }
-    SEQ_TWO_KEYS(KC_COMM, KC_DOT) {
-      SEND_STRING("2:30");
-    }
-    SEQ_TWO_KEYS(KC_DOT, KC_DOT) {
-      SEND_STRING("3:30");
-    }
-    SEQ_TWO_KEYS(KC_N, KC_DOT) {
-      SEND_STRING("4:30");
-    }
-    SEQ_TWO_KEYS(KC_E, KC_DOT) {
-      SEND_STRING("5:30");
-    }
-    SEQ_TWO_KEYS(KC_I, KC_DOT) {
-      SEND_STRING("6:30");
-    }
-    SEQ_TWO_KEYS(KC_L, KC_DOT) {
-      SEND_STRING("7:30");
-    }
-    SEQ_TWO_KEYS(KC_U, KC_DOT) {
-      SEND_STRING("8:30");
-    }
-    SEQ_TWO_KEYS(KC_Y, KC_DOT) {
-      SEND_STRING("9:30");
-    }
-    SEQ_THREE_KEYS(KC_H, KC_SLSH, KC_DOT) {
-      SEND_STRING("10:30");
-    }
-    SEQ_THREE_KEYS(KC_H, KC_H, KC_DOT) {
-      SEND_STRING("11:30");
-    }
-    SEQ_THREE_KEYS(KC_H, KC_COMM, KC_DOT) {
-      SEND_STRING("12:30");
-    }
-  }
 }
 #endif
 
@@ -130,10 +101,6 @@ __attribute__((weak)) void matrix_scan_keymap(void) {}
 // No global matrix scan code, so just run keymap's matrix
 // scan function
 void matrix_scan_user(void) {
-#if defined(LEADER_ENABLE)
-    matrix_scan_leader_key();
-#endif
-
     matrix_scan_keymap();
 }
 
@@ -152,12 +119,11 @@ layer_state_t default_layer_state_set_user(layer_state_t state) {
     return state;
 }
 
-__attribute__((weak)) void led_set_keymap(uint8_t usb_led) {}
+__attribute__((weak)) bool led_update_keymap(led_t led_state) { return true; }
 
-// Any custom LED code goes here.
-// So far, I only have keyboard specific code,
-// So nothing goes here.
-void led_set_user(uint8_t usb_led) { led_set_keymap(usb_led); }
+bool led_update_user(led_t led_state) {
+    return led_update_keymap(led_state);
+}
 
 __attribute__((weak)) void eeconfig_init_keymap(void) {}
 
@@ -165,7 +131,6 @@ void eeconfig_init_user(void) {
     userspace_config.raw              = 0;
     eeconfig_update_user(userspace_config.raw);
     eeconfig_init_keymap();
-    keyboard_init();
 }
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
