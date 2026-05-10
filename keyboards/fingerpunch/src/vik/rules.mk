@@ -23,6 +23,12 @@
 # VIK_AZOTEQ_RIGHT
 # VIK_EC11_EVQWGD001_RIGHT
 
+# Cirque options (VIK boards)
+# CIRQUE_ENABLE   - enables a cirque pinnacle pad on the VIK connector
+# CIRQUE_DRIVER   - "spi" (default) or "i2c"
+# CIRQUE_SPI      - shorthand: sets CIRQUE_ENABLE=yes and CIRQUE_DRIVER=spi
+# CIRQUE_I2C      - shorthand: sets CIRQUE_ENABLE=yes and CIRQUE_DRIVER=i2c
+
 # Up front rules
 include keyboards/fingerpunch/src/vik/rules.vik.pre.mk
 

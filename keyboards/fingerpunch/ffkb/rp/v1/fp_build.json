@@ -1,5 +1,10 @@
 [
     {
+        "type" : "one-of",
+        "names" : [ "CIRQUE_SPI", "CIRQUE_I2C" ],
+        "user_input": "No cirque, SPI cirque, or I2C cirque?"
+    },
+    {
         "type" : "single",
         "name" : "FP_TRACKBALL_ENABLE",
         "user_input": "Do you have a trackball?"

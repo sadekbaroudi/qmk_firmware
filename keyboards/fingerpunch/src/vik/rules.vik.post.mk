@@ -8,7 +8,13 @@ endif
 ifeq ($(strip $(CIRQUE_ENABLE)), yes)
     MOUSEKEY_ENABLE := yes  # not required, but enabling for mouse button keys
     POINTING_DEVICE_ENABLE := yes
-    POINTING_DEVICE_DRIVER = cirque_pinnacle_spi
+    ifeq ($(strip $(CIRQUE_DRIVER)), i2c)
+        POINTING_DEVICE_DRIVER = cirque_pinnacle_i2c
+        OPT_DEFS += -DCIRQUE_DRIVER_I2C
+    else
+        POINTING_DEVICE_DRIVER = cirque_pinnacle_spi
+        OPT_DEFS += -DCIRQUE_DRIVER_SPI
+    endif
     OPT_DEFS += -DCIRQUE_ENABLE
 endif
 

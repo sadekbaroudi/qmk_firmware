@@ -15,9 +15,9 @@
         "user_input": "Are you using a VIK module? NONE, VIK_HAPTIC, VIK_ILI9341, VIK_PER56_CIRQUE_LEDS, VIK_PER56_CIRQUE_LEDS, VIK_PER56_PMW3360_LEDS, VIK_PMW3360, VIK_WEACT_ST7735, VIK_GC9A01, VIK_WAVESHARE_22224"
     },
     {
-        "type" : "single",
-        "name" : "CIRQUE_ENABLE",
-        "user_input": "Do you have a cirque?"
+        "type" : "one-of",
+        "names" : [ "CIRQUE_SPI", "CIRQUE_I2C" ],
+        "user_input": "No cirque, SPI cirque, or I2C cirque?"
     },
     {
         "type" : "single",

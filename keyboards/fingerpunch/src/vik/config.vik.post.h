@@ -202,7 +202,9 @@
 #endif
 
 #ifdef CIRQUE_ENABLE
-    #define CIRQUE_PINNACLE_SPI_CS_PIN VIK_SPI_CS
+    #ifndef CIRQUE_DRIVER_I2C
+        #define CIRQUE_PINNACLE_SPI_CS_PIN VIK_SPI_CS
+    #endif
     #define CIRQUE_PINNACLE_TAP_ENABLE
     #define POINTING_DEVICE_TASK_THROTTLE_MS 5
 #endif
