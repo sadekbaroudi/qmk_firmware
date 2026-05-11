@@ -1,31 +1,37 @@
-[
-    {
-        "type" : "one-of",
-        "names" : [
-            "FP_XIVIK_V01",
-            "FP_XIVIK_V02"
-        ],
-        "user_input": "Which version of xivik are you running? Latest v0.3 (0), v0.1 (1), or v0.2 (2)"
-    },
-    {
-        "type" : "one-of",
-        "names" : [
-            "VIK_HAPTIC",
-            "VIK_PER56_CIRQUE_LEDS",
-            "VIK_PER56_CIRQUE_LEDS",
-            "VIK_PER56_PMW3360_LEDS",
-            "VIK_PMW3360",
-            "VIK_ILI9341",
-            "VIK_WEACT_ST7735",
-            "VIK_GC9A01",
-            "VIK_WAVESHARE_22224",
-            "VIK_EC11_EVQWGD001"
-        ],
-        "user_input": "Which VIK module are you testing? NONE, VIK_HAPTIC, VIK_PER56_CIRQUE_LEDS, VIK_PER56_CIRQUE_LEDS, VIK_PER56_PMW3360_LEDS, VIK_PMW3360, VIK_ILI9341, VIK_WEACT_ST7735, VIK_GC9A01, VIK_WAVESHARE_22224, VIK_EC11_EVQWGD001"
-    },
-    {
-        "type" : "single",
-        "name" : "RGBLIGHT_ENABLE",
-        "user_input": "Does your VIK module have RGB?"
-    }
-]
+{
+    "$schema": "../src/schemas/fp_build.jsonschema",
+
+    "options": [
+        {
+            "type": "one-of",
+            "names": ["FP_XIVIK_V01", "FP_XIVIK_V02"],
+            "user_input": "Which version of xivik are you running? Latest v0.3 (0), v0.1 (1), or v0.2 (2)",
+            "default": "none"
+        },
+        {
+            "type": "one-of",
+            "names": [
+                "VIK_AZOTEQ",
+                "VIK_CIRQUE",
+                "VIK_EC11_EVQWGD001",
+                "VIK_GC9A01",
+                "VIK_HAPTIC",
+                "VIK_ILI9341",
+                "VIK_PER56_CIRQUE_LEDS",
+                "VIK_PER56_PMW3360_LEDS",
+                "VIK_PMW3360",
+                "VIK_TRACKPOINT",
+                "VIK_WAVESHARE_22224",
+                "VIK_WEACT_ST7735"
+            ],
+            "user_input": "Which VIK module are you using?",
+            "default": "none"
+        },
+        {
+            "type": "single",
+            "name": "RGBLIGHT_ENABLE",
+            "user_input": "Does your VIK module have RGB?",
+            "default": "no"
+        }
+    ]
+}

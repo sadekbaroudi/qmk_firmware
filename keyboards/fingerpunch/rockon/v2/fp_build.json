@@ -1,36 +1,51 @@
-[
-    {
-        "type" : "convert-to",
-        "name" : "stemcell"
-    },
-    {
-        "type" : "single",
-        "name" : "CIRQUE_ENABLE",
-        "user_input": "Do you have a cirque?"
-    },
-    {
-        "type" : "one-of",
-        "names" : [ "RGBLIGHT_ENABLE", "RGB_MATRIX_ENABLE" ],
-        "user_input": "No RGB, RGB light, RGB matrix?"
-    },
-    {
-        "type" : "single",
-        "name" : "OLED_ENABLE",
-        "user_input": "Do you have an OLED?"
-    },
-    {
-        "type" : "single",
-        "name" : "ENCODER_ENABLE",
-        "user_input": "Do you have one or more rotary encoders?"
-    },
-    {
-        "type" : "single",
-        "name" : "PIMORONI_TRACKBALL_ENABLE",
-        "user_input": "Do you have a pimoroni trackball?"
-    },
-    {
-        "type" : "single",
-        "name" : "HAPTIC_ENABLE",
-        "user_input": "Do you have haptic feedback?"
-    }
-]
+{
+    "$schema": "../../src/schemas/fp_build.jsonschema",
+
+    "options": [
+        {
+            "type": "value",
+            "name": "CONVERT_TO",
+            "user_input": "Build with CONVERT_TO=stemcell?",
+            "values": ["stemcell"],
+            "default": "stemcell"
+        },
+        {
+            "type": "single",
+            "name": "CIRQUE_ENABLE",
+            "user_input": "Do you have a cirque?",
+            "default": "no",
+            "conflicts_with": ["PIMORONI_TRACKBALL_ENABLE"]
+        },
+        {
+            "type": "one-of",
+            "names": ["RGBLIGHT_ENABLE", "RGB_MATRIX_ENABLE"],
+            "user_input": "No RGB, RGB light, RGB matrix?",
+            "default": "none"
+        },
+        {
+            "type": "single",
+            "name": "OLED_ENABLE",
+            "user_input": "Do you have an OLED?",
+            "default": "no"
+        },
+        {
+            "type": "single",
+            "name": "ENCODER_ENABLE",
+            "user_input": "Do you have one or more rotary encoders?",
+            "default": "no"
+        },
+        {
+            "type": "single",
+            "name": "PIMORONI_TRACKBALL_ENABLE",
+            "user_input": "Do you have a pimoroni trackball?",
+            "default": "no",
+            "conflicts_with": ["CIRQUE_ENABLE"]
+        },
+        {
+            "type": "single",
+            "name": "HAPTIC_ENABLE",
+            "user_input": "Do you have haptic feedback?",
+            "default": "no"
+        }
+    ]
+}

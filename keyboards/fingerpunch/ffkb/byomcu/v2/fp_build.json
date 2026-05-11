@@ -1,46 +1,62 @@
-[
-    {
-        "type" : "convert-to",
-        "name" : "stemcell"
-    },
-    {
-        "type" : "single",
-        "name" : "CIRQUE_ENABLE",
-        "user_input": "Do you have a cirque?"
-    },
-    {
-        "type" : "one-of",
-        "names" : [ "RGBLIGHT_ENABLE", "RGB_MATRIX_ENABLE" ],
-        "user_input": "No RGB, RGB light, RGB matrix?"
-    },
-    {
-        "type" : "single",
-        "name" : "OLED_ENABLE",
-        "user_input": "Do you have an OLED?"
-    },
-    {
-        "type" : "single",
-        "name" : "FP_EC11_CENTER",
-        "user_input": "Do you have an EC11 in the center?"
-    },
-    {
-        "type" : "one-of",
-        "names" : [ "FP_EC11_UNDER_PALMS", "FP_EVQ_UNDER_PALMS" ],
-        "user_input": "No under palm encoders, EC11, or EVQ?"
-    },
-    {
-        "type" : "single",
-        "name" : "PIMORONI_TRACKBALL_ENABLE",
-        "user_input": "Do you have a pimoroni trackball?"
-    },
-    {
-        "type" : "single",
-        "name" : "AUDIO_ENABLE",
-        "user_input": "Do you have an audio buzzer?"
-    },
-    {
-        "type" : "single",
-        "name" : "HAPTIC_ENABLE",
-        "user_input": "Do you have haptic feedback?"
-    }
-]
+{
+    "$schema": "../../../src/schemas/fp_build.jsonschema",
+
+    "options": [
+        {
+            "type": "value",
+            "name": "CONVERT_TO",
+            "user_input": "Build with CONVERT_TO=stemcell?",
+            "values": ["stemcell"],
+            "default": "stemcell"
+        },
+        {
+            "type": "single",
+            "name": "CIRQUE_ENABLE",
+            "user_input": "Do you have a cirque?",
+            "default": "no"
+        },
+        {
+            "type": "one-of",
+            "names": ["RGBLIGHT_ENABLE", "RGB_MATRIX_ENABLE"],
+            "user_input": "No RGB, RGB light, RGB matrix?",
+            "default": "none"
+        },
+        {
+            "type": "single",
+            "name": "OLED_ENABLE",
+            "user_input": "Do you have an OLED?",
+            "default": "no"
+        },
+        {
+            "type": "single",
+            "name": "FP_EC11_CENTER",
+            "user_input": "Do you have an EC11 in the center?",
+            "default": "no"
+        },
+        {
+            "type": "one-of",
+            "names": ["FP_EC11_UNDER_PALMS", "FP_EVQ_UNDER_PALMS"],
+            "user_input": "No under palm encoders, EC11, or EVQ?",
+            "default": "none"
+        },
+        {
+            "type": "single",
+            "name": "PIMORONI_TRACKBALL_ENABLE",
+            "user_input": "Do you have a pimoroni trackball?",
+            "default": "no",
+            "conflicts_with": ["CIRQUE_ENABLE"]
+        },
+        {
+            "type": "single",
+            "name": "AUDIO_ENABLE",
+            "user_input": "Do you have an audio buzzer?",
+            "default": "no"
+        },
+        {
+            "type": "single",
+            "name": "HAPTIC_ENABLE",
+            "user_input": "Do you have haptic feedback?",
+            "default": "no"
+        }
+    ]
+}

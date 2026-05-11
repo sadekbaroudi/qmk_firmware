@@ -1,7 +1,12 @@
-[
-    {
-        "type" : "single",
-        "name" : "CIRQUE_ENABLE",
-        "user_input": "Do you have a cirque?"
-    }
-]
+{
+    "$schema": "../../src/schemas/fp_build.jsonschema",
+
+    "options": [
+        {
+            "type": "single",
+            "name": "CIRQUE_ENABLE",
+            "user_input": "Do you have a cirque?",
+            "default": "no"
+        }
+    ]
+}

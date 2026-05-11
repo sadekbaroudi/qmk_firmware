@@ -1,0 +1,161 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://github.com/sadekbaroudi/qmk_firmware/keyboards/fingerpunch/src/schemas/fp_build.jsonschema",
+    "title": "fp_build.json",
+    "description": "Per-keyboard build matrix definition consumed by bin/fp_build.py / bin/fp_build.sh.",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["options"],
+    "properties": {
+        "$schema": { "type": "string" },
+        "presets": {
+            "description": "Named bundles of flag=value pairs. Selected via `-p <name>`.",
+            "type": "object",
+            "additionalProperties": {
+                "type": "object",
+                "additionalProperties": { "type": "string" }
+            }
+        },
+        "options": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/entry" }
+        }
+    },
+    "definitions": {
+        "entry": {
+            "oneOf": [
+                { "$ref": "#/definitions/single" },
+                { "$ref": "#/definitions/oneOf" },
+                { "$ref": "#/definitions/value" },
+                { "$ref": "#/definitions/group" }
+            ]
+        },
+        "common": {
+            "type": "object",
+            "properties": {
+                "user_input": { "type": "string" },
+                "depends_on": {
+                    "description": "Predicate that must be satisfied for this entry to apply. Accepts either a single AND-map (object of FLAG -> required value, every pair must match the current build context) or a list of such AND-maps (OR-of-ANDs: the entry applies if any one of the maps fully matches). Entry is skipped (interactive) or pruned (combinatorial) when the predicate is not satisfied.",
+                    "oneOf": [
+                        {
+                            "type": "object",
+                            "additionalProperties": { "type": "string" }
+                        },
+                        {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "type": "object",
+                                "additionalProperties": { "type": "string" }
+                            }
+                        }
+                    ]
+                },
+                "conflicts_with": {
+                    "description": "List of flag names. Entry is skipped if any of them are set to a non-empty/non-`no` value in context.",
+                    "type": "array",
+                    "items": { "type": "string" }
+                }
+            }
+        },
+        "single": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "name", "user_input"],
+            "properties": {
+                "type": { "const": "single" },
+                "name": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*$" },
+                "user_input": { "type": "string" },
+                "default": { "enum": ["yes", "no"] },
+                "depends_on": { "$ref": "#/definitions/common/properties/depends_on" },
+                "conflicts_with": { "$ref": "#/definitions/common/properties/conflicts_with" },
+                "filename_token": {
+                    "description": "Token appended to the output filename when this entry is enabled. Defaults to lowercase(name) with trailing `_enable` stripped.",
+                    "type": "string"
+                }
+            }
+        },
+        "oneOf": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "names", "user_input"],
+            "properties": {
+                "type": { "const": "one-of" },
+                "names": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*$" }
+                },
+                "user_input": { "type": "string" },
+                "default": {
+                    "description": "Either one of `names` or the literal string `none`.",
+                    "type": "string"
+                },
+                "depends_on": { "$ref": "#/definitions/common/properties/depends_on" },
+                "conflicts_with": { "$ref": "#/definitions/common/properties/conflicts_with" },
+                "filename_tokens": {
+                    "description": "Optional map of name -> token used in the output filename instead of the default lowercase(name).",
+                    "type": "object",
+                    "additionalProperties": { "type": "string" }
+                }
+            }
+        },
+        "value": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "name", "user_input"],
+            "properties": {
+                "type": { "const": "value" },
+                "name": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*$" },
+                "user_input": { "type": "string" },
+                "values": {
+                    "description": "Allowed values for `name`. If omitted, any string is accepted (interactive mode prompts free-form).",
+                    "type": "array",
+                    "minItems": 1,
+                    "items": { "type": "string" }
+                },
+                "default": { "type": "string" },
+                "depends_on": { "$ref": "#/definitions/common/properties/depends_on" },
+                "conflicts_with": { "$ref": "#/definitions/common/properties/conflicts_with" },
+                "filename_token": {
+                    "description": "Filename suffix template. Use `{value}` to substitute the chosen value. Defaults to `{value}`.",
+                    "type": "string"
+                },
+                "emit_when_default": {
+                    "description": "If false, `-e NAME=<value>` is omitted from the build command when the chosen value equals `default`. Defaults to true.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "group": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "name", "user_input", "options"],
+            "properties": {
+                "type": { "const": "group" },
+                "name": {
+                    "description": "Logical group name (lowercase, used in filenames and as a context flag).",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                },
+                "user_input": { "type": "string" },
+                "enable_flag": {
+                    "description": "Optional uppercase flag name emitted as `-e <enable_flag>=yes` when the group is selected.",
+                    "type": "string",
+                    "pattern": "^[A-Z][A-Z0-9_]*$"
+                },
+                "default": { "enum": ["yes", "no"] },
+                "depends_on": { "$ref": "#/definitions/common/properties/depends_on" },
+                "conflicts_with": { "$ref": "#/definitions/common/properties/conflicts_with" },
+                "filename_token": {
+                    "description": "Token appended to the output filename when the group is enabled. Defaults to the group name.",
+                    "type": "string"
+                },
+                "options": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/entry" }
+                }
+            }
+        }
+    }
+}

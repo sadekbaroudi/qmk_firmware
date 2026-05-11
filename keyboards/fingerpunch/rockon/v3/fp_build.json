@@ -1,36 +1,51 @@
-[
-    {
-        "type" : "convert-to",
-        "name" : "stemcell"
-    },
-    {
-        "type" : "single",
-        "name" : "CIRQUE_ENABLE",
-        "user_input": "Do you have a cirque?"
-    },
-    {
-        "type" : "single",
-        "name" : "FP_TRACKBALL_ENABLE",
-        "user_input": "Do you have a trackball?"
-    },
-    {
-        "type" : "one-of",
-        "names" : [ "RGBLIGHT_ENABLE", "RGB_MATRIX_ENABLE" ],
-        "user_input": "No RGB, RGB light, RGB matrix?"
-    },
-    {
-        "type" : "single",
-        "name" : "ENCODER_ENABLE",
-        "user_input": "Do you have one or more rotary encoders?"
-    },
-    {
-        "type" : "single",
-        "name" : "AUDIO_ENABLE",
-        "user_input": "Do you have an audio buzzer?"
-    },
-    {
-        "type" : "single",
-        "name" : "HAPTIC_ENABLE",
-        "user_input": "Do you have haptic feedback?"
-    }
-]
+{
+    "$schema": "../../src/schemas/fp_build.jsonschema",
+
+    "options": [
+        {
+            "type": "value",
+            "name": "CONVERT_TO",
+            "user_input": "Build with CONVERT_TO=stemcell?",
+            "values": ["stemcell"],
+            "default": "stemcell"
+        },
+        {
+            "type": "single",
+            "name": "CIRQUE_ENABLE",
+            "user_input": "Do you have a cirque?",
+            "default": "no",
+            "conflicts_with": ["FP_TRACKBALL_ENABLE"]
+        },
+        {
+            "type": "single",
+            "name": "FP_TRACKBALL_ENABLE",
+            "user_input": "Do you have a trackball?",
+            "default": "no",
+            "conflicts_with": ["CIRQUE_ENABLE"]
+        },
+        {
+            "type": "one-of",
+            "names": ["RGBLIGHT_ENABLE", "RGB_MATRIX_ENABLE"],
+            "user_input": "No RGB, RGB light, RGB matrix?",
+            "default": "none"
+        },
+        {
+            "type": "single",
+            "name": "ENCODER_ENABLE",
+            "user_input": "Do you have one or more rotary encoders?",
+            "default": "no"
+        },
+        {
+            "type": "single",
+            "name": "AUDIO_ENABLE",
+            "user_input": "Do you have an audio buzzer?",
+            "default": "no"
+        },
+        {
+            "type": "single",
+            "name": "HAPTIC_ENABLE",
+            "user_input": "Do you have haptic feedback?",
+            "default": "no"
+        }
+    ]
+}

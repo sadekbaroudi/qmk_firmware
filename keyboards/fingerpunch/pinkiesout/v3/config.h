@@ -17,6 +17,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#define VIK_DISPLAY_RST_UNUSED_PIN GP15
+
 /* key matrix size */
 #define MATRIX_ROWS 9
 #define MATRIX_COLS 8
