@@ -1,7 +1,12 @@
-[
-    {
-        "type" : "single",
-        "name" : "FP_WEACT_ST7735",
-        "user_input": "Do you have a WeAct ST7735 Display VIK module?"
-    }
-]
+{
+    "$schema": "../../src/schemas/fp_build.jsonschema",
+
+    "options": [
+        {
+            "type": "single",
+            "name": "FP_WEACT_ST7735",
+            "user_input": "Do you have a WeAct ST7735 Display VIK module?",
+            "default": "no"
+        }
+    ]
+}

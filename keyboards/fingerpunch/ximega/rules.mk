@@ -4,6 +4,21 @@ BOOTLOADER = rp2040
 
 VIK_ENABLE = yes
 
+# -----------------------------------------------------------------------------
+# Translate the new fp_build.json `VIK_BUILD` flag (none|left|right) into the
+# legacy VIK_BUILD_LEFT / VIK_BUILD_RIGHT make flags consumed by
+# keyboards/fingerpunch/src/vik/rules.vik.*.mk. Consumers passing the legacy
+# flags directly continue to work because we only set a legacy flag when the
+# new flag is non-default.
+VIK_BUILD ?= none
+ifeq ($(strip $(VIK_BUILD)), left)
+   VIK_BUILD_LEFT := yes
+endif
+ifeq ($(strip $(VIK_BUILD)), right)
+   VIK_BUILD_RIGHT := yes
+endif
+# -----------------------------------------------------------------------------
+
 # Build Options
 #   change yes to no to disable
 #

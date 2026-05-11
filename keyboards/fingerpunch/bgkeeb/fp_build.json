@@ -1,17 +1,24 @@
-[
-    {
-        "type" : "single",
-        "name" : "RGBLIGHT_ENABLE",
-        "user_input": "Do you have RGB?"
-    },
-    {
-        "type" : "single",
-        "name" : "ENCODER_ENABLE",
-        "user_input": "Do you have one or more rotary encoders?"
-    },
-    {
-        "type" : "single",
-        "name" : "PIMORONI_TRACKBALL_ENABLE",
-        "user_input": "Do you have a pimoroni trackball installed?"
-    }
-]
+{
+    "$schema": "../src/schemas/fp_build.jsonschema",
+
+    "options": [
+        {
+            "type": "single",
+            "name": "RGBLIGHT_ENABLE",
+            "user_input": "Do you have RGB?",
+            "default": "no"
+        },
+        {
+            "type": "single",
+            "name": "ENCODER_ENABLE",
+            "user_input": "Do you have one or more rotary encoders?",
+            "default": "no"
+        },
+        {
+            "type": "single",
+            "name": "PIMORONI_TRACKBALL_ENABLE",
+            "user_input": "Do you have a pimoroni trackball installed?",
+            "default": "no"
+        }
+    ]
+}

@@ -1,12 +1,18 @@
-[
-    {
-        "type" : "single",
-        "name" : "RGBLIGHT_ENABLE",
-        "user_input": "Do you have RGB?"
-    },
-    {
-        "type" : "single",
-        "name" : "ENCODER_ENABLE",
-        "user_input": "Do you have one or more rotary encoders?"
-    }
-]
+{
+    "$schema": "../src/schemas/fp_build.jsonschema",
+
+    "options": [
+        {
+            "type": "single",
+            "name": "RGBLIGHT_ENABLE",
+            "user_input": "Do you have RGB?",
+            "default": "no"
+        },
+        {
+            "type": "single",
+            "name": "ENCODER_ENABLE",
+            "user_input": "Do you have one or more rotary encoders?",
+            "default": "no"
+        }
+    ]
+}

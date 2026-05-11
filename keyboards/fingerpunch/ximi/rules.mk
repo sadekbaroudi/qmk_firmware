@@ -45,6 +45,49 @@ ifeq ($(strip $(RGB_MATRIX_ENABLE)), yes)
 endif
 
 # Choose only one (or none) of the 8 options below
+# -----------------------------------------------------------------------------
+# Translate the new fp_build.json flag interface into the legacy
+# FP_TRACKBALL_*/FP_CIRQUE_*/FP_SPLIT_* flags. Consumers who still pass the
+# legacy flags directly (e.g. `make fingerpunch/ximi:default FP_CIRQUE_BOTH=yes`)
+# continue to work because the translation only sets a legacy flag when the
+# corresponding new flag pair is non-default.
+FP_POINTING_LEFT  ?= none
+FP_POINTING_RIGHT ?= none
+FP_SPLIT_BUILD    ?= none
+
+ifeq ($(strip $(FP_POINTING_LEFT))_$(strip $(FP_POINTING_RIGHT)), trackball_trackball)
+   FP_TRACKBALL_BOTH := yes
+endif
+ifeq ($(strip $(FP_POINTING_LEFT))_$(strip $(FP_POINTING_RIGHT)), cirque_cirque)
+   FP_CIRQUE_BOTH := yes
+endif
+ifeq ($(strip $(FP_POINTING_LEFT))_$(strip $(FP_POINTING_RIGHT)), trackball_none)
+   FP_TRACKBALL_LEFT_ONLY := yes
+endif
+ifeq ($(strip $(FP_POINTING_LEFT))_$(strip $(FP_POINTING_RIGHT)), none_trackball)
+   FP_TRACKBALL_RIGHT_ONLY := yes
+endif
+ifeq ($(strip $(FP_POINTING_LEFT))_$(strip $(FP_POINTING_RIGHT)), cirque_none)
+   FP_CIRQUE_LEFT_ONLY := yes
+endif
+ifeq ($(strip $(FP_POINTING_LEFT))_$(strip $(FP_POINTING_RIGHT)), none_cirque)
+   FP_CIRQUE_RIGHT_ONLY := yes
+endif
+ifeq ($(strip $(FP_POINTING_LEFT))_$(strip $(FP_POINTING_RIGHT)), trackball_cirque)
+   FP_TRACKBALL_LEFT_CIRQUE_RIGHT := yes
+endif
+ifeq ($(strip $(FP_POINTING_LEFT))_$(strip $(FP_POINTING_RIGHT)), cirque_trackball)
+   FP_CIRQUE_LEFT_TRACKBALL_RIGHT := yes
+endif
+
+ifeq ($(strip $(FP_SPLIT_BUILD)), left)
+   FP_SPLIT_LEFT := yes
+endif
+ifeq ($(strip $(FP_SPLIT_BUILD)), right)
+   FP_SPLIT_RIGHT := yes
+endif
+# -----------------------------------------------------------------------------
+
 FP_TRACKBALL_BOTH ?= no
 FP_CIRQUE_BOTH ?= no
 FP_TRACKBALL_LEFT_ONLY ?= no

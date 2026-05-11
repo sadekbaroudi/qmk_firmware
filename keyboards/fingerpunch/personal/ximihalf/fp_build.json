@@ -1,20 +1,24 @@
-[
-    {
-        "type" : "one-of",
-        "names" : [
-                    "FP_TRACKBALL_ENABLED",
-                    "CIRQUE_ENABLED"
-                ],
-        "user_input": "What config would you like to use? (FP_TRACKBALL_ENABLED, CIRQUE_ENABLED): "
-    },
-    {
-        "type" : "single",
-        "name" : "RGBLIGHT_ENABLE",
-        "user_input": "Do you have RGB?"
-    },
-    {
-        "type" : "single",
-        "name" : "HAPTIC_ENABLE",
-        "user_input": "Do you have haptic feedback?"
-    }
-]
+{
+    "$schema": "../../src/schemas/fp_build.jsonschema",
+
+    "options": [
+        {
+            "type": "one-of",
+            "names": ["FP_TRACKBALL_ENABLED", "CIRQUE_ENABLED"],
+            "user_input": "What config would you like to use? (FP_TRACKBALL_ENABLED, CIRQUE_ENABLED): ",
+            "default": "none"
+        },
+        {
+            "type": "single",
+            "name": "RGBLIGHT_ENABLE",
+            "user_input": "Do you have RGB?",
+            "default": "no"
+        },
+        {
+            "type": "single",
+            "name": "HAPTIC_ENABLE",
+            "user_input": "Do you have haptic feedback?",
+            "default": "no"
+        }
+    ]
+}

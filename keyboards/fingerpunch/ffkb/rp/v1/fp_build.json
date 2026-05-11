@@ -1,32 +1,72 @@
-[
-    {
-        "type" : "one-of",
-        "names" : [ "CIRQUE_SPI", "CIRQUE_I2C" ],
-        "user_input": "No cirque, SPI cirque, or I2C cirque?"
+{
+    "$schema": "../../../src/schemas/fp_build.jsonschema",
+
+    "presets": {
+        "default": {
+            "RGB_MATRIX_ENABLE": "yes"
+        },
+        "fully-loaded": {
+            "CIRQUE_ENABLE": "yes",
+            "CIRQUE_DRIVER": "spi",
+            "RGB_MATRIX_ENABLE": "yes",
+            "FP_EC11": "yes",
+            "AUDIO_ENABLE": "yes",
+            "HAPTIC_ENABLE": "yes"
+        },
+        "trackball-rgb": {
+            "FP_TRACKBALL_ENABLE": "yes",
+            "RGB_MATRIX_ENABLE": "yes"
+        }
     },
-    {
-        "type" : "single",
-        "name" : "FP_TRACKBALL_ENABLE",
-        "user_input": "Do you have a trackball?"
-    },
-    {
-        "type" : "one-of",
-        "names" : [ "RGBLIGHT_ENABLE", "RGB_MATRIX_ENABLE" ],
-        "user_input": "No RGB, RGB light, RGB matrix?"
-    },
-    {
-        "type" : "one-of",
-        "names" : [ "FP_EC11", "FP_EVQ" ],
-        "user_input": "No rotary encoders, EC11, or EVQ?"
-    },
-    {
-        "type" : "single",
-        "name" : "AUDIO_ENABLE",
-        "user_input": "Do you have an audio buzzer?"
-    },
-    {
-        "type" : "single",
-        "name" : "HAPTIC_ENABLE",
-        "user_input": "Do you have haptic feedback?"
-    }
-]
+
+    "options": [
+        {
+            "type": "group",
+            "name": "cirque",
+            "enable_flag": "CIRQUE_ENABLE",
+            "user_input": "Do you have a cirque?",
+            "default": "no",
+            "conflicts_with": ["FP_TRACKBALL_ENABLE"],
+            "options": [
+                {
+                    "type": "value",
+                    "name": "CIRQUE_DRIVER",
+                    "values": ["spi", "i2c"],
+                    "default": "spi",
+                    "user_input": "Which cirque bus?"
+                }
+            ]
+        },
+        {
+            "type": "single",
+            "name": "FP_TRACKBALL_ENABLE",
+            "user_input": "Do you have a trackball?",
+            "default": "no",
+            "conflicts_with": ["CIRQUE_ENABLE"]
+        },
+        {
+            "type": "one-of",
+            "names": ["RGBLIGHT_ENABLE", "RGB_MATRIX_ENABLE"],
+            "user_input": "No RGB, RGB light, RGB matrix?",
+            "default": "none"
+        },
+        {
+            "type": "one-of",
+            "names": ["FP_EC11", "FP_EVQ"],
+            "user_input": "No rotary encoders, EC11, or EVQ?",
+            "default": "none"
+        },
+        {
+            "type": "single",
+            "name": "AUDIO_ENABLE",
+            "user_input": "Do you have an audio buzzer?",
+            "default": "no"
+        },
+        {
+            "type": "single",
+            "name": "HAPTIC_ENABLE",
+            "user_input": "Do you have haptic feedback?",
+            "default": "no"
+        }
+    ]
+}

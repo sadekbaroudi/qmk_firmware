@@ -1,12 +1,18 @@
-[
-    {
-        "type" : "one-of",
-        "names" : [ "RGBLIGHT_ENABLE", "RGB_MATRIX_ENABLE" ],
-        "user_input": "No RGB, RGB light, RGB matrix?"
-    },
-    {
-        "type" : "single",
-        "name" : "OLED_ENABLE",
-        "user_input": "Do you have an OLED?"
-    }
-]
+{
+    "$schema": "../../src/schemas/fp_build.jsonschema",
+
+    "options": [
+        {
+            "type": "one-of",
+            "names": ["RGBLIGHT_ENABLE", "RGB_MATRIX_ENABLE"],
+            "user_input": "No RGB, RGB light, RGB matrix?",
+            "default": "none"
+        },
+        {
+            "type": "single",
+            "name": "OLED_ENABLE",
+            "user_input": "Do you have an OLED?",
+            "default": "no"
+        }
+    ]
+}

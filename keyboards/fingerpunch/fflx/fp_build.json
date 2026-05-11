@@ -1,21 +1,31 @@
-[
-    {
-        "type" : "convert-to",
-        "name" : "stemcell"
-    },
-    {
-        "type" : "single",
-        "name" : "CIRQUE_ENABLE",
-        "user_input": "Do you have a cirque?"
-    },
-    {
-        "type" : "single",
-        "name" : "RGBLIGHT_ENABLE",
-        "user_input": "Do you want underglow enabled?"
-    },
-    {
-        "type" : "one-of",
-        "names" : [ "FP_EC11_UNDER_PALMS", "FP_EVQ_UNDER_PALMS" ],
-        "user_input": "No under palm encoders, EC11, or EVQ?"
-    }
-]
+{
+    "$schema": "../src/schemas/fp_build.jsonschema",
+
+    "options": [
+        {
+            "type": "value",
+            "name": "CONVERT_TO",
+            "user_input": "Build with CONVERT_TO=stemcell?",
+            "values": ["stemcell"],
+            "default": "stemcell"
+        },
+        {
+            "type": "single",
+            "name": "CIRQUE_ENABLE",
+            "user_input": "Do you have a cirque?",
+            "default": "no"
+        },
+        {
+            "type": "single",
+            "name": "RGBLIGHT_ENABLE",
+            "user_input": "Do you want underglow enabled?",
+            "default": "no"
+        },
+        {
+            "type": "one-of",
+            "names": ["FP_EC11_UNDER_PALMS", "FP_EVQ_UNDER_PALMS"],
+            "user_input": "No under palm encoders, EC11, or EVQ?",
+            "default": "none"
+        }
+    ]
+}

@@ -1,12 +1,18 @@
-[
-    {
-        "type" : "single",
-        "name" : "RGBLIGHT_ENABLE",
-        "user_input": "Do you have RGB?"
-    },
-    {
-        "type" : "single",
-        "name" : "OLED_ENABLE",
-        "user_input": "Do you have an OLED?"
-    }
-]
+{
+    "$schema": "../src/schemas/fp_build.jsonschema",
+
+    "options": [
+        {
+            "type": "single",
+            "name": "RGBLIGHT_ENABLE",
+            "user_input": "Do you have RGB?",
+            "default": "no"
+        },
+        {
+            "type": "single",
+            "name": "OLED_ENABLE",
+            "user_input": "Do you have an OLED?",
+            "default": "no"
+        }
+    ]
+}

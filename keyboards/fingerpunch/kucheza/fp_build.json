@@ -1,7 +1,12 @@
-[
-    {
-        "type" : "single",
-        "name" : "ENCODER_ENABLE",
-        "user_input": "Do you have a rotary encoder?"
-    }
-]
+{
+    "$schema": "../src/schemas/fp_build.jsonschema",
+
+    "options": [
+        {
+            "type": "single",
+            "name": "ENCODER_ENABLE",
+            "user_input": "Do you have a rotary encoder?",
+            "default": "no"
+        }
+    ]
+}

@@ -1,47 +1,53 @@
-[
-    {
-        "type" : "one-of",
-        "names" : [
-                    "VIK_BUILD_LEFT",
-                    "VIK_BUILD_RIGHT"
-                ],
-        "user_input": "This is only applicable if you have two *different* VIK devices, one on each half. 0 if not applicable, 1 to build left firmware, 2 to build right firmware:"
-    },
-    {
-        "type" : "one-of",
-        "names" : [
-                    "VIK_AZOTEQ",
-                    "VIK_CIRQUE",
-                    "VIK_EC11_EVQWGD001",
-                    "VIK_GC9A01",
-                    "VIK_HAPTIC",
-                    "VIK_ILI9341",
-                    "VIK_PER56_CIRQUE_LEDS",
-                    "VIK_PER56_PMW3360_LEDS",
-                    "VIK_PMW3360",
-                    "VIK_WAVESHARE_22224",
-                    "VIK_WEACT_ST7735"
-                ],
-        "user_input": "What VIK config would you like to use for the left half? (0) NONE, (1) VIK_AZOTEQ, (2) VIK_CIRQUE, (3) VIK_EC11_EVQWGD001, (4) VIK_GC9A01, (5) VIK_HAPTIC, (6) VIK_ILI9341, (7) VIK_PER56_CIRQUE_LEDS, (8) VIK_PER56_PMW3360_LEDS, (9) VIK_PMW3360, (10) VIK_WAVESHARE_22224, (11) VIK_WEACT_ST7735:"
-    },
-    {
-        "type" : "one-of",
-        "names" : [
-                    "VIK_AZOTEQ_RIGHT",
-                    "VIK_CIRQUE_RIGHT",
-                    "VIK_EC11_EVQWGD001_RIGHT",
-                    "VIK_PER56_CIRQUE_LEDS_RIGHT",
-                    "VIK_PER56_PMW3360_LEDS_RIGHT",
-                    "VIK_PMW3360_RIGHT"
-                ],
-        "user_input": "What VIK config would you like to use for the right half? (0) NONE, (1) VIK_AZOTEQ, (2) VIK_CIRQUE, (3) VIK_EC11_EVQWGD001, (4) VIK_PER56_CIRQUE_LEDS, (5) VIK_PER56_PMW3360_LEDS, (6) VIK_PMW3360:"
-    },
-    {
-        "type" : "one-of",
-        "names" : [
-                    "RGBLIGHT_ENABLE",
-                    "RGB_MATRIX_ENABLE"
-                  ],
-        "user_input": "No RGB, RGB light, RGB matrix?"
-    }
-]
+{
+    "$schema": "../../src/schemas/fp_build.jsonschema",
+
+    "options": [
+        {
+            "type": "value",
+            "name": "VIK_BUILD",
+            "values": ["none", "left", "right"],
+            "default": "none",
+            "user_input": "(Asymmetric VIK only) Build firmware for which half?",
+            "emit_when_default": false,
+            "filename_token": "vik_build_{value}"
+        },
+        {
+            "type": "one-of",
+            "names": [
+                "VIK_AZOTEQ",
+                "VIK_CIRQUE",
+                "VIK_EC11_EVQWGD001",
+                "VIK_GC9A01",
+                "VIK_HAPTIC",
+                "VIK_ILI9341",
+                "VIK_PER56_CIRQUE_LEDS",
+                "VIK_PER56_PMW3360_LEDS",
+                "VIK_PMW3360",
+                "VIK_TRACKPOINT",
+                "VIK_WAVESHARE_22224",
+                "VIK_WEACT_ST7735"
+            ],
+            "user_input": "Which VIK module on the left half?",
+            "default": "none"
+        },
+        {
+            "type": "one-of",
+            "names": [
+                "VIK_AZOTEQ_RIGHT",
+                "VIK_CIRQUE_RIGHT",
+                "VIK_EC11_EVQWGD001_RIGHT",
+                "VIK_PER56_CIRQUE_LEDS_RIGHT",
+                "VIK_PER56_PMW3360_LEDS_RIGHT",
+                "VIK_PMW3360_RIGHT"
+            ],
+            "user_input": "Which VIK module on the right half?",
+            "default": "none"
+        },
+        {
+            "type": "one-of",
+            "names": ["RGBLIGHT_ENABLE", "RGB_MATRIX_ENABLE"],
+            "user_input": "No RGB, RGB light, RGB matrix?",
+            "default": "none"
+        }
+    ]
+}
