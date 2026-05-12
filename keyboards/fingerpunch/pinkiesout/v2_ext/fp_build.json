@@ -16,6 +16,14 @@
             "default": "no"
         },
         {
+            "type": "value",
+            "name": "CIRQUE_DRIVER",
+            "values": ["spi", "i2c"],
+            "default": "spi",
+            "user_input": "Which cirque bus?",
+            "depends_on": { "CIRQUE_ENABLE": "yes" }
+        },
+        {
             "type": "one-of",
             "names": ["RGBLIGHT_ENABLE", "RGB_MATRIX_ENABLE"],
             "user_input": "No RGB, RGB light, RGB matrix?",

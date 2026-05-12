@@ -203,6 +203,37 @@ exactly one of `names`. `default` may be `"none"` or any value from
 `names`. The interactive prompt presents a numbered menu starting at `0`
 for `none`.
 
+**Per-name sub-options** (optional): each name may declare its own
+sub-option list via `sub_options`. The sub-options are walked only when
+that specific name is chosen, and the chosen name is set in the build
+context so sub-options can reference it in `depends_on`. This lets you
+model "pick A or B, but if you pick A also tell me the A-specific
+config" without a parallel `group` + `conflicts_with` triple.
+
+```jsonc
+{
+    "type": "one-of",
+    "names": ["CIRQUE_ENABLE", "FP_TRACKBALL_ENABLE"],
+    "user_input": "Pointing device?",
+    "default": "none",
+    "sub_options": {
+        "CIRQUE_ENABLE": [
+            {
+                "type": "value",
+                "name": "CIRQUE_DRIVER",
+                "values": ["spi", "i2c"],
+                "default": "spi",
+                "user_input": "Which cirque bus?"
+            }
+        ]
+    }
+}
+```
+
+In exhaustive mode, sub-options multiply only into the branch that
+selects them, so the trackball branch above contributes 1 plan while
+the cirque branch contributes `|CIRQUE_DRIVER values|` plans.
+
 #### `value` — free-form or enumerated value
 
 ```jsonc
@@ -253,6 +284,28 @@ A group asks one yes/no question first, and only descends into its
 
 `group.name` (lowercase) doubles as a context flag: `_GROUP_<NAME>=yes`
 is set internally so other entries can refer to it via `depends_on`.
+
+#### `$include` — splice in a shared fragment
+
+```jsonc
+{ "$include": "src/fp_build_fragments/vik.json" }
+```
+
+Replaces itself at load time with the `options` list from the referenced
+fragment file. The path is resolved relative to
+`keyboards/fingerpunch/`. Fragment files themselves must be valid
+`fp_build.json`-shaped objects (`{ "options": [...] }`); their
+`presets` (if any) are ignored.
+
+Fragments may include other fragments. Cycles are detected and
+rejected at load time.
+
+This exists so canonical option groups can live in one place. The
+`src/fp_build_fragments/vik.json` fragment, for example, defines the
+canonical VIK module `one-of` (with `VIK_CIRQUE` carrying a
+SPI/I2C sub-option) and is included from every VIK-enabled board's
+`fp_build.json`. Adding a new VIK module is a one-line edit in the
+fragment instead of touching every consuming board.
 
 ### Presets
 
@@ -352,12 +405,24 @@ It is idempotent — running it twice is a no-op on already-migrated files.
 
 ## CI integration
 
-`.github/workflows/firmware_build.yml` builds every keyboard with `-x`
-so every option × value combination is exercised on every push:
+`.github/workflows/firmware_build.yml` builds every keyboard with `-w`
+(pairwise / all-pairs coverage) so every two-flag interaction is
+exercised on every push without blowing up to the full cartesian
+product. The workflow delegates per-board work to
+[`bin/firmware_build_ci.sh`](firmware_build_ci.sh), which is the single
+source of truth for the build invocation:
 
-```yaml
-make_command="bin/fp_build.sh -k ${line} -r -x"
+```bash
+# Reproduce CI locally, one board at a time:
+bin/firmware_build_ci.sh ffkb/rp/v1
+
+# Or the whole matrix in series (takes a while):
+bin/firmware_build_ci.sh
+
+# Dry-run: list which boards would build, and how many pairwise commands each:
+bin/firmware_build_ci.sh -n
 ```
 
-`-x` (exhaustive) keeps the historical "build everything" behavior even
-as boards adopt `default` values for cleaner local UX.
+`-w` reduces the build count by 5-25x on typical fingerpunch boards.
+Three-way interactions worth pinning can be added to a board's
+`presets` block — presets always build.

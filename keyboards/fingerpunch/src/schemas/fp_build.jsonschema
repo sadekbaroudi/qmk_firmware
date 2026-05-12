@@ -8,6 +8,10 @@
     "required": ["options"],
     "properties": {
         "$schema": { "type": "string" },
+        "_comment": {
+            "description": "Free-form human-readable note. Ignored by the build tool.",
+            "type": "string"
+        },
         "presets": {
             "description": "Named bundles of flag=value pairs. Selected via `-p <name>`.",
             "type": "object",
@@ -27,8 +31,18 @@
                 { "$ref": "#/definitions/single" },
                 { "$ref": "#/definitions/oneOf" },
                 { "$ref": "#/definitions/value" },
-                { "$ref": "#/definitions/group" }
+                { "$ref": "#/definitions/group" },
+                { "$ref": "#/definitions/include" }
             ]
+        },
+        "include": {
+            "description": "Splice the `options` list from another fp_build.json fragment in place. The path is resolved relative to keyboards/fingerpunch/. Fragments may include other fragments; cycles are rejected. Useful for sharing canonical option groups (e.g. the VIK module list) across many boards.",
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["$include"],
+            "properties": {
+                "$include": { "type": "string", "minLength": 1 }
+            }
         },
         "common": {
             "type": "object",
@@ -97,6 +111,14 @@
                     "description": "Optional map of name -> token used in the output filename instead of the default lowercase(name).",
                     "type": "object",
                     "additionalProperties": { "type": "string" }
+                },
+                "sub_options": {
+                    "description": "Per-name sub-option lists. When a particular name is selected, that name's sub-options are walked in addition to emitting the flag itself. Names not present in this map have no sub-options. Sub-options may use depends_on / conflicts_with as usual; they are evaluated with the chosen one-of name set in the build context.",
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": { "$ref": "#/definitions/entry" }
+                    }
                 }
             }
         },

@@ -1,0 +1,37 @@
+{
+    "$schema": "../schemas/fp_build.jsonschema",
+    "_comment": "Canonical VIK module list. Included via $include from every VIK-enabled board's fp_build.json. Add a new VIK module here once and every board picks it up. VIK_CIRQUE supports both SPI and I2C on every fingerpunch VIK board (including vulpes_minora/byomcu, the byomcu exception that fully supports VIK). See bin/fp_build.md for the include mechanism.",
+
+    "options": [
+        {
+            "type": "one-of",
+            "names": [
+                "VIK_AZOTEQ",
+                "VIK_CIRQUE",
+                "VIK_EC11_EVQWGD001",
+                "VIK_GC9A01",
+                "VIK_HAPTIC",
+                "VIK_ILI9341",
+                "VIK_PER56_CIRQUE_LEDS",
+                "VIK_PER56_PMW3360_LEDS",
+                "VIK_PMW3360",
+                "VIK_TRACKPOINT",
+                "VIK_WAVESHARE_22224",
+                "VIK_WEACT_ST7735"
+            ],
+            "user_input": "Which VIK module are you using?",
+            "default": "none",
+            "sub_options": {
+                "VIK_CIRQUE": [
+                    {
+                        "type": "value",
+                        "name": "CIRQUE_DRIVER",
+                        "values": ["spi", "i2c"],
+                        "default": "spi",
+                        "user_input": "Which cirque bus?"
+                    }
+                ]
+            }
+        }
+    ]
+}

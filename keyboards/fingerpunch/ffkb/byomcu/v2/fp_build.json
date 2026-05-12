@@ -10,10 +10,10 @@
             "default": "stemcell"
         },
         {
-            "type": "single",
-            "name": "CIRQUE_ENABLE",
-            "user_input": "Do you have a cirque?",
-            "default": "no"
+            "type": "one-of",
+            "names": ["CIRQUE_ENABLE", "PIMORONI_TRACKBALL_ENABLE"],
+            "user_input": "Pointing device?",
+            "default": "none"
         },
         {
             "type": "one-of",
@@ -38,13 +38,6 @@
             "names": ["FP_EC11_UNDER_PALMS", "FP_EVQ_UNDER_PALMS"],
             "user_input": "No under palm encoders, EC11, or EVQ?",
             "default": "none"
-        },
-        {
-            "type": "single",
-            "name": "PIMORONI_TRACKBALL_ENABLE",
-            "user_input": "Do you have a pimoroni trackball?",
-            "default": "no",
-            "conflicts_with": ["CIRQUE_ENABLE"]
         },
         {
             "type": "single",

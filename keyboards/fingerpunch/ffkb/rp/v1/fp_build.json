@@ -21,28 +21,21 @@
 
     "options": [
         {
-            "type": "group",
-            "name": "cirque",
-            "enable_flag": "CIRQUE_ENABLE",
-            "user_input": "Do you have a cirque?",
-            "default": "no",
-            "conflicts_with": ["FP_TRACKBALL_ENABLE"],
-            "options": [
-                {
-                    "type": "value",
-                    "name": "CIRQUE_DRIVER",
-                    "values": ["spi", "i2c"],
-                    "default": "spi",
-                    "user_input": "Which cirque bus?"
-                }
-            ]
-        },
-        {
-            "type": "single",
-            "name": "FP_TRACKBALL_ENABLE",
-            "user_input": "Do you have a trackball?",
-            "default": "no",
-            "conflicts_with": ["CIRQUE_ENABLE"]
+            "type": "one-of",
+            "names": ["CIRQUE_ENABLE", "FP_TRACKBALL_ENABLE"],
+            "user_input": "Pointing device?",
+            "default": "none",
+            "sub_options": {
+                "CIRQUE_ENABLE": [
+                    {
+                        "type": "value",
+                        "name": "CIRQUE_DRIVER",
+                        "values": ["spi", "i2c"],
+                        "default": "spi",
+                        "user_input": "Which cirque bus?"
+                    }
+                ]
+            }
         },
         {
             "type": "one-of",

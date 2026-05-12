@@ -17,6 +17,7 @@ You may **only** create, edit, or delete files inside these paths:
 | `users/sadekbaroudi/`                      | The owner's QMK userspace (custom keycodes, combos, tap dances, audio helpers, etc.).            |
 | `bin/fp_build.sh` and `bin/fp_build.py`    | The build matrix tool. Both must stay in sync (the shell script is a thin wrapper).              |
 | `bin/fp_build.md`                          | Documentation for the build tool.                                                                |
+| `bin/firmware_build_ci.sh`                 | Local CI simulator. The GitHub Actions workflow calls this same script, so it is the single source of truth for the per-board build invocation. |
 | `.github/workflows/firmware_build.yml`     | CI workflow that builds every fingerpunch board on every push.                                   |
 | `.github/copilot-instructions.md`          | This file.                                                                                       |
 
@@ -73,9 +74,11 @@ python3 bin/fp_build.py -V
 This must pass before committing.
 
 **CI invariant**: `.github/workflows/firmware_build.yml` calls the tool
-with `-x` (exhaustive) so every option × value combination is built on
-every push. If you change CI invocation, preserve the exhaustive matrix
-unless explicitly told otherwise.
+with `-w` (pairwise / all-pairs) so every two-flag interaction is built
+on every push without the O(N!) blow-up of a full cartesian product.
+Three-way interactions worth pinning live in each board's `presets`
+block. If you change CI invocation, preserve pairwise coverage unless
+explicitly told otherwise.
 
 ---
 
@@ -130,18 +133,19 @@ adding new ones.
 
 ### `bin/`
 
-| File              | Purpose                                                                                          |
-| ----------------- | ------------------------------------------------------------------------------------------------ |
-| `fp_build.py`     | The build matrix engine. Edit here for any behavioral change.                                    |
-| `fp_build.sh`     | Thin shell wrapper. **Do not duplicate logic here.**                                             |
-| `fp_build.md`     | User-facing documentation. Keep in sync with the schema and CLI surface.                         |
-| Other files       | Upstream QMK helpers — do not modify.                                                            |
+| File                       | Purpose                                                                                          |
+| -------------------------- | ------------------------------------------------------------------------------------------------ |
+| `fp_build.py`              | The build matrix engine. Edit here for any behavioral change.                                    |
+| `fp_build.sh`              | Thin shell wrapper. **Do not duplicate logic here.**                                             |
+| `fp_build.md`              | User-facing documentation. Keep in sync with the schema and CLI surface.                         |
+| `firmware_build_ci.sh`     | Local CI simulator. Runs `bin/fp_build.sh -k <kb> -r -w` over one or all boards with PASS/FAIL summary. `.github/workflows/firmware_build.yml` invokes this same script per matrix entry, so CI and local behavior cannot drift. |
+| Other files                | Upstream QMK helpers — do not modify.                                                            |
 
 ### `.github/`
 
 | File                                    | Purpose                                                                                          |
 | --------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| `workflows/firmware_build.yml`          | The CI matrix. One job per discovered keyboard, each invoked with `-x` for exhaustive coverage. |
+| `workflows/firmware_build.yml`          | The CI matrix. One job per discovered keyboard, each invoked with `-w` for pairwise (all-pairs) coverage. |
 | `copilot-instructions.md`               | This file.                                                                                       |
 | Anything else                           | Treat as upstream — leave alone.                                                                 |
 
@@ -178,9 +182,16 @@ adding new ones.
 
 ### Editing CI
 
-- Preserve `-x` on the build invocation.
+- The workflow body is intentionally tiny: it discovers boards via
+  `bin/fp_build.sh -l` and then delegates each matrix entry to
+  `bin/firmware_build_ci.sh "${{ matrix.keyboard }}"`. If you need to
+  change how a board is built, edit the script, not the yaml.
+- Preserve `-w` (pairwise) on the build invocation inside the script.
 - Preserve the `-l` listing path; the matrix construction depends on it.
 - Bump the QMK CLI container hash deliberately, never as a side effect.
+- When a change might affect CI build behavior, ask the user to run
+  `bin/firmware_build_ci.sh <kb>` locally before pushing — it runs
+  exactly what CI would run for that matrix entry.
 
 ### Things you generally **shouldn't** do
 
@@ -214,6 +225,11 @@ bin/fp_build.sh -k ffkb/rp/v1 -i
 
 # Apply a preset and pin one override.
 bin/fp_build.sh -k ffkb/rp/v1 -p fully-loaded -s CIRQUE_DRIVER=i2c
+
+# Simulate the GitHub Actions firmware build locally. Same invocation CI uses.
+bin/firmware_build_ci.sh ffkb/rp/v1       # one board
+bin/firmware_build_ci.sh                  # every board
+bin/firmware_build_ci.sh -n               # dry-run (show counts, no compile)
 
 # Migrate any legacy fp_build.json files (idempotent).
 python3 keyboards/fingerpunch/src/scripts/migrate_fp_build.py

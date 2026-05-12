@@ -95,6 +95,49 @@ class Doc:
     options: List[dict] = field(default_factory=list)
 
 
+def _resolve_include(entry: dict, base_dir: Path, visiting: set) -> List[dict]:
+    """Resolve an `$include` entry by loading the referenced fragment and
+    returning its expanded `options` list.
+
+    Fragment paths are resolved relative to `keyboards/fingerpunch/` so they
+    are stable regardless of the depth of the including board's directory.
+    Fragments themselves may contain further `$include` entries; cycles are
+    detected and rejected.
+    """
+    rel = entry["$include"]
+    if not isinstance(rel, str) or not rel:
+        raise SystemExit(f"$include must be a non-empty string, got {entry!r}")
+    frag_path = (FP_KB_DIR / rel).resolve()
+    if frag_path in visiting:
+        chain = " -> ".join(str(p.relative_to(REPO_ROOT)) for p in visiting) + f" -> {frag_path.relative_to(REPO_ROOT)}"
+        raise SystemExit(f"$include cycle detected: {chain}")
+    if not frag_path.is_file():
+        raise SystemExit(f"$include target not found: {rel} (resolved to {frag_path})")
+    raw = json.loads(frag_path.read_text())
+    if not isinstance(raw, dict) or "options" not in raw:
+        raise SystemExit(f"{frag_path}: fragment must be an object with `options`")
+    return _expand_includes(raw["options"] or [], frag_path.parent, visiting | {frag_path})
+
+
+def _expand_includes(options: List[dict], base_dir: Path, visiting: set) -> List[dict]:
+    """Walk an options list, splicing any `$include` entries with the resolved
+    fragment options. Recurses into `group.options` so includes work at any
+    depth."""
+    out: List[dict] = []
+    for entry in options:
+        if not isinstance(entry, dict):
+            out.append(entry)
+            continue
+        if "$include" in entry:
+            out.extend(_resolve_include(entry, base_dir, visiting))
+            continue
+        if entry.get("type") == "group" and isinstance(entry.get("options"), list):
+            entry = dict(entry)
+            entry["options"] = _expand_includes(entry["options"], base_dir, visiting)
+        out.append(entry)
+    return out
+
+
 def load_doc(json_path: Path) -> Doc:
     raw = json.loads(json_path.read_text())
     if isinstance(raw, list):
@@ -104,10 +147,11 @@ def load_doc(json_path: Path) -> Doc:
         )
     if not isinstance(raw, dict) or "options" not in raw:
         raise SystemExit(f"{json_path}: missing required `options` key")
+    options = _expand_includes(raw["options"] or [], json_path.parent, {json_path.resolve()})
     return Doc(
         path=json_path,
         presets=raw.get("presets", {}) or {},
-        options=raw["options"] or [],
+        options=options,
     )
 
 
@@ -300,6 +344,9 @@ def walk_interactive(
             choice = _resolve_one_of(entry, overrides, ask)
             if choice and choice != "none":
                 plan = plan.with_env(choice, "yes").with_token(_one_of_token(entry, choice))
+                subs = (entry.get("sub_options") or {}).get(choice)
+                if subs:
+                    plan = walk_interactive(subs, plan, overrides, ask)
         elif t == "value":
             choice = _resolve_value(entry, overrides, ask)
             plan = _emit_value(entry, choice, plan)
@@ -362,10 +409,17 @@ def walk_combinatorial(
             choices = [entry["default"]]
         else:
             choices = ["none"] + list(names)
+        sub_options_map = entry.get("sub_options") or {}
         for c in choices:
             cp = plan
             if c != "none":
                 cp = cp.with_env(c, "yes").with_token(_one_of_token(entry, c))
+                subs = sub_options_map.get(c)
+                if subs:
+                    # Expand the chosen name's sub-options before continuing with `rest`.
+                    for sub_plan in walk_combinatorial(subs, cp, overrides, exhaustive):
+                        yield from walk_combinatorial(rest, sub_plan, overrides, exhaustive)
+                    continue
             yield from _expand([cp])
 
     elif t == "value":

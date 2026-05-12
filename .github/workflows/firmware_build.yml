@@ -46,24 +46,10 @@ jobs:
           chmod +x jq
           mv jq /usr/local/sbin/
 
-          keyboards=$(bash bin/fp_build.sh -l| sed s~keyboards/fingerpunch/~~)
-
-          echo "${keyboards}" | while IFS= read -r line ; do
-            case "$line" in
-              *${{ matrix.keyboard }}*)
-                echo "Building for ${line}"
-                # -w: pairwise (all-pairs) reduction of the exhaustive matrix.
-                # Every (flag_a=value, flag_b=value) interaction is built at
-                # least once, but the build count shrinks from O(N!) to O(N²),
-                # often by 10-50x on boards with many flags. Implies -x for
-                # enumeration scope. Three-way interactions worth pinning can
-                # be added to a board's `presets` block — presets always build.
-                make_command="bin/fp_build.sh -k ${line} -r -w"
-                echo "${make_command}"
-                $make_command
-              ;;
-            esac
-          done
+          # Single source of truth for the per-board CI build invocation.
+          # `bin/firmware_build_ci.sh` is the same script developers run
+          # locally to simulate this job, so CI and local behavior cannot drift.
+          bin/firmware_build_ci.sh "${{ matrix.keyboard }}"
 
       - name: Prepare keyboard name for Artifacts
         id: prep_artifact_name

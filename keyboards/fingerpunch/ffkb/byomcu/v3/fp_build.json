@@ -10,18 +10,10 @@
             "default": "stemcell"
         },
         {
-            "type": "single",
-            "name": "CIRQUE_ENABLE",
-            "user_input": "Do you have a cirque?",
-            "default": "no",
-            "conflicts_with": ["FP_TRACKBALL_ENABLE"]
-        },
-        {
-            "type": "single",
-            "name": "FP_TRACKBALL_ENABLE",
-            "user_input": "Do you have a trackball?",
-            "default": "no",
-            "conflicts_with": ["CIRQUE_ENABLE"]
+            "type": "one-of",
+            "names": ["CIRQUE_ENABLE", "FP_TRACKBALL_ENABLE"],
+            "user_input": "Pointing device?",
+            "default": "none"
         },
         {
             "type": "one-of",

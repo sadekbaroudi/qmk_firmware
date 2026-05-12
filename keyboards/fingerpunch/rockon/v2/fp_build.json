@@ -10,11 +10,21 @@
             "default": "stemcell"
         },
         {
-            "type": "single",
-            "name": "CIRQUE_ENABLE",
-            "user_input": "Do you have a cirque?",
-            "default": "no",
-            "conflicts_with": ["PIMORONI_TRACKBALL_ENABLE"]
+            "type": "one-of",
+            "names": ["CIRQUE_ENABLE", "PIMORONI_TRACKBALL_ENABLE"],
+            "user_input": "Pointing device?",
+            "default": "none",
+            "sub_options": {
+                "CIRQUE_ENABLE": [
+                    {
+                        "type": "value",
+                        "name": "CIRQUE_DRIVER",
+                        "values": ["spi", "i2c"],
+                        "default": "spi",
+                        "user_input": "Which cirque bus?"
+                    }
+                ]
+            }
         },
         {
             "type": "one-of",
@@ -33,13 +43,6 @@
             "name": "ENCODER_ENABLE",
             "user_input": "Do you have one or more rotary encoders?",
             "default": "no"
-        },
-        {
-            "type": "single",
-            "name": "PIMORONI_TRACKBALL_ENABLE",
-            "user_input": "Do you have a pimoroni trackball?",
-            "default": "no",
-            "conflicts_with": ["CIRQUE_ENABLE"]
         },
         {
             "type": "single",

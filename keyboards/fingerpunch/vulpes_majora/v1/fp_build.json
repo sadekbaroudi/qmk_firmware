@@ -2,40 +2,7 @@
     "$schema": "../../src/schemas/fp_build.jsonschema",
 
     "options": [
-        {
-            "type": "single",
-            "name": "CIRQUE_ENABLE",
-            "user_input": "Do you have a built-in (non-VIK) cirque?",
-            "default": "no",
-            "conflicts_with": ["FP_TRACKBALL_ENABLE"]
-        },
-        {
-            "type": "single",
-            "name": "FP_TRACKBALL_ENABLE",
-            "user_input": "Do you have a built-in (non-VIK) trackball?",
-            "default": "no",
-            "conflicts_with": ["CIRQUE_ENABLE"]
-        },
-        {
-            "type": "one-of",
-            "names": [
-                "VIK_AZOTEQ",
-                "VIK_CIRQUE",
-                "VIK_EC11_EVQWGD001",
-                "VIK_GC9A01",
-                "VIK_HAPTIC",
-                "VIK_ILI9341",
-                "VIK_PER56_CIRQUE_LEDS",
-                "VIK_PER56_PMW3360_LEDS",
-                "VIK_PMW3360",
-                "VIK_TRACKPOINT",
-                "VIK_WAVESHARE_22224",
-                "VIK_WEACT_ST7735"
-            ],
-            "user_input": "Which VIK module are you using?",
-            "default": "none",
-            "conflicts_with": ["FP_TRACKBALL_ENABLE"]
-        },
+        { "$include": "src/fp_build_fragments/vik.json" },
         {
             "type": "single",
             "name": "RGBLIGHT_ENABLE",
